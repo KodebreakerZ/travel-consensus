@@ -2,7 +2,7 @@
 
 When writing any block of code that is logically subordinate to the line immediately before and after it, that block should be indented two spaces more than the surrounding lines
 
-* Do not put any tab characters anywhere in your code. You would do best to stop pressing the tab key entirely.
+* Do not put any tab characters anywhere in your code. You would do best to set your development environment to compose tabs with spaces or to stop pressing the tab key entirely
 * Increase the indent level for all blocks by two extra spaces
     * When a line opens a block, the next line starts 2 spaces further in than the line that opened
 
@@ -129,16 +129,6 @@ When writing any block of code that is logically subordinate to the line immedia
     }
     ```
 
-* Don't use function statements for the entire first half of the course. They introduce a slew of subtle new rules to how the language behaves, and without a clear benefit. Once you and all your peers are expert level in the second half, you can start to use the more (needlessly) complicated option if you like.
-
-    ```javascript
-    // good:
-    var go = function(){...};
-
-    // bad:
-    function stop(){...};
-    ```
-
 
 ### Semicolons
 
@@ -240,23 +230,6 @@ When writing any block of code that is logically subordinate to the line immedia
 ### Working with files
 
 * Do not end a file with any character other than a newline.
-* Don't use the -a or -m flags for `git commit` for the first half of the class, since they conceal what is actually happening (and do slightly different things than most people expect).
-
-    ```shell
-    # good:
-    > git add .
-    > git commit
-    [save edits to the commit message file using the text editor that opens]
-
-    # bad:
-    > git commit -a
-    [save edits to the commit message file using the text editor that opens]
-
-    # bad:
-    > git add .
-    > git commit -m "updated algorithm"
-    ```
-
 
 ### Opening or closing too many blocks at once
 
@@ -301,7 +274,6 @@ When writing any block of code that is logically subordinate to the line immedia
 
 * Some people choose to use capitalization of the first letter in their variable names to indicate that they contain a [class](http://en.wikipedia.org/wiki/Class_(computer_science\)). This capitalized variable might contain a function, a prototype, or some other construct that acts as a representative for the whole class.
 * Optionally, some people use a capital letter only on functions that are written to be run with the keyword `new`.
-* Do not use all-caps for any variables. Some people use this pattern to indicate an intended "constant" variable, but the language does not offer true constants, only mutable variables.
 
 
 ### Minutia
@@ -377,4 +349,440 @@ When writing any block of code that is logically subordinate to the line immedia
 
     <!-- bad -->
     <script src="a.js" type="text/javascript"></script>
+    ```
+
+* Only quote properties that are invalid identifiers.
+
+  ```javascript
+  // bad
+  const bad = {
+    'foo': 3,
+    'bar': 4,
+    'data-blah': 5,
+  };
+
+  // good
+  const good = {
+    foo: 3,
+    bar: 4,
+    'data-blah': 5,
+  };
+  
+* To convert an array-like object to an array, use Array#from.
+
+    ```javascript
+    const foo = document.querySelectorAll('.foo');
+    const nodes = Array.from(foo);
+    ```
+
+* When programmatically building up strings, use template strings instead of concatenation.
+
+    > Why? Template strings give you a readable, concise syntax with proper newlines and string interpolation features.
+
+    ```javascript
+    // bad
+    function sayHi(name) {
+      return 'How are you, ' + name + '?';
+    }
+
+    // bad
+    function sayHi(name) {
+      return ['How are you, ', name, '?'].join();
+    }
+
+    // good
+    function sayHi(name) {
+      return `How are you, ${name}?`;
+    }
+    ```
+
+* Never use `arguments`, opt to use rest syntax `...` instead.
+    > Why? `...` is explicit about which arguments you want pulled. Plus rest arguments are a real Array and not Array-like like `arguments`.
+
+    ```javascript
+    // bad
+    function concatenateAll() {
+      const args = Array.prototype.slice.call(arguments);
+      return args.join('');
+    }
+
+    // good
+    function concatenateAll(...args) {
+      return args.join('');
+    }
+
+* Use default parameter syntax rather than mutating function arguments.
+
+    ```javascript
+    // really bad
+    function handleThings(opts) {
+      // No! We shouldn't mutate function arguments.
+      // Double bad: if opts is falsy it'll be set to an object which may
+      // be what you want but it can introduce subtle bugs.
+      opts = opts || {};
+      // ...
+    }
+
+    // good
+    function handleThings(opts = {}) {
+      // ...
+    }
+    ```
+
+* Spacing in a function signature.
+
+    > Why? Consistency is good, and you shouldn’t have to add or remove a space when adding or removing a name.
+
+    ```javascript
+    // bad
+    const f = function(){};
+    const g = function (){};
+    const h = function() {};
+
+    // good
+    const x = function () {};
+    const y = function a() {};
+    ```
+
+* When you must use function expressions (as when passing an anonymous function), use arrow function notation.
+   > Why? It creates a version of the function that executes in the context of `this`, which is usually what you want, and is a more concise syntax.
+
+   > Why not? If you have a fairly complicated function, you might move that logic out into its own function declaration.
+
+    ```javascript
+    // bad
+    [1, 2, 3].map(function (x) {
+      const y = x + 1;
+      return x * y;
+    });
+
+    // good
+    [1, 2, 3].map((x) => {
+      const y = x + 1;
+      return x * y;
+    });
+    ```
+
+* [13.4](#13.4) <a name='13.4'></a> Assign variables where you need them, but place them in a reasonable place.
+   
+   > Why? `let` and `const` are block scoped and not function scoped.
+
+    ```javascript
+    // bad - unnecessary function call
+    function checkName(hasName) {
+      const name = getName();
+
+      if (hasName === 'test') {
+        return false;
+      }
+
+      if (name === 'test') {
+        this.setName('');
+        return false;
+      }
+
+      return name;
+    }
+
+    // good
+    function checkName(hasName) {
+      if (hasName === 'test') {
+        return false;
+      }
+
+      const name = getName();
+
+      if (name === 'test') {
+        this.setName('');
+        return false;
+      }
+
+      return name;
+    }
+    ```
+
+* Use shortcuts.
+
+    ```javascript
+    // bad
+    if (name !== '') {
+      // ...stuff...
+    }
+
+    // good
+    if (name) {
+      // ...stuff...
+    }
+
+    // bad
+    if (collection.length > 0) {
+      // ...stuff...
+    }
+
+    // good
+    if (collection.length) {
+      // ...stuff...
+    }
+    ```
+
+* Use braces with all multi-line blocks.
+
+    ```javascript
+    // bad
+    if (test)
+      return false;
+
+    // good
+    if (test) return false;
+
+    // good
+    if (test) {
+      return false;
+    }
+
+    // bad
+    function foo() { return false; }
+
+    // good
+    function bar() {
+      return false;
+    }
+    ```
+
+* If you're using multi-line blocks with `if` and `else`, put `else` on the same line as your `if` block's closing brace.
+
+    ```javascript
+    // bad
+    if (test) {
+      thing1();
+      thing2();
+    }
+    else {
+      thing3();
+    }
+
+    // good
+    if (test) {
+      thing1();
+      thing2();
+    } else {
+      thing3();
+    }
+    ```
+
+* Use `/** ... */` for multi-line comments. Include a description, specify types and values for all parameters and return values.
+
+    ```javascript
+    // bad
+    // make() returns a new element
+    // based on the passed in tag name
+    //
+    // @param {String} tag
+    // @return {Element} element
+    function make(tag) {
+
+      // ...stuff...
+
+      return element;
+    }
+
+    // good
+    /**
+     * make() returns a new element
+     * based on the passed in tag name
+     *
+     * @param {String} tag
+     * @return {Element} element
+     */
+    function make(tag) {
+
+      // ...stuff...
+
+      return element;
+    }
+    ```
+
+* Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, or if you're suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME -- need to figure this out` or `TODO -- need to implement`.
+
+   > Use `// FIXME:` to annotate problems.
+
+    ```javascript
+    class Calculator extends Abacus {
+      constructor() {
+        super();
+
+        // FIXME: shouldn't use a global here
+        total = 0;
+      }
+    }
+    ```
+
+  > Use `// TODO:` to annotate solutions to problems.
+
+    ```javascript
+    class Calculator extends Abacus {
+      constructor() {
+        super();
+
+        // TODO: total should be configurable by an options param
+        this.total = 0;
+      }
+    }
+    ```
+
+*  Add spaces inside curly braces.
+
+    ```javascript
+    // bad
+    const foo = {clark: 'kent'};
+
+    // good
+    const foo = { clark: 'kent' };
+    ```
+
+*  Do not add spaces inside parentheses.
+
+    ```javascript
+    // bad
+    function bar( foo ) {
+      return foo;
+    }
+
+    // good
+    function bar(foo) {
+      return foo;
+    }
+
+*  Additional trailing comma: **Yup.**
+
+    > Why? This reduces mental overhead when manually editing lists and leads to cleaner git diffs.
+
+    ```javascript
+    // bad - git diff without trailing comma
+    const hero = {
+         firstName: 'Florence',
+    -    lastName: 'Nightingale'
+    +    lastName: 'Nightingale',
+    +    inventorOf: ['coxcomb graph', 'modern nursing']
+    };
+
+    // good - git diff with trailing comma
+    const hero = {
+         firstName: 'Florence',
+         lastName: 'Nightingale',
+    +    inventorOf: ['coxcomb chart', 'modern nursing'],
+    };
+
+    // bad
+    const hero = {
+      firstName: 'Dana',
+      lastName: 'Scully'
+    };
+
+    const heroes = [
+      'Batman',
+      'Superman'
+    ];
+
+    // good
+    const hero = {
+      firstName: 'Dana',
+      lastName: 'Scully',
+    };
+
+    const heroes = [
+      'Batman',
+      'Superman',
+    ];
+    ```
+
+*  Type Casting & Coercion
+   > Prefer explicit coercion
+
+   > Strings:
+   
+    ```javascript
+    let reviewScore = 9;
+
+    // bad
+    const totalScore = reviewScore + '';
+
+    // good
+    const totalScore = String(this.reviewScore);
+
+   > Numbers: Use `Number` or `ParseInt`
+
+    ```javascript
+    const inputValue = '4';
+
+    // good
+    const val = Number(inputValue);
+
+    // good
+    const binary = parseInt(inputValue, 2);
+
+   > Booleans:
+
+    ```javascript
+    const age = 0;
+
+    // good
+    const hasAge = Boolean(age);
+
+    // good
+    const hasAge = !!age;
+    ```
+
+*  Use a leading underscore `_` when naming private properties.
+
+    ```javascript
+    // bad
+    this.__firstName__ = 'Panda';
+    this.firstName_ = 'Panda';
+
+    // good
+    this._firstName = 'Panda';
+    ```
+
+## Events
+
+*  When attaching data payloads to events, pass an object instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
+
+    ```javascript
+    // bad
+    $(this).trigger('listingUpdated', listing.id);
+
+    ...
+
+    $(this).on('listingUpdated', (e, listingId) => {
+      // do something with listingId
+    });
+    ```
+
+    prefer:
+
+    ```javascript
+    // good
+    $(this).trigger('listingUpdated', { listingId: listing.id });
+
+    ...
+
+    $(this).on('listingUpdated', (e, data) => {
+      // do something with data.listingId
+    });
+    ```
+
+## jQuery
+
+*  Prefix jQuery object variables with a `$`.
+
+    ```javascript
+    // bad
+    const sidebar = $('.sidebar');
+
+    // good
+    const $sidebar = $('.sidebar');
+
+    // good
+    const $sidebarBtn = $('.sidebar-btn');
     ```
