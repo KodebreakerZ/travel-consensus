@@ -1,12 +1,12 @@
-# Space Kitten
+# Travel-consensus
 
-> Pithy project description
+> Travel-consensus description
 
 ## Team
 
-  - __Product Owner__: space cat
-  - __Scrum Master__: space cat
-  - __Development Team Members__: space cat, space cat
+  - __Product Owner__: Kamran
+  - __Scrum Master__: Amberley
+  - __Development Team Members__: Zack, Jon, Chris
 
 ## Table of Contents
 
@@ -25,10 +25,10 @@
 ## Requirements
 
 - Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- react 0.14.7
+- react-dom 0.14.7
+- react-router 2.0.0
+- reactify 1.1.1
 
 ## Development
 
