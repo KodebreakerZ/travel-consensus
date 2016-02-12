@@ -1,0 +1,106 @@
+
+/* General Structure
+––––––––––––––––––––––––––––––––––––––––––––––––––
+*/
+
+html, body
+{
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width:100%;
+max-height:100%;
+}
+
+hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Global Top Bar
+––––––––––––––––––––––––––––––––––––––––––––––––––
+*/
+
+.darkgray {
+  background-color:#303030
+}
+
+.darkgray p {
+  color:#fff;
+  text-align:right;
+  margin: 10px 0;
+}
+
+/* Static Sidebar
+––––––––––––––––––––––––––––––––––––––––––––––––––
+*/
+
+.sidebar
+{
+  height: 100%;
+  min-height: 100%;
+  width:20%;
+  /*min-width:200px;*/
+  float:left;
+  position:relative;
+  background-color:#198c8c;
+}
+
+.location-display {
+  height:175px;
+  margin-bottom:0px;
+  text-align:center;
+  color:#fff;
+}
+
+.location-display h4 {
+  color:#fff;
+}
+
+.location-display .fa {
+  margin:25px 0;
+}
+
+.task-item {
+  background-color:#198c8c;
+  margin-bottom:2px;
+  height:100%;
+}
+
+.task-item p {
+  color:#fff;
+  text-align:right;
+  margin:10px;
+  font-size:18px;
+}
+
+/* Main Content Area
+––––––––––––––––––––––––––––––––––––––––––––––––––
+*/
+
+.main {
+  position:relative;
+  float:left;
+  width:80%;
+  /*min-width:200px;*/
+}
+
+.suggestion-display {
+  width:100%;
+  background-color:#c0392b;
+  color:#fff;
+  padding:10px;
+}
+
+.chat-display {
+  width:100%;
+  background-color:#fff;
+}
+
+.message-input {
+  width:100%;
+}
