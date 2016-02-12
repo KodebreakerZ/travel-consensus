@@ -2,6 +2,8 @@ var browserify = require('browserify-middleware')
 var express = require('express')
 var Path = require('path')
 
+// var Db = require('../db/db')
+
 var routes = express.Router()
 
 //
@@ -50,8 +52,17 @@ if (process.env.NODE_ENV !== 'test') {
   var port = process.env.PORT || 4000
   app.listen(port)
   console.log("Listening on port", port)
+
+
 }
 else {
   // We're in test mode; make this file importable instead.
   module.exports = routes
 }
+
+
+
+
+
+
+
