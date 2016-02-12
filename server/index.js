@@ -27,12 +27,19 @@ routes.use(express.static(assetFolder))
 
 
 if (process.env.NODE_ENV !== 'test') {
+
+  routes
+
+
+
+
   //
   // The Catch-all Route
   // This is for supporting browser history pushstate.
   // NOTE: Make sure this route is always LAST.
   //
   routes.get('/*', function(req, res){
+    console.log('catch-all route triggered');
     res.sendFile( assetFolder + '/index.html' )
   })
 

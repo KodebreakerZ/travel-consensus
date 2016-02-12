@@ -25,9 +25,8 @@
     When making changes to the database schema:
       > run 'npm install -g knex' to access knex CLI
       > run 'knex migrate:make consensus' to create a new, timestamped schema file
-      > Copy the other most recent migration file and paste it into the new one
-
-      !Make any changes!
+      > Copy the previous schema and paste it into the new migration file
+      > Make any changes!
 
 */
 
