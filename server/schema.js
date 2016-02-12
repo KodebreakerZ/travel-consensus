@@ -42,3 +42,5 @@ pg.schema.createTableIfNotExists('', function (table) {
 	table.integer('id_trip').references('id').inTable('trip');
 });
 
+
+
