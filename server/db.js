@@ -1,24 +1,8 @@
+const config = require('../knexfile');
+const env    = process.env.NODE_ENV || 'development';
+const pg     = require('knex')(config[env]);
 
+module.exports = pg;
 
-
-
-
-
-pg.schema.createTableIfNotExists('table', function(table) {
-  table.increments();
-  table.string('name');
-  table.timestamps();
-}).then(function(success) {
-  console.log('success!', success)
-})
-
-pg('table').insert({name: 'jon'}).returning('*')
-  .then(function(result) {
-    console.log('insertion result:', result);
-  })
-
-pg('table').select()
-  .then(function(result){
-    console.log('select result:', result)
-  })
-
+// This helps to ensure that the running database's schema is up to date
+pg.migrate.latest([config])
