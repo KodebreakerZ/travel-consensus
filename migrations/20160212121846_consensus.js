@@ -4,7 +4,8 @@ exports.up = function(knex, Promise) {
     knex.schema.createTableIfNotExists('trip', function (table) {
       table.increments('id').primary();
       table.string('name').notNullable().defaultTo('Unknown');
-    });
+
+    }),
 
     knex.schema.createTableIfNotExists('user', function (table) {
       table.increments('id').primary();
@@ -13,13 +14,13 @@ exports.up = function(knex, Promise) {
       table.string('nickname').notNullable();
       //will replace with password hash
       table.string('password').notNullable();
-    });
+    }),
 
     knex.schema.createTableIfNotExists('trip_user', function (table) {
       table.increments('id').primary();
       table.integer('id_trip').references('id').inTable('trip');
       table.integer('id_user').references('id').inTable('user');
-    });
+    }),
 
     knex.schema.createTableIfNotExists('task', function (table) {
       table.increments('id').primary();
@@ -28,7 +29,7 @@ exports.up = function(knex, Promise) {
       table.string('status').defaultTo('');
       table.string('decision').nullable();
       table.integer('id_trip').references('id').inTable('trip');
-    });
+    }),
 
     knex.schema.createTableIfNotExists('message', function (table) {
       table.increments('id').primary();
@@ -36,7 +37,7 @@ exports.up = function(knex, Promise) {
       table.string('content', 1000).notNullable();
       table.integer('id_task').references('id').inTable('task');
       table.integer('id_user').references('id').inTable('user');
-    });
+    }),
 
     //will replace default with correct table name after decision on wording is made
     knex.schema.createTableIfNotExists('suggestion', function (table) {
@@ -47,9 +48,12 @@ exports.up = function(knex, Promise) {
       table.integer('id_task').references('id').inTable('task');
       table.integer('id_user').references('id').inTable('user');
       table.integer('id_trip').references('id').inTable('trip');
-    });
+    })
 
   ])
+  .catch(function(error) {
+    console.log('error in schematifying tables', error)
+  })
 };
 
 exports.down = function(knex, Promise) {

@@ -9,6 +9,7 @@ exports.seed = function(knex, Promise) {
     // knex('task').del(),
     // knex('trip_user').del(),
 
+
     // Inserts seed entries
     knex('trip').insert({name: 'Denver'}),
     knex('trip').insert({name: 'San Cristobal'}),
