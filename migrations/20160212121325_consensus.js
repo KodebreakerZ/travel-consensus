@@ -10,21 +10,11 @@ exports.up = function(knex, Promise) {
             table.string('email');
             table.timestamps();
         }),
-
-        // knex.schema.createTable('whosit', function(table) {
-        //   table.string('whatsit');
-        //   // etc..
-        // }),
-
       ])
 };
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-        // knex.schema.dropTableIfExists('trip'),
-        knex.schema.dropTableIfExists('users'),
-        // knex.schema.dropTableIfExists('task'),
-        // knex.schema.dropTableIfExists('message')
-        // knex.schema.dropTableIfExists('suggestion'),
+        knex.schema.dropTableIfExists('users')
     ])
 };

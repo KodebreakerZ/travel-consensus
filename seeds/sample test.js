@@ -1,13 +1,15 @@
 
+
 exports.seed = function(knex, Promise) {
-  return Promise.join(
+  return Promise.all([
     // Deletes ALL existing entries
-    // knex('suggestion').del(),
-    // knex('user').del(),
-    // knex('message').del(),
-    // knex('trip').del(),
-    // knex('task').del(),
-    // knex('trip_user').del(),
+    knex('suggestion').del(),
+    knex('user').del(),
+    knex('message').del(),
+    knex('trip').del(),
+    knex('task').del(),
+    knex('trip_user').del(),
+
 
     // Inserts seed entries
     knex('trip').insert({name: 'Denver'}),
@@ -62,7 +64,7 @@ exports.seed = function(knex, Promise) {
     knex('suggestion').insert({ suggestion: 'Paris', votes: 3, id_task: 5, id_user: 3, id_trip: 3 }),
     knex('suggestion').insert({ suggestion: 'Jimmy John', votes: 1, id_task: 1, id_user: 2, id_trip: 3 })
 
-  );
+  ]);
 };
 
 
