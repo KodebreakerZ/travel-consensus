@@ -1,22 +1,31 @@
 var browserify = require('browserify-middleware')
 var express = require('express')
 var Path = require('path')
-
-// var Db = require('../db/db')
+var Reactify = require('reactify')
 
 var routes = express.Router()
 
 //
 // Provide a browserified file at a specified path
 //
+
+
+
+/* --- Added Reactify require and "...transform: [Reactify]" ---  */
 routes.get('/app-bundle.js',
-  browserify('./client/app.js'))
+  browserify('./client/app.js', {
+    transform: [Reactify]
+  }))
+
+
+
+
 
 //
 // Example endpoint (also tested in test/server/index_test.js)
 //
 routes.get('/api/tags-example', function(req, res) {
-  res.send(['node', 'express', 'browserify', 'mithril'])
+  res.send(['node', 'express', 'browserify', 'react', 'react-dom'])
 })
 
 //
