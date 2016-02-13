@@ -6,8 +6,8 @@
   Hi! To get a brand-new development database up and running:
     > navigate to project directory
     > ensure PostGreSql is installed
-      > run postgresql in your terminal and see if you have anything
-        > if not, 'brew install postgresql'
+      > run postgres in your terminal and see if you have anything
+        > if not, 'brew install postgres'
     > run 'initdb db/'
     > run 'createdb db/dev'
     > A database server must be up and running to test and develop!
@@ -34,19 +34,35 @@
 
 module.exports = {
   development: {
-    client: 'pg',
+    client: 'postgresql',
     connection: {
       host: 'localhost',
       port: 5432,
-      database: 'db/development'
+      database: 'dev'
     },
     migrations: {
+      directory: './migrations',
       tableName: 'knex_migrations'
-    },
-    seeds: {
-      directory: './seeds'
     },
     debug: false,
   },
 
+  test: {
+    client: 'postgresql',
+    connection: {
+      host: 'localhost',
+      port: 5432,
+      database: 'test'
+    },
+    seeds: {
+      directory: './lib/seeds'
+    },
+    debug: true,
+  },
+
 };
+
+
+
+
+
