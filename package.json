@@ -36,7 +36,7 @@
   "keywords": [
     "boilerplate",
     "browserify",
-    "express",
+    "express"
   ],
   "bugs": {
     "url": "https://github.com/mindeavor/node-catapult/issues"
