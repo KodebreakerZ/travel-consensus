@@ -24,11 +24,11 @@
 
 ## Requirements
 
-- Node 0.10.x
-- react 0.14.7
-- react-dom 0.14.7
-- react-router 2.0.0
-- reactify 1.1.1
+- Node 					v 5.6.0
+- react 				v 0.14.7
+- react-dom 		v 0.14.7
+- react-router 	v 2.0.0
+- reactify 			v 1.1.1
 
 ## Development
 
@@ -37,10 +37,16 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
-npm install
-bower install
+npm i
+npm --save react react-dom react-router reactify
+npm start
 ```
+
+### Tasks
+
+```sh
+...
+````
 
 ### Roadmap
 
