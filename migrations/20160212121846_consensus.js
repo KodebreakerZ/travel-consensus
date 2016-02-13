@@ -52,7 +52,7 @@ exports.up = function(knex, Promise) {
 
   ])
   .catch(function(error) {
-    console.log('error in schematifying tables', error)
+    console.log('error in schematifying tables')
   })
 };
 

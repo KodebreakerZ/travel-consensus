@@ -1,6 +1,8 @@
 /*
   DATABASE CONFIGURATION
 
+    Postico is a fantastic postgresql database visualizer
+
   Hi! To get a brand-new development database up and running:
     > navigate to project directory
     > ensure PostGreSql is installed
@@ -36,7 +38,7 @@ module.exports = {
     connection: {
       host: 'localhost',
       port: 5432,
-      database: 'dev'
+      database: 'db/development'
     },
     migrations: {
       tableName: 'knex_migrations'
