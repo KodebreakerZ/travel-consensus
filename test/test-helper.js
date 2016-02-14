@@ -7,6 +7,7 @@ process.env.NODE_ENV = 'test'
 //
 global.__server = __dirname + '/../server'
 global.__client = __dirname + '/../client'
+global.__models = __dirname + '/../models'
 
 //
 // Assertions
