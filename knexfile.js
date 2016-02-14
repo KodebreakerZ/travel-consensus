@@ -2,6 +2,7 @@
   DATABASE CONFIGURATION
 
     Postico is a fantastic postgresql database visualizer
+    'psql db/' is a great tool for command-line db access.
 
   Hi! To get a brand-new development database up and running:
     > navigate to project directory
