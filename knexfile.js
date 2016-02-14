@@ -5,9 +5,9 @@
 
   Hi! To get a brand-new development database up and running:
     > navigate to project directory
-    > ensure PostGreSql is installed
-      > run postgresql in your terminal and see if you have anything
-        > if not, 'brew install postgresql'
+    > ensure PostGreS is installed
+      > run postgres in your terminal and see if you have anything
+        > if not, 'brew install postgres'
     > run 'initdb db/'
     > run 'createdb db/dev'
     > A database server must be up and running to test and develop!
