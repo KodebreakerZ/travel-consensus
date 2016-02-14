@@ -38,13 +38,13 @@ module.exports = {
     connection: {
       host: 'localhost',
       port: 5432,
-      database: 'dev'
+      database: 'development'
     },
     migrations: {
       directory: './migrations',
       tableName: 'knex_migrations'
     },
-    debug: false,
+    debug: true,
   },
 
   test: {
