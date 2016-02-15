@@ -2,25 +2,6 @@ const db = require('../server/db');
 
 const Message = module.exports;
 
-
-/*
-  Retrieve all messages of a certain task
-
-  taskId: id of task whose messages we want
-*/
-Message.allOfTask = function(taskId) {
-  return db.select('*').from('message').where('id_task': taskId);
-    .catch(function(error) {
-      console.warn('error reading all messages of task:', taskId);
-      console.warn(error);
-      throw error;
-    })
-    .then(function(result) {
-      console.log('fetched messages:', result);
-      return result;
-    }
-}
-
 /*
   Insert new message into database
 
@@ -44,4 +25,19 @@ Message.create = function(attrs) {
       console.log('success inserting new message', result)
       return result
     })
+}
+
+/*
+  Retrieve all messages of a certain task
+*/
+Message.allOfTask = function(taskId) {
+  return db.select('*').from('message').where('id_task': taskId);
+    .catch(function(error) {
+      console.warn('error reading all messages of task:', taskId);
+      console.warn(error);
+    })
+    .then(function(result) {
+      console.log('fetched messages:', result);
+      return result;
+    }
 }
