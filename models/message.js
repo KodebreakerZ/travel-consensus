@@ -19,9 +19,10 @@ Message.create = function(attrs) {
     .catch(function(error) {
       console.warn('error inserting message into db', attrs)
       console.warn(error)
+      throw error;
     })
     .then(function(result) {
-      console.log('success inserting new message')
+      console.log('success inserting new message', result)
       return result
     })
 }

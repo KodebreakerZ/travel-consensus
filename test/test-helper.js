@@ -46,15 +46,36 @@ TestHelper.createApp = function (loader) {
   return app
 }
 
-//
-// Monkey-patch mocha's `it` function
-// to support `yield` within generator functions
-// for pleasant test writing.
-//
-// Thanks goes to http://stackoverflow.com/a/23029774/49695
-//
-var Bluebird = require('bluebird')
 
+/*
+  A curried error logger that logs a description
+  (where the error happened) and the error message.
+
+  When using this helper, provide it a description
+  and the logging will be invoked only when it is passed
+  a second parameter.
+
+  use example:
+    .catch(reportError('messages from task'))
+*/
+var ramda = require('ramda');
+var reportError = function(description, error) {
+  console.error('*** Testing Error ***');
+  console.error(description);
+  console.error(error);
+
+  if (error instanceof Error) throw error
+}
+TestHelper.reportError = ramda.curry(reportError);
+
+/*
+  Monkey-patch mocha's `it` function
+  to support `yield` within generator functions
+  for pleasant test writing.
+
+  Thanks goes to http://stackoverflow.com/a/23029774/49695
+*/
+var Bluebird = require('bluebird')
 var originalIt = it
 it = function(title, test) {
 
