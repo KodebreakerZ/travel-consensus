@@ -1,4 +1,4 @@
-const db = require('../server/db');
+const db = require('../lib/db');
 
 const Message = module.exports;
 
@@ -12,14 +12,14 @@ const Message = module.exports;
   }
 */
 Message.create = function(attrs) {
-  return db('message').insert(attrs)
+  return db('message').insert(attrs, ['id_user', 'id_task', 'createdAt', 'content'])
     .catch(function(error) {
       console.warn('error inserting message into db', attrs)
-      console.warn(error)
+      // console.warn(error)
       throw error;
     })
     .then(function(result) {
-      console.log('success inserting new message', result)
+      console.log('success inserting new message', attrs)
       return result
     })
 }
@@ -28,13 +28,10 @@ Message.create = function(attrs) {
   Retrieve all messages of a certain task
 */
 Message.allOfTask = function(taskId) {
-  return db.select('*').from('message').where('id_task': taskId);
+  return db.select('*').from('message').where({'id_task': taskId})
     .catch(function(error) {
       console.warn('error reading all messages of task:', taskId);
       console.warn(error);
+      throw error;
     })
-    .then(function(result) {
-      console.log('fetched messages:', result);
-      return result;
-    }
 }
