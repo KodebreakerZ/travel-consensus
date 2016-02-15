@@ -12,9 +12,6 @@ const Message = module.exports;
   }
 */
 Message.create = function(attrs) {
-  // var timestamp = Date.now()
-  // attrs.created_at = timestamp;
-
   return db('message').insert(attrs)
     .catch(function(error) {
       console.warn('error inserting message into db', attrs)
