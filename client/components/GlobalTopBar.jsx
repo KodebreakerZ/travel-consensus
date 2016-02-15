@@ -17,6 +17,6 @@ var GlobalTopBar = React.createClass({
 	}
 });
 
-ReactDOM.render (<GlobalTopBar />,document.getElementsById('react-main-mount'))
+// ReactDOM.render (<GlobalTopBar />,document.getElementsById('react-main-mount'))
 
-module.exports = GlobalTopBar;
+// module.exports = GlobalTopBar;
