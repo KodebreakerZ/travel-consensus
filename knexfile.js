@@ -29,7 +29,6 @@
       > run 'knex migrate:make consensus' to create a new, timestamped schema file
       > Copy the previous schema and paste it into the new migration file
       > Make any changes!
-
 */
 
 module.exports = {
