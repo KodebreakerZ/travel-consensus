@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var GlobalTopBar = require('./components/GlobalTopBar');
-var GlobalSidebar = require('./components/GlobalSidebar');
+var GlobalTopBar = require('./components/GlobalTopBar.jsx');
+var GlobalSidebar = require('./components/GlobalSidebar.jsx');
 
 // Currently only using React & ReactDOM require to test if this will show on html page
 // 
@@ -38,8 +38,8 @@ var options = {
 //   }
 // });
 
-ReactDOM.render (<GlobalTopBar />,document.getElementsById('react-main-mount'));
-ReactDOM.render (<GlobalSidebar />,document.getElementsById('react-sidebar-mount'))
+ReactDOM.render (<GlobalTopBar />, document.getElementById('react-main-mount'));
+ReactDOM.render (<GlobalSidebar />, document.getElementById('react-sidebar-mount'));
 
 
 

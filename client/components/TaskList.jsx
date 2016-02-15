@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var TaskItem = require('./TaskItem');
+var TaskItem = require('./TaskItem.jsx');
 
 module.exports = React.createClass({
   render: function() {
