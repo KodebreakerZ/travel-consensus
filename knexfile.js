@@ -2,10 +2,11 @@
   DATABASE CONFIGURATION
 
     Postico is a fantastic postgresql database visualizer
+    'psql db/' is a great tool for command-line db access.
 
   Hi! To get a brand-new development database up and running:
     > navigate to project directory
-    > ensure PostGreS is installed
+    > ensure PostGreSql is installed
       > run postgres in your terminal and see if you have anything
         > if not, 'brew install postgres'
     > run 'initdb db/'
@@ -33,19 +34,45 @@
 
 module.exports = {
   development: {
-    client: 'pg',
+    client: 'postgresql',
     connection: {
       host: 'localhost',
       port: 5432,
-      database: 'db/development'
+      database: 'development'
     },
     migrations: {
+      directory: './migrations',
       tableName: 'knex_migrations'
     },
-    seeds: {
-      directory: './seeds'
+    debug: true,
+  },
+
+  test: {
+    client: 'postgresql',
+    connection: {
+      host: 'localhost',
+      port: 5432,
+      database: 'test'
     },
-    debug: false,
+    seeds: {
+      directory: './lib/seeds'
+    },
+    debug: true,
   },
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
