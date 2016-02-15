@@ -35,7 +35,7 @@ describe('Message model', function() {
         .catch(reportError('creating a new message'))
     })
 
-    it ('should error on invalid user/task information', function * () {
+    it ('should error on invalid user/task/message information', function * () {
       let badUserMessage = {
         user: 99,
         task: 2,
