@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var TaskItem = require('./TaskItem.jsx');
 
-module.exports = React.createClass({
+TaskList = React.createClass({
   render: function() {
     var list = this.props.tasks.map(function(task) {
       return <TaskItem
@@ -16,3 +16,5 @@ module.exports = React.createClass({
 
   }
 });
+
+module.exports = TaskList;
