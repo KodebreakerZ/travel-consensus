@@ -1,3 +1,4 @@
+"use strict"
 require(TEST_HELPER) // <--- This must be at the top of every test file.
 
 const Task = require(__models + '/task')
@@ -9,8 +10,8 @@ describe('Task model', function() {
       yield Task.allOfTrip(2)
         .then(function(tasks) {
           console.log('retrieved tasks:', tasks);
-          expect(tasks).to.have.length(2);
-          expect(tasks[0].name).to.equal('some task name');
+          expect(tasks).to.have.length(3);
+          expect(tasks[0].name).to.equal('Event');
         })
         .catch(reportError('listing tasks from trip by id'));
     })

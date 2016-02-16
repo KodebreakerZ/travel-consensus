@@ -1,4 +1,4 @@
-const db = require('../server/db');
+const db = require('../lib/db');
 
 const Task = module.exports;
 
@@ -27,7 +27,7 @@ Task.create = function(attrs) {
   Retrieve all tasks of a trip
 */
 Task.allOfTrip = function(tripId) {
-  db.select('*').from('task').where({ 'id_trip': tripId })
+  db.select('*').from('task').where({'id_trip': tripId})
     .catch(function(error) {
       console.warn('error retrieving tasks for trip', tripId);
       console.warn(error);

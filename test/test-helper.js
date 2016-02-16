@@ -66,7 +66,7 @@ var reportError = function(description, error) {
 
   if (error instanceof Error) throw error
 }
-TestHelper.reportError = ramda.curry(reportError);
+global.reportError = ramda.curry(reportError);
 
 /*
   Monkey-patch mocha's `it` function
