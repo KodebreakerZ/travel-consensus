@@ -96,6 +96,11 @@ hr {
   padding:10px;
 }
 
+.suggestion-display p {
+  display:inline;
+  margin-right:15px;
+}
+
 .chat-display {
   width:100%;
   background-color:#fff;

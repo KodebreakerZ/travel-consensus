@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var GlobalTopBar = require('./components/GlobalTopBar.jsx');
 var GlobalSidebar = require('./components/GlobalSidebar.jsx');
+var GlobalTaskArea = require('./components/GlobalTaskArea.jsx');
 
 // Currently only using React & ReactDOM require to test if this will show on html page
 // 
@@ -20,6 +21,11 @@ var options = {
     'Where to stay',
     'Travel details',
     'Car rental?'
+  ],
+  suggestions: [
+  'Restaurant 1',
+  'Restaurant 2',
+  'Restaurant 3'
   ]
 };
 
@@ -29,6 +35,9 @@ ReactDOM.render(topbar, document.getElementById('react-main-mount'));
 
 var sidebar = React.createElement(GlobalSidebar, options);
 ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount'));
+
+var task = React.createElement(GlobalTaskArea, options);
+ReactDOM.render(task, document.getElementById('react-task-mount'));
 
 // ReactDOM.render (<GlobalTopBar />, document.getElementById('react-main-mount'));
 // ReactDOM.render (<GlobalSidebar />, document.getElementById('react-sidebar-mount'));
