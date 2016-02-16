@@ -2,13 +2,14 @@
 require(TEST_HELPER) // <--- This must be at the top of every test file.
 
 const Task = require(__models + '/task');
-const db      = require('../../lib/db');
+const db   = require('../../lib/db');
+const dbCleaner = require('knex-cleaner');
 
 describe('Task model', function() {
   describe('interface with database', function() {
 
     beforeEach(function() {
-      return db('task').del()
+      return dbCleaner.clean(db, {mode: 'truncate'})
         .then(function() {
           return db('task').insert([
             {
@@ -29,12 +30,16 @@ describe('Task model', function() {
             }
           ])
         })
+        // .then(function() {
+        //   console.log('inserted tasks into db');
+        // })
     })
 
     it ('should list all tasks of a trip', function * () {
+      // console.log('listing all tasks of trip 2')
       yield Task.allOfTrip(2)
         .then(function(tasks) {
-          console.log('retrieved tasks:', tasks);
+          console.log('retrieved', tasks.length, 'tasks');
           expect(tasks).to.have.length(2);
           expect(tasks[0].name).to.equal('Places to sink');
         })
@@ -44,7 +49,7 @@ describe('Task model', function() {
     it ('should list no tasks for a trip that does not exist', function * () {
       yield Task.allOfTrip(404)
         .then(function(tasks) {
-          console.log('retrieved tasks:', tasks);
+          console.log('retrieved', tasks.length, 'tasks');
           expect(tasks).to.have.length(0);
         })
         .catch(reportError('listing tasks from invalid tripId'));
@@ -57,7 +62,7 @@ describe('Task model', function() {
 
       yield Task.create(newTask)
         .then(function(task) {
-          console.log('created a new task:', task);
+          console.log('created a new task:');
           expect(task).to.be.ok;
           expect(task.name).to.equal('Things to do');
           expect(task.status).to.equal('');
@@ -76,7 +81,7 @@ describe('Task model', function() {
           expect(null).to.be.ok; // reject test
         })
         .catch(function(error) {
-          console.log('√ failure creating task with invalid name', error);
+          console.log('√ failure creating task with invalid name');
           expect(error).to.be.ok;
         })
     })

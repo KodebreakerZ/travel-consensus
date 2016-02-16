@@ -23,10 +23,11 @@ Task.create = function(attrs) {
 }
 
 /*
-  Retrieve all tasks of a trip
+  Retrieve all tasks of a certain trip
 */
 Task.allOfTrip = function(tripId) {
-  db.select('*').from('task').where({'id_trip': tripId})
+  // console.log('all of trip running')
+  return db.select('*').from('task').where({'id_trip': tripId})
     .catch(function(error) {
       console.warn('error retrieving tasks for trip:', tripId);
       // console.warn(error);

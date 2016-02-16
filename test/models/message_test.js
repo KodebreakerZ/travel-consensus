@@ -3,12 +3,13 @@ require(TEST_HELPER) // <--- This must be at the top of every test file.
 
 const Message = require(__models + '/message');
 const db      = require('../../lib/db');
+const dbCleaner = require('knex-cleaner');
 
 describe('Message model', function() {
   describe('interface with database', function() {
 
     beforeEach(function() {
-      return db('message').del()
+      return dbCleaner.clean(db, {mode: 'truncate'})
         .then(function() {
           return db('message').insert([
             {
@@ -59,7 +60,7 @@ describe('Message model', function() {
 
       yield Message.create(badUserMessage)
         .then(function(result) {
-          console.log('√ created message with invalid user (read test notes)');
+          console.log('\t√ created message with invalid user (read test notes)');
           // Because we do not actually enforce foreign key constraints
           // this is a valid message.
           expect(null).to.not.be.ok;
@@ -73,8 +74,8 @@ describe('Message model', function() {
 
       yield Message.create(badTaskMessage)
         .then(function(result) {
-          console.log('√ created message with invalid task (read test notes)');
-          expect(null).to.not.be.ok; // reject test
+          console.log('\t√ created message with invalid task (read test notes)');
+          expect(null).to.not.be.ok;
         })
         .catch(function(error) {
           console.log('failure creating message with invalid task');
@@ -97,7 +98,7 @@ describe('Message model', function() {
           expect(null).to.be.ok; // reject test
         })
         .catch(function(error) {
-          console.log('√ failure creating message with invalid content');
+          console.log('\t√ failure creating message with invalid content');
           expect(error).to.be.ok;
         })
     })

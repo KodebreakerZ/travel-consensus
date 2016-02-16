@@ -19,7 +19,7 @@ Message.create = function(attrs) {
       throw error;
     })
     .then(function(result) {
-      console.log('success inserting new message', attrs)
+      console.log('\tsuccess inserting new message', attrs)
       return result[0];
     })
 }
