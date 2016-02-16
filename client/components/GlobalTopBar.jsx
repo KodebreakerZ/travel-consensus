@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var GlobalTopBar = React.createClass({
+module.exports = React.createClass({
 	render: function(){
 		return (
 			<div className="darkgray">
@@ -17,6 +17,3 @@ var GlobalTopBar = React.createClass({
 	}
 });
 
-ReactDOM.render (<GlobalTopBar />,document.getElementsById('react-main-mount'))
-
-module.exports = GlobalTopBar;

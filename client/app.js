@@ -1,5 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var GlobalTopBar = require('./components/GlobalTopBar.jsx');
+var GlobalSidebar = require('./components/GlobalSidebar.jsx');
+
 // Currently only using React & ReactDOM require to test if this will show on html page
 // 
 // 
@@ -8,26 +11,27 @@ var ReactDOM = require('react-dom');
 // 
 // Check README for how we start everything straight from git clone ( npm i, npm start, etc )
 
+// Adding options for use in:
+  // TaskItem
+    // Modeling the TaskItem title input (passed in GlobalSidebar.jsx, mapped in TaskList.jsx)
 
-var GlobalTopBar = React.createClass({
-  render: function(){
-    return (
-      <div className="darkgray">
-        <div className="container">
-          <div className="row">
-            <div className="three columns offset-by-nine">
-              <p><i className="fa fa-plus-circle"></i> Invite trip participants</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-});
+var options = {
+  tasks: [
+    'Where to stay',
+    'Travel details',
+    'Car rental?'
+  ]
+};
 
-ReactDOM.render (<GlobalTopBar />,document.getElementById('react-main-mount'))
 
-module.exports = GlobalTopBar;
+var topbar = React.createElement(GlobalTopBar);
+ReactDOM.render(topbar, document.getElementById('react-main-mount'));
+
+var sidebar = React.createElement(GlobalSidebar, options);
+ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount'));
+
+// ReactDOM.render (<GlobalTopBar />, document.getElementById('react-main-mount'));
+// ReactDOM.render (<GlobalSidebar />, document.getElementById('react-sidebar-mount'));
 
 
 // on the index.html located within client/public/index.html, we've added "<div id='react-main-mount'></div>" within the body tag
