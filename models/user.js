@@ -12,7 +12,6 @@ const Message = module.exports;
     password:   String <stored password and hash, TBD later>
   }
 */
-
 User.create = function(attrs) {
   return db('user').insert(attrs)
     .catch(function(error) {
@@ -32,19 +31,18 @@ User.create = function(attrs) {
 
 
 /*
-  Retrieve all trips of a user
+  Retrieve all users of a trip
 */
-User.allTrips = function(userId) {
-  db.select('*').from('trip_users').where({ 'id_user': userId })
+User.allOfTrip = function(tripId) {
+  db.select('*').from('trip_users').where({ 'id_trip': tripId })
     .catch(function(error) {
-      console.warn('error retrieving trips for user', userId);
+      console.warn('error retrieving users for trip', tripId);
       console.warn(error);
       throw error;
     })
     .then(function(result) {
-      console.log('success retrieving user's trips);
+      console.log('success retrieving trip users');
       return result;
     })
 }
-
 
