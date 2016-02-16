@@ -8,12 +8,11 @@ const Message = module.exports;
   attrs {
     name:   String <trip title to display>
     //may need to associate main user at this time.
-    //user:   Integer <user id that created trip>
+    //user:   Number <user id that created trip>
   }
 */
-
 Trip.create = function(attrs) {
-  return db('trip').insert(attrs)
+  return db('trip').insert(attrs, ['name'])
     .catch(function(error) {
       console.warn('error inserting trip into db', attrs);
       console.warn(error);
@@ -29,12 +28,11 @@ Trip.create = function(attrs) {
   Associate trip id with user id
 
   attrs {
-    id_trip:   Integer <id of trip>
-    id_user:   Integer <user id that is invited to trip>
+    id_trip:   Number <id of trip>
+    id_user:   Number <user id that is invited to trip>
     //this may need to be run multiple times for each user
   }
 */
-
 Trip.addUser = function(attrs) {
   return db('trip_users').insert(attrs)
     .catch(function(error) {
@@ -49,18 +47,17 @@ Trip.addUser = function(attrs) {
 }
 
 /*
-  Retrieve all users of a trip
+  Retrieve all trips of a user
 */
-Trip.allOfUsers = function(tripId) {
-  db.select('*').from('trip_users').where({ 'id_trip': tripId })
+Trip.allOfUser = function(userId) {
+  db.select('*').from('trip_users').where({ 'id_user': userId })
     .catch(function(error) {
-      console.warn('error retrieving users for trip', tripId);
+      console.warn('error retrieving trips for user', userId);
       console.warn(error);
       throw error;
     })
     .then(function(result) {
-      console.log('success retrieving trip users');
+      console.log('success retrieving user's trips);
       return result;
     })
 }
-
