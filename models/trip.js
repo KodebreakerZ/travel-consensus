@@ -1,6 +1,6 @@
-const db = require('../server/db');
+const db = require('../lib/db');
 
-const Message = module.exports;
+const Trip = module.exports;
 
 /*
   Insert new trip into database
