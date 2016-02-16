@@ -40,6 +40,7 @@ describe('Task model', function() {
       yield Task.allOfTrip(2)
         .then(function(tasks) {
           console.log('retrieved', tasks.length, 'tasks');
+          expect(undefined).to.be.true;
           expect(tasks).to.have.length(2);
           expect(tasks[0].name).to.equal('Places to sink');
         })
