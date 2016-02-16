@@ -37,8 +37,8 @@
 From within the root directory:
 
 ```sh
-npm i
-npm --save react react-dom react-router reactify
+npm install
+npm i --save react react-dom react-router reactify
 npm start
 ```
 
