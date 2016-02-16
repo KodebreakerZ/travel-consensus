@@ -1,4 +1,4 @@
-const db = require('../server/db');
+const db       = require('../server/db');
 
 const Message = module.exports;
 
@@ -20,7 +20,7 @@ Trip.create = function(attrs) {
     })
     .then(function(result) {
       console.log('success inserting new trip');
-      return result;
+      return result[0];
     })
 }
 
@@ -34,15 +34,30 @@ Trip.create = function(attrs) {
   }
 */
 Trip.addUser = function(attrs) {
-  return db('trip_users').insert(attrs)
+  return db('trip_users').insert(attrs, ['id_trip', 'id_user'])
     .catch(function(error) {
       console.warn('error inserting trip/user into db', attrs);
       console.warn(error);
       throw error;
     })
-    .then(function(result) {
+    .then(function(trip_user) {
       console.log('success inserting trip/user info');
-      return result;
+      return trip_user[0];
+    })
+}
+
+/*
+  Retrieve a trip by its ID
+*/
+Trip.byId = function(tripId) {
+  return db.select('*').from('trip').where({ 'id_trip': tripId })
+    .catch(function(error) {
+      console.warn('error finding trip from id:', tripId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(trip) {
+      return trip[0];
     })
 }
 
@@ -50,14 +65,19 @@ Trip.addUser = function(attrs) {
   Retrieve all trips of a user
 */
 Trip.allOfUser = function(userId) {
-  db.select('*').from('trip_users').where({ 'id_user': userId })
+  db.select('id_trip').from('trip_users').where({ 'id_user': userId })
     .catch(function(error) {
       console.warn('error retrieving trips for user', userId);
       console.warn(error);
       throw error;
     })
-    .then(function(result) {
-      console.log('success retrieving user's trips);
-      return result;
+    .then(function(tripsOfUser) {
+      console.log('success retrieving users trips');
+      console.log('shape of All trips by UserId', tripsOfUser);
+      return Promise.all(
+        tripsOfUser.map(function(tripOfUser) {
+          return Trip.byId(tripOfUser.id_trip);
+        })
+      )
     })
 }
