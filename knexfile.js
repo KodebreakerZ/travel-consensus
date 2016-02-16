@@ -55,7 +55,7 @@ module.exports = {
     seeds: {
       directory: './lib/seeds'
     },
-    debug: true,
+    debug: false,
   },
 };
 
