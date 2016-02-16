@@ -5,17 +5,19 @@ var TaskItem = require('./TaskItem.jsx');
 
 GlobalSidebar = React.createClass({
   render: function() {
-    <div class="sidebar">
-      <div class="twelve columns sidebar-height">
-        <div class="location-display">
-          <img src="../public/images/mountain.png" />
-          <i class="fa fa-circle fa-paper-plane-o fa-5x"></i>
+
+    return (
+    <div className="sidebar">
+      <div className="twelve columns sidebar-height">
+        <div className="location-display">
+          <i className="fa fa-circle fa-paper-plane-o fa-5x"></i>
           <h5>Las Vegas | 62</h5>
         </div>
-        <TaskList />
+        
       </div>
     </div>
-    }
+    )
+  }
 });
 
 module.exports = GlobalSidebar;
