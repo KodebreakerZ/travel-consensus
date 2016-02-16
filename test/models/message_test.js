@@ -37,8 +37,7 @@ describe('Message model', function() {
 
       yield Message.create(newMessage)
         .then(function(message) {
-          var message = message[0];
-          // console.log('\n++++++++++++\ncreated message:', message);
+          // console.log('created message:', message);
           expect(message.id_user).to.equal(1);
           expect(message.createdAt).to.be.ok;
           expect(message.content).to.equal('test message')

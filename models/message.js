@@ -20,7 +20,7 @@ Message.create = function(attrs) {
     })
     .then(function(result) {
       console.log('success inserting new message', attrs)
-      return result
+      return result[0];
     })
 }
 
@@ -31,7 +31,7 @@ Message.allOfTask = function(taskId) {
   return db.select('*').from('message').where({'id_task': taskId})
     .catch(function(error) {
       console.warn('error reading all messages of task:', taskId);
-      console.warn(error);
+      // console.warn(error);
       throw error;
     })
 }

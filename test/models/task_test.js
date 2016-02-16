@@ -1,19 +1,53 @@
 "use strict"
 require(TEST_HELPER) // <--- This must be at the top of every test file.
 
-const Task = require(__models + '/task')
+const Task = require(__models + '/task');
+const db      = require('../../lib/db');
 
 describe('Task model', function() {
   describe('interface with database', function() {
+
+    beforeEach(function() {
+      return db('task').del()
+        .then(function() {
+          return db('task').insert([
+            {
+              name: 'Beers to drink',
+              id_trip: 1
+            },
+            {
+              name: 'Places to sink',
+              decision: 'Bermuda',
+              status: 'decided',
+              id_trip: 2
+            },
+            {
+              name: 'Things to do',
+              decision: 'Not drown',
+              status: 'decided',
+              id_trip: 2
+            }
+          ])
+        })
+    })
 
     it ('should list all tasks of a trip', function * () {
       yield Task.allOfTrip(2)
         .then(function(tasks) {
           console.log('retrieved tasks:', tasks);
-          expect(tasks).to.have.length(3);
-          expect(tasks[0].name).to.equal('Event');
+          expect(tasks).to.have.length(2);
+          expect(tasks[0].name).to.equal('Places to sink');
         })
         .catch(reportError('listing tasks from trip by id'));
+    })
+
+    it ('should list no tasks for a trip that does not exist', function * () {
+      yield Task.allOfTrip(404)
+        .then(function(tasks) {
+          console.log('retrieved tasks:', tasks);
+          expect(tasks).to.have.length(0);
+        })
+        .catch(reportError('listing tasks from invalid tripId'));
     })
 
     it ('should create a new task including defaults', function * () {
@@ -33,7 +67,7 @@ describe('Task model', function() {
 
     it ('should not create a task with an invalid name', function * () {
       let badNameTask = {
-        name: '',
+        name: null,
       }
 
       yield Task.create(badNameTask)
