@@ -5,6 +5,7 @@ var TaskItem = require('./TaskItem.jsx');
 
 GlobalSidebar = React.createClass({
   render: function() {
+    console.log('this.props.tasks (GlobalSidebar.jsx) ', this.props.tasks);
 
     return (
     <div className="sidebar">
@@ -13,7 +14,7 @@ GlobalSidebar = React.createClass({
           <i className="fa fa-circle fa-paper-plane-o fa-5x"></i>
           <h5>Las Vegas | 62</h5>
         </div>
-        
+        <TaskList tasks={this.props.tasks} />
       </div>
     </div>
     )

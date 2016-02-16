@@ -4,6 +4,7 @@ var TaskItem = require('./TaskItem.jsx');
 
 TaskList = React.createClass({
   render: function() {
+    console.log('this.props.tasks (TaskList.jsx) ', this.props.tasks);
     var list = this.props.tasks.map(function(task) {
       return <TaskItem
               task={task}
@@ -13,7 +14,6 @@ TaskList = React.createClass({
     return <div className="task-list">
       {list}
     </div>
-
   }
 });
 

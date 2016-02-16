@@ -16,7 +16,3 @@ module.exports = React.createClass({
 		);
 	}
 });
-
-// ReactDOM.render (<GlobalTopBar />,document.getElementsById('react-main-mount'))
-
-// module.exports = GlobalTopBar;

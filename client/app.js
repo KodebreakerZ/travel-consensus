@@ -13,7 +13,7 @@ var GlobalSidebar = require('./components/GlobalSidebar.jsx');
 
 // Adding options for use in:
   // TaskItem
-    // Modeling the task item title input
+    // Modeling the TaskItem title input (passed in GlobalSidebar.jsx, mapped in TaskList.jsx)
 var options = {
   tasks: [
     'Where to stay',
@@ -22,24 +22,14 @@ var options = {
   ]
 };
 
-// var GlobalTopBar = React.createClass({
-//   render: function(){
-//     return (
-//       <div className="darkgray">
-//         <div className="container">
-//           <div className="row">
-//             <div className="three columns offset-by-nine">
-//               <p><i className="fa fa-plus-circle"></i> Invite trip participants</p>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   }
-// });
+var topbar = React.createElement(GlobalTopBar);
+ReactDOM.render(topbar, document.getElementById('react-main-mount'));
 
-ReactDOM.render (<GlobalTopBar />, document.getElementById('react-main-mount'));
-ReactDOM.render (<GlobalSidebar />, document.getElementById('react-sidebar-mount'));
+var sidebar = React.createElement(GlobalSidebar, options);
+ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount'));
+
+// ReactDOM.render (<GlobalTopBar />, document.getElementById('react-main-mount'));
+// ReactDOM.render (<GlobalSidebar />, document.getElementById('react-sidebar-mount'));
 
 
 
