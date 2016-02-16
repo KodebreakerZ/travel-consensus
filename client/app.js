@@ -14,6 +14,7 @@ var GlobalSidebar = require('./components/GlobalSidebar.jsx');
 // Adding options for use in:
   // TaskItem
     // Modeling the TaskItem title input (passed in GlobalSidebar.jsx, mapped in TaskList.jsx)
+
 var options = {
   tasks: [
     'Where to stay',
@@ -21,6 +22,7 @@ var options = {
     'Car rental?'
   ]
 };
+
 
 var topbar = React.createElement(GlobalTopBar);
 ReactDOM.render(topbar, document.getElementById('react-main-mount'));
@@ -30,8 +32,6 @@ ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount'));
 
 // ReactDOM.render (<GlobalTopBar />, document.getElementById('react-main-mount'));
 // ReactDOM.render (<GlobalSidebar />, document.getElementById('react-sidebar-mount'));
-
-
 
 
 // on the index.html located within client/public/index.html, we've added "<div id='react-main-mount'></div>" within the body tag

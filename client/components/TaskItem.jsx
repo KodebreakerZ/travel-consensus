@@ -8,6 +8,7 @@ TaskItem = React.createClass({
       <hr />
       <p>{this.props.task}</p>
     </div>
+
     )
   }
 })
