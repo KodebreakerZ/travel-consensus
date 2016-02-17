@@ -5,14 +5,12 @@ var Reactify = require('reactify')
 
 
 var routes = express.Router()
-var tripRouter = require('./apis/trip-api');
-var taskRouter = require('./apis/task-api');
-var messageRouter = require('./apis/message-api');
 
-<<<<<<< HEAD
-=======
+// Commented out because these require a configured and running database.
+// var tripRouter = require('./apis/trip-api');
+// var taskRouter = require('./apis/task-api');
+// var messageRouter = require('./apis/message-api');
 
->>>>>>> bd7fd5626885c9e81bc3cac02ed16f88c913b08c
 /* --- Added Reactify require and "...transform: [Reactify]" ---  */
 routes.get('/app-bundle.js',
   browserify('./client/app.js', {
