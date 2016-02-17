@@ -44,8 +44,6 @@ TaskAPI.post('/:id_task/message', function(request, response) {
 })
 
 /*
-  MODEL NOT IMPLEMENTED
-
   POST task/:id_task/suggestion
 
   Creates a new suggestion for this task
@@ -103,12 +101,11 @@ TaskAPI.put('/:id_task/', function(request, response) {
 
 })
 
-/*
-  TODO: Sort messages in chronological order in message model.
+/* TODO: Sort messages in chronological order in message model.
 
   GET task/:id_task/messages
 
-  Returns all messages of a given task
+  Returns an array of messages for the given task
 
   Responds with: [
     {
@@ -135,12 +132,11 @@ TaskAPI.get('/:id_task/messages', function(request, response) {
 })
 
 
-/*
-  TODO: Sort suggestions in chronological order in suggestion model.
+/* TODO: Sort suggestions in chronological order in suggestion model.
 
   GET task/:id_task/suggestions
 
-  Returns all suggestions of a given task
+  Returns an array of suggestions for a given task
 
   Responds with: [
     {
