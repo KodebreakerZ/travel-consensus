@@ -3,7 +3,12 @@ var express = require('express')
 var Path = require('path')
 var Reactify = require('reactify')
 
+
 var routes = express.Router()
+var tripRouter = require('./apis/trip-api');
+var taskRouter = require('./apis/task-api');
+var messageRouter = require('./apis/message-api');
+
 
 //
 // Provide a browserified file at a specified path
@@ -51,8 +56,11 @@ if (process.env.NODE_ENV !== 'test') {
   // Parse incoming request bodies as JSON
   app.use( require('body-parser').json() )
 
-  // Mount our main router
-  app.use('/', routes)
+
+  app.use('/trip', tripRouter);
+  app.use('/task', taskRouter);
+  app.use('/message', messageRouter);
+  app.use('/', routes); // Mount our main router
 
   // Start the server!
   var port = process.env.PORT || 4000;
