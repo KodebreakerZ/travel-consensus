@@ -6,7 +6,6 @@ var TaskItem = require('./TaskItem.jsx');
 GlobalSidebar = React.createClass({
   render: function() {
 
-    console.log('this.props.tasks (GlobalSidebar.jsx) ', this.props.tasks);
 
     return (
     <div className="sidebar">

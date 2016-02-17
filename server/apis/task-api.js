@@ -117,7 +117,8 @@ TaskAPI.put('/:id_task/', function(request, response) {
       createdAt: Date <When it was said>
       id_user:   Number <Who said it>
       id_task:   Number <In which task>
-    }
+    },
+    ...
   ]
 */
 TaskAPI.get('/:id_task/messages', function(request, response) {
@@ -148,7 +149,8 @@ TaskAPI.get('/:id_task/messages', function(request, response) {
       createdAt:  Date <When it was suggested>
       id_user:    Number <Who suggested it>
       id_task:    Number <In which task>
-    }
+    },
+    ...
   ]
 */
 TaskAPI.get('/:id_task/suggestions', function(request, response) {
