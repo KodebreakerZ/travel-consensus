@@ -34,7 +34,7 @@ hr {
   text-align:right;
   margin: 10px 0;
 }
-.fa, .close {
+.fa, .close, .task-item {
   cursor:pointer;
 }
 
