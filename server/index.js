@@ -3,8 +3,16 @@ var express = require('express')
 var Path = require('path')
 var Reactify = require('reactify')
 
-var routes = express.Router()
 
+var routes = express.Router()
+var tripRouter = require('./apis/trip-api');
+var taskRouter = require('./apis/task-api');
+var messageRouter = require('./apis/message-api');
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> bd7fd5626885c9e81bc3cac02ed16f88c913b08c
 /* --- Added Reactify require and "...transform: [Reactify]" ---  */
 routes.get('/app-bundle.js',
   browserify('./client/app.js', {
@@ -68,8 +76,6 @@ if (process.env.NODE_ENV !== 'test') {
   var port = process.env.PORT || 4000
   app.listen(port)
   console.log("Listening on port", port)
-
-
 }
 else {
   // We're in test mode; make this file importable instead.
