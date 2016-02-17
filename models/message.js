@@ -6,13 +6,13 @@ const Message = module.exports;
   Insert new message into database
 
   attrs {
-    user:    Number <user id that created the message>
-    task:    Number <task id that created the message>
+    id_user:    Number <user id that created the message>
+    id_task:    Number <task id that created the message>
     content: String <plain text content>
   }
 */
 Message.create = function(attrs) {
-  return db('message').insert(attrs, ['id_user', 'id_task', 'createdAt', 'content'])
+  return db('message').insert(attrs, ['id', 'id_user', 'id_task', 'createdAt', 'content'])
     .catch(function(error) {
       console.warn('error inserting message into db', attrs)
       // console.warn(error)
@@ -26,6 +26,8 @@ Message.create = function(attrs) {
 
 /*
   Retrieve all messages of a certain task
+
+  TODO: Sort messages by createdAt dates
 */
 Message.allOfTask = function(taskId) {
   return db.select('*').from('message').where({'id_task': taskId})
