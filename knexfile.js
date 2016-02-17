@@ -20,14 +20,14 @@
 
   ************************************
 
-  DATABASE TEST SEEDING
+  DATABASE SEEDING for development
 
     To seed the database with data so that model operations can be tested
-    run the above database setup with the following additions:
+    run the ^^above^^ database setup steps with the following additions:
       > 'npm install -g knex' to access knex on the command line
-      > 'postgres -D db/' to start database server
-      > 'createdb test' to create a test database
-      > 'knex --env test seed:run' to seed the database with data
+      > 'postgres -D db/' to start database server in a new terminal window
+      > 'createdb development' to create a test database
+      > 'knex --env development seed:run' to seed the database with data monsters
 */
 
 module.exports = {

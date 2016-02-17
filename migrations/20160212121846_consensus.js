@@ -9,9 +9,8 @@ exports.up = function(knex, Promise) {
 
     knex.schema.createTable('user', function (table) {
       table.increments('id').primary();
-      table.string('name').notNullable();
       table.string('email').unique().notNullable();
-      table.string('nickname').notNullable();
+      table.string('username').notNullable();
       //will replace with password hash
       table.string('password').notNullable();
     }),
