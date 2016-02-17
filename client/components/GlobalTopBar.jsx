@@ -3,18 +3,7 @@ var ReactDOM = require('react-dom');
 
 var GlobalTopBar = React.createClass({
 	handleClick: function(){
-		$(".invitepop").fadeToggle('fast'); /*  ~~~~ Just going to use fadeToggle for now ~~~~   */
-	  // if(this.state.open) {
-	  //   $('.invitepop').slideFadeToggle();
-	  //   this.setState({
-	  //     open: false,
-	  //   });
-	  // }
-	  // $.fn.slideFadeToggle = function(easing, callback) {  /* ~~~~ POS only runs on boolean ~~~~~ */
-	  //   return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
-	  // };
-	  // console.log(this.state.open)
-	  // return this.setState({open: true,class: "invitepop"});
+		$(".invitepop").fadeToggle('fast');
 	},
 	// getInitialState: function(){
 	//    return {
@@ -34,11 +23,13 @@ var GlobalTopBar = React.createClass({
 				  </div>
 				</div>
 				<div className='invitepop'>
-				    <form method="post" id="new_users" action="/invitelist">
-			        <p><label for="shortlink">Shortlink</label><input type="text" size="30" name="shortlink" id="shortlink" /></p>
-			        <p><label for="body">Users</label><textarea rows="6" name="body" id="body" cols="35"></textarea></p>
-			        <p><input type="submit" value="Add Users" name="commit" id="user_submit"/> or <a className="close" onClick={this.handleClick}>Cancel</a></p>
-				    </form>
+	    			<input type="text" value="" className="tags"/>
+	    			<div className="jq_tags_editor">
+		    			<div className="jq_tags_tokens">
+		    			</div>
+	    			<input type="text" className="jq_tags_editor_input"/>
+	    			</div>
+	    			<button className="inviteUsers">Invite Users</button>
 				</div>
 			</div>
 		);
