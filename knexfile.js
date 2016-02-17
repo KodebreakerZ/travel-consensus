@@ -61,6 +61,9 @@ module.exports = {
       directory: './migrations',
       tableName: 'knex_migrations'
     },
+    seeds: {
+      directory: './lib/seeds'
+    },
     debug: true,
   },
 
@@ -70,9 +73,6 @@ module.exports = {
       host: 'localhost',
       port: 5432,
       database: 'test'
-    },
-    seeds: {
-      directory: './lib/seeds'
     },
     debug: false,
   },
