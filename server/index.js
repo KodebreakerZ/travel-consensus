@@ -5,17 +5,11 @@ var Reactify = require('reactify')
 
 var routes = express.Router()
 
-//
-// Provide a browserified file at a specified path
-//
-
 /* --- Added Reactify require and "...transform: [Reactify]" ---  */
 routes.get('/app-bundle.js',
   browserify('./client/app.js', {
     transform: [Reactify]
   }))
-
-
 
 //
 // Example endpoint (also tested in test/server/index_test.js)
@@ -52,8 +46,23 @@ if (process.env.NODE_ENV !== 'test') {
   // Parse incoming request bodies as JSON
   app.use( require('body-parser').json() )
 
+
   // Mount our main router
   app.use('/', routes)
+
+/*
+  These handles requests directed to different models.
+
+  They are commented because once we start using them, they will cause
+  problems unless a dev database is up and running, which can be a little
+  complicated so we need a group info session before that happens.
+
+  routes.use('/trip', tripRouter);
+  routes.use('/task', taskRouter);
+  routes.use('/message', messageRouter);
+*/
+
+  routes.use('/', routes); // Mount our main router
 
   // Start the server!
   var port = process.env.PORT || 4000
@@ -66,10 +75,3 @@ else {
   // We're in test mode; make this file importable instead.
   module.exports = routes
 }
-
-
-
-
-
-
-
