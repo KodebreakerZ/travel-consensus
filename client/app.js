@@ -23,9 +23,38 @@ var options = {
     'Car rental?'
   ],
   suggestions: [
-  'Restaurant 1',
-  'Restaurant 2',
-  'Restaurant 3'
+    'Restaurant 1',
+    'Restaurant 2',
+    'Restaurant 3'
+  ],
+  messages: [
+    {
+      id: 1234, content: 'hey',
+      id_task: 1, id_user: 1, nickname: 'John'
+    },
+    {
+      id: 1235, content: 'i like turtles',
+      id_task: 4, id_user: 2, nickname: 'Jacob'
+    },
+    {
+      id: 1236, content: 'i like turtles',
+      id_task: 6, id_user: 3, nickname: 'Ashley'
+    },
+    {
+      id: 1237, content: 'as all internet debates, youre being a nazi',
+      id_task: 8, id_user: 2, nickname: 'Jacob'
+    }
+  ],
+  user: [
+  {
+    id: 1, username: 'user 1'
+  },
+  {
+    id: 2, username: 'user 2'
+  },
+  {
+    id: 3, username: 'user 3'
+  },
   ]
 };
 
