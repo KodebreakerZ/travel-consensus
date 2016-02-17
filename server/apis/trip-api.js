@@ -31,17 +31,17 @@ TripAPI.post('/', function(request, response) {
 })
 
 /*
-  GET trip/:id
+  GET trip/:tripId
 
-  Returns the trip with matching id
+  Returns the trip with matching tripId
 
   responds with: {
     id: Number,
     name: String
   }
 */
-TripAPI.get('/:id', function(request, response) {
-  var tripId = request.params.id;
+TripAPI.get('/:tripId', function(request, response) {
+  var tripId = request.params.tripId;
 
   Trip.byId(tripId)
     .then(function(trip) {
