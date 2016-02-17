@@ -51,6 +51,7 @@ if (process.env.NODE_ENV !== 'test') {
   //
   // We're in development or production mode;
   // create and run a real server.
+  //
   var app = express()
 
   // Parse incoming request bodies as JSON
@@ -63,9 +64,11 @@ if (process.env.NODE_ENV !== 'test') {
   app.use('/', routes); // Mount our main router
 
   // Start the server!
-  var port = process.env.PORT || 4000;
-  app.listen(port);
-  console.log("Listening on port", port);
+  var port = process.env.PORT || 4000
+  app.listen(port)
+  console.log("Listening on port", port)
+
+
 }
 else {
   // We're in test mode; make this file importable instead.

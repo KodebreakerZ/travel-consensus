@@ -12,7 +12,7 @@ const Trip = module.exports;
   }
 */
 Trip.create = function(attrs) {
-  return db('trip').insert(attrs, ['id', 'name'])
+  return db('trip').insert(attrs, ['name'])
     .catch(function(error) {
       console.warn('error inserting trip into db', attrs);
       console.warn(error);
@@ -57,7 +57,6 @@ Trip.byId = function(tripId) {
       throw error;
     })
     .then(function(trip) {
-      console.log('found trip by id:', trip[0]);
       return trip[0];
     })
 }
