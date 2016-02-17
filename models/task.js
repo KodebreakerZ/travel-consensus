@@ -6,7 +6,8 @@ const Task = module.exports;
   Insert new task into database
 
   attrs {
-    name:   String <task title to display>
+    name:   String  <task title to display>
+    id_trip: Number <id of the trip this tasks resides in>
   }
 */
 Task.create = function(attrs) {
