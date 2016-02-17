@@ -1,7 +1,9 @@
-require('../server_helper');
+require('../server-helper');
 
 var TripAPI = require('express').Router();
 var Trip    = require('../../models/trip');
+
+module.exports = TripAPI;
 
 /*
   POST trip/
