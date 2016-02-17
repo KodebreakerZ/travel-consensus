@@ -1,8 +1,8 @@
 require('../server-helper');
 
-var TaskAPI = require('express').Router();
-var Task    = require('../../models/task');
-var Message = require('../../models/message');
+var TaskAPI    = require('express').Router();
+var Task       = require('../../models/task');
+var Message    = require('../../models/message');
 var Suggestion = require('../../models/suggestion');
 
 module.exports = TaskAPI;
