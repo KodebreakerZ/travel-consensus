@@ -53,8 +53,8 @@ TripAPI.post('/', function(request, response) {
 */
 TripAPI.post('/:id_trip/user', function(request, response) {
   var newUserTrip = {
-    id_user = request.body.id_user,
-    id_trip = request.params.id_trip
+    id_user: request.body.id_user,
+    id_trip: request.params.id_trip
   }
 
   Trip.addUser(newUserTrip)
@@ -85,7 +85,7 @@ TripAPI.post('/:id_trip/user', function(request, response) {
   }
 */
 TripAPI.post('/:id_trip/task', function(request, response) {
-  let newTask = {
+  var newTask = {
     id_trip: request.params.id_trip,
     name:    request.body.name
   }

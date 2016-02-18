@@ -1,4 +1,4 @@
-const db = require('../server/db');
+const db = require('../lib/db');
 
 const User = module.exports;
 
