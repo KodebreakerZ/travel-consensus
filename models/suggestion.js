@@ -40,7 +40,7 @@ Suggestion.allOfTask = function(taskId) {
 
 
 /*
-  Delete a task
+  Delete a suggestion
 */
 Suggestion.delete = function(suggestionId) {
   return db('suggestion').where({'id': suggestionId}).del()

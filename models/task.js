@@ -50,6 +50,12 @@ Task.deleteTask = function(taskId) {
       console.warn(error);
       throw error;
     })
+    .then(function() {
+      deleteTaskFromMessage(taskId)
+    })
+    .then(function() {
+      deleteTaskFromSuggestion(taskId)
+    })
     .then(function(result) {
       console.log('success deleting task');
       return result;
@@ -58,29 +64,23 @@ Task.deleteTask = function(taskId) {
 
 /*
   If foreign keys need to be deleted as well
+
+  helper functions for main task deletion
 */
-Task.deleteTaskFromMessage = function(taskId) {
+function deleteTaskFromMessage(taskId) {
   return db('message').where({'id_task': taskId}).del()
     .catch(function(error) {
       console.warn('error deleting task', taskId);
       console.warn(error);
       throw error;
     })
-    .then(function(result) {
-      console.log('success deleting task');
-      return result;
-    })
 }
 
-Task.deleteTaskFromSuggestion = function(taskId) {
+function deleteTaskFromSuggestion(taskId) {
   return db('suggestion').where({'id_task': taskId}).del()
     .catch(function(error) {
       console.warn('error deleting task', taskId);
       console.warn(error);
       throw error;
-    })
-    .then(function(result) {
-      console.log('success deleting task');
-      return result;
     })
 }
