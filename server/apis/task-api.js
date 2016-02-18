@@ -34,7 +34,7 @@ TaskAPI.post('/:id_task/message', function(request, response) {
     id_task: request.params.id_task
   }
 
-  Message.create(newTask)
+  Message.create(newMessage)
     .then(sendStatusAndData(response, 201))
     .catch(function(error) {
       console.error('ERROR POST:', request.url);
