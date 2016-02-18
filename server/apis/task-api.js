@@ -34,6 +34,8 @@ TaskAPI.post('/:id_task/message', function(request, response) {
     id_task: request.params.id_task
   }
 
+  console.log('TaskAPI.post req.body ', request.body);
+
   Message.create(newMessage)
     .then(sendStatusAndData(response, 201))
     .catch(function(error) {

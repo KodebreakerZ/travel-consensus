@@ -47,10 +47,10 @@ if (process.env.NODE_ENV !== 'test') {
   we can talk about how to do it. Just a few extra things to do.
 */
   // var tripRouter = require('./apis/trip-api');
-  // var taskRouter = require('./apis/task-api');
+  var taskRouter = require('./apis/task-api');
 
   // routes.use('/trip', tripRouter);
-  // routes.use('/task', taskRouter);
+  routes.use('/task', taskRouter);
 
 
   //
