@@ -27,7 +27,8 @@
 
       > Now we have a running database-server, we need to tell it to create
         the actual database.
-        > 'createdb development' to create a database named development.
+        > In a new terminal window, 'createdb development' to create a
+          database named development.
         > This is processed and stored in the db/ folder we made just a couple
           steps ago.
 
@@ -45,7 +46,7 @@
       > Now we need to build the database structure we've defined onto the database.
         We run a schema file that to do so. Once it's done, you can ctrl-C out.
         > 'node lib/schema.js'
-      > 'knex --env development seed:run' to seed the 'development' database
+      > 'knex --env development seed:run' to seed the development database
         with data monsters!
 
     To verify that you've been successful we should check the database.
