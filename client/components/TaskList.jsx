@@ -41,7 +41,6 @@ TaskList = React.createClass({
         {list}
       </div>
 
-      <!-- add task popup -->
       <div className="taskpop">
         <form method="post" action="">
           <p>
