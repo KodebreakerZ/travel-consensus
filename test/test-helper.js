@@ -68,25 +68,12 @@ var reportError = function(description, error) {
 }
 global.reportError = ramda.curry(reportError);
 
-/*
-  Monkey-patch mocha's `it` function
-  to support `yield` within generator functions
-  for pleasant test writing.
 
-  Thanks goes to http://stackoverflow.com/a/23029774/49695
-*/
-var Bluebird = require('bluebird')
-var originalIt = it
-it = function(title, test) {
-
-  // If the test is a generator function - run it using suspend
-  if (test.constructor.name === 'GeneratorFunction') {
-    originalIt(title, function() {
-      return Bluebird.coroutine(test)()
-    })
-  }
-  // Otherwise use the original implementation
-  else {
-    originalIt(title, test)
-  }
-}
+//
+//  Mocha 'helpers' to support coroutine tests
+//
+global.before_ = function (f) { before ( Bluebird.coroutine(f) ) }
+global.beforeEach_ = function (f) { beforeEach ( Bluebird.coroutine(f) ) }
+global.it_ = function (description, f) { it ( description, Bluebird.coroutine(f) ) }
+global.xit_ = function (description, f) { xit ( description, f ) }
+global.it_.only = function (description, f) { it.only( description, Bluebird.coroutine(f) ) }

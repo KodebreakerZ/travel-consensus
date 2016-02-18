@@ -5,6 +5,9 @@ var Reactify = require('reactify')
 
 var routes = express.Router()
 
+// Commented out because these require a configured and running database.
+// var tripRouter = require('./apis/trip-api');
+// var taskRouter = require('./apis/task-api');
 
 /* --- Added Reactify require and "...transform: [Reactify]" ---  */
 routes.get('/app-bundle.js',
@@ -39,9 +42,14 @@ if (process.env.NODE_ENV !== 'test') {
 /*
   These handle requests directed to different models.
 
+<<<<<<< HEAD
   They are commented because they require a running development
   database. When you're ready to use sample data and the database
   we can talk about how to do it. Just a few extra things to do.
+=======
+  routes.use('/trip', tripRouter);
+  routes.use('/task', taskRouter);
+>>>>>>> master
 */
   // var tripRouter = require('./apis/trip-api');
   // var taskRouter = require('./apis/task-api');

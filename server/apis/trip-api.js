@@ -1,9 +1,10 @@
-require('../server-helper');
+require('../server-helper'); // Keep me near the top; I load a few global utilities.
 
 var TripAPI = require('express').Router();
-var Trip    = require('../../models/trip');
-var Task    = require('../../models/task');
-var User    = require('../../models/user');
+
+var Trip    = require(__models + '/trip');
+var Task    = require(__models + '/task');
+var User    = require(__models + '/user');
 
 module.exports = TripAPI;
 
@@ -29,9 +30,7 @@ TripAPI.post('/', function(request, response) {
   console.log('posting new trip:', newTrip);
 
   Trip.create(newTrip)
-    .then(function(newTrip) {
-      response.send(newTrip);
-    })
+    .then(sendStatusAndData(response, 201))
     .catch(function(error) {
       console.error('ERROR POST:', request.url);
       response.status(500).send('Server error posting new trip');
@@ -60,9 +59,7 @@ TripAPI.post('/:id_trip/user', function(request, response) {
   }
 
   Trip.addUser(newUserTrip)
-    .then(function(userTrip) {
-      response.send(userTrip);
-    })
+    .then(sendStatusAndData(response, 201))
     .catch(function(error) {
       console.error('ERROR POST:', request.url);
       response.status(500).send('Server error posting new user to trip');
@@ -93,9 +90,7 @@ TripAPI.post('/:id_trip/task', function(request, response) {
   }
 
   Task.create(newTask)
-    .then(function(newTask) {
-      response.send(newTask);
-    })
+    .then(sendStatusAndData(response, 201))
     .catch(function(error) {
       console.error('ERROR POST:', request.url);
       response.status(500).send('Server error posting new user to trip');
@@ -122,9 +117,7 @@ TripAPI.get('/:tripId/tasks', function(request, response) {
   var tripId = request.params.tripId;
 
   Task.allOfTrip(tripId)
-    .then(function(allTasks) {
-      response.send(allTasks);
-    })
+    .then(sendStatusAndData(response, 200))
     .catch(function(error) {
       console.error('ERROR GET:', request.url);
       response.status(500).send('Server error getting tasks by trip id');
@@ -151,9 +144,7 @@ TripAPI.get('/:tripId/users', function(request, response) {
   var tripId = request.params.tripId;
 
   User.allOfTrip(tripId)
-    .then(function(allUsers) {
-      response.send(allUsers);
-    })
+    .then(sendStatusAndData(response, 200))
     .catch(function(error) {
       console.error('ERROR GET:', request.url);
       response.status(500).send('Server error getting users by trip id');
