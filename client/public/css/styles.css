@@ -134,6 +134,10 @@ hr {
   font-size:18px;
 }
 
+.taskpop {
+  display:none;
+}
+
 /* Main Content Area
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */
