@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-TaskItem = React.createClass({
+var TaskItem = React.createClass({
   render: function() {
     return (
     <div className="task-item">
