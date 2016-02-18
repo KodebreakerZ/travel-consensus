@@ -92,6 +92,15 @@ Trip.deleteTrip = function(tripId) {
       console.warn(error);
       throw error;
     })
+    .then(function() {
+      deleteTripFromJoin(tripId)
+    })
+    .then(function() {
+      deleteTripFromTask(tripId)
+    })
+    .then(function() {
+      deleteTripFromSuggestion(tripId)
+    })
     .then(function(result) {
       console.log('success deleting trip');
       return result;
@@ -100,42 +109,31 @@ Trip.deleteTrip = function(tripId) {
 
 /*
   If foreign keys need to be deleted as well
+  helper functions for deleteTrip
 */
-Trip.deleteTripFromJoin = function(tripId) {
+function deleteTripFromJoin(tripId) {
   return db('trip_users').where({'id_trip': tripId}).del()
     .catch(function(error) {
       console.warn('error deleting trip', tripId);
       console.warn(error);
       throw error;
     })
-    .then(function(result) {
-      console.log('success deleting trip');
-      return result;
-    })
 }
 
-Trip.deleteTripFromTask = function(tripId) {
+function deleteTripFromTask(tripId) {
   return db('task').where({'id_trip': tripId}).del()
     .catch(function(error) {
       console.warn('error deleting trip', tripId);
       console.warn(error);
       throw error;
     })
-    .then(function(result) {
-      console.log('success deleting trip');
-      return result;
-    })
 }
 
-Trip.deleteTripFromSuggestion = function(tripId) {
+function deleteTripFromSuggestion(tripId) {
   return db('suggestion').where({'id_trip': tripId}).del()
     .catch(function(error) {
       console.warn('error deleting trip', tripId);
       console.warn(error);
       throw error;
-    })
-    .then(function(result) {
-      console.log('success deleting trip');
-      return result;
     })
 }
