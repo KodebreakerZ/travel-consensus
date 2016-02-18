@@ -26,6 +26,8 @@ TripAPI.post('/', function(request, response) {
     name: request.body.name
   }
 
+  console.log('posting new trip:', newTrip);
+
   Trip.create(newTrip)
     .then(function(newTrip) {
       response.send(newTrip);

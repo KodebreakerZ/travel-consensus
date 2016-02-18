@@ -34,7 +34,7 @@ User.create = function(attrs) {
 */
 User.allOfTrip = function(tripId) {
   // TODO: do not select password_digest
-  db.select('*').from('trip_users').where({ 'id_trip': tripId })
+  return db.select('*').from('trip_users').where({ 'id_trip': tripId })
     .catch(function(error) {
       console.warn('error retrieving users for trip', tripId);
       console.warn(error);
