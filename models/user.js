@@ -49,12 +49,19 @@ User.allOfTrip = function(tripId) {
 /*
   Delete a user from a trip id
 */
+
 User.deleteFromTrip = function(userId, tripId) {
   return db('trip_users').where({'id_trip': tripId}).andWhere({'id_user': userId}).del()
     .catch(function(error) {
       console.warn('error deleting user from trip', tripId);
       console.warn(error);
       throw error;
+    })
+    .then(function() {
+      deleteUserFromMessage(userId)
+    })
+    .then(function() {
+      deleteUserFromSuggestion(userId)
     })
     .then(function(result) {
       console.log('success deleting user');
@@ -65,6 +72,7 @@ User.deleteFromTrip = function(userId, tripId) {
 /*
   We should not need a delete user functions, but in case
 */
+
 User.deleteUser = function(userId) {
   return db('user').where({'id': userId}).del()
     .catch(function(error) {
@@ -80,30 +88,25 @@ User.deleteUser = function(userId) {
 
 /*
   Foreign key deletion functions for user
+
+  Helper functions for deleteUserFromTrim
 */
 
-User.deleteUserFromMessage = function(userId) {
+function deleteUserFromMessage(userId) {
   return db('message').where({'id_user': userId}).del()
     .catch(function(error) {
       console.warn('error deleting user', userId);
       console.warn(error);
       throw error;
     })
-    .then(function(result) {
-      console.log('success deleting user');
-      return result;
-    })
 }
 
-User.deleteUserFromSuggestion = function(userId) {
+function deleteUserFromSuggestion(userId) {
   return db('suggestion').where({'id_user': userId}).del()
     .catch(function(error) {
       console.warn('error deleting user', userId);
       console.warn(error);
       throw error;
     })
-    .then(function(result) {
-      console.log('success deleting user');
-      return result;
-    })
 }
+
