@@ -2,6 +2,8 @@ require('../server-helper');
 
 var TripAPI = require('express').Router();
 var Trip    = require('../../models/trip');
+var Task    = require('../../models/task');
+var User    = require('../../models/user');
 
 module.exports = TripAPI;
 
