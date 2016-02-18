@@ -47,7 +47,7 @@ TaskList = React.createClass({
           <p>
             <label>Add a task</label>
             <input type="text" size="15"></input>
-            <input type="submit" value="Add" onclick={this.handleClick}></input> 
+            <input type="submit" value="Add" onClick={this.handleClick}></input> 
           </p>
         </form>
       </div>
