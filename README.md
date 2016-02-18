@@ -32,6 +32,8 @@
 
 ## Development
 
+#### Check out the knexfile.js for database configuration information.
+
 ### Installing Dependencies
 
 From within the root directory:

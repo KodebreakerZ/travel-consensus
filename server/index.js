@@ -3,7 +3,6 @@ var express = require('express')
 var Path = require('path')
 var Reactify = require('reactify')
 
-
 var routes = express.Router()
 
 // Commented out because these require a configured and running database.
@@ -16,21 +15,48 @@ routes.get('/app-bundle.js',
     transform: [Reactify]
   }))
 
-//
-// Example endpoint (also tested in test/server/index_test.js)
-//
+/* Example endpoint (also tested in test/server/index_test.js) */
 routes.get('/api/tags-example', function(req, res) {
   res.send(['node', 'express', 'browserify', 'react', 'react-dom'])
 })
 
-//
-// Static assets (html, etc.)
-//
+/* Static assets (html, etc.) */
 var assetFolder = Path.resolve(__dirname, '../client/public')
 routes.use(express.static(assetFolder))
 
 
 if (process.env.NODE_ENV !== 'test') {
+  // We're in development or production mode;
+  // create and run a real server.
+  var app = express()
+
+  // use Morgan to log concise and colorful http information
+  app.use( require('morgan')('dev') )
+  // Parse incoming request bodies as JSON
+  app.use( require('body-parser').json() )
+
+  // Mount our main router, 'routes' to the root path
+  // of our app. This delegates almost all routing to 'routes'
+  app.use('/', routes)
+
+/*
+  These handle requests directed to different models.
+
+<<<<<<< HEAD
+  They are commented because they require a running development
+  database. When you're ready to use sample data and the database
+  we can talk about how to do it. Just a few extra things to do.
+=======
+  routes.use('/trip', tripRouter);
+  routes.use('/task', taskRouter);
+>>>>>>> master
+*/
+  // var tripRouter = require('./apis/trip-api');
+  // var taskRouter = require('./apis/task-api');
+
+  // routes.use('/trip', tripRouter);
+  // routes.use('/task', taskRouter);
+
 
   //
   // The Catch-all Route
@@ -41,32 +67,6 @@ if (process.env.NODE_ENV !== 'test') {
     console.log('catch-all route triggered');
     res.sendFile( assetFolder + '/index.html' )
   })
-
-  //
-  // We're in development or production mode;
-  // create and run a real server.
-  //
-  var app = express()
-
-  // Parse incoming request bodies as JSON
-  app.use( require('body-parser').json() )
-
-
-  // Mount our main router
-  app.use('/', routes)
-
-/*
-  These handles requests directed to different models.
-
-  They are commented because once we start using them, they will cause
-  problems unless a dev database is up and running, which can be a little
-  complicated so we need a group info session before that happens.
-
-  routes.use('/trip', tripRouter);
-  routes.use('/task', taskRouter);
-*/
-
-  routes.use('/', routes); // Mount our main router
 
   // Start the server!
   var port = process.env.PORT || 4000
