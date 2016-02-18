@@ -55,3 +55,35 @@ Suggestion.delete = function(suggestionId) {
     })
 }
 
+/*
+  Add vote to suggestion
+*/
+Suggestion.addVote = function(suggestionID) {
+  return db('suggestion').where({id: suggestionId}).increment('votes', 1)
+    .catch(function(error) {
+      console.warn('error deleting suggestion', suggestionId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success deleting suggestion');
+      return result;
+    })
+}
+
+/*
+  Delete vote from suggestion
+*/
+
+Suggestion.removeVote = function(suggestionID) {
+  return db('suggestion').where({id: suggestionId}).decrement('votes', 1)
+    .catch(function(error) {
+      console.warn('error deleting suggestion', suggestionId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success deleting suggestion');
+      return result;
+    })
+}
