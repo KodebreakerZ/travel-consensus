@@ -9,7 +9,6 @@ var routes = express.Router()
 // Commented out because these require a configured and running database.
 // var tripRouter = require('./apis/trip-api');
 // var taskRouter = require('./apis/task-api');
-// var messageRouter = require('./apis/message-api');
 
 /* --- Added Reactify require and "...transform: [Reactify]" ---  */
 routes.get('/app-bundle.js',
@@ -65,7 +64,6 @@ if (process.env.NODE_ENV !== 'test') {
 
   routes.use('/trip', tripRouter);
   routes.use('/task', taskRouter);
-  routes.use('/message', messageRouter);
 */
 
   routes.use('/', routes); // Mount our main router

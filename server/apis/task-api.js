@@ -1,9 +1,10 @@
-require('../server-helper');
+require('../server-helper'); // Keep me near the top; I load a few global utilities.
 
 var TaskAPI    = require('express').Router();
-var Task       = require('../../models/task');
-var Message    = require('../../models/message');
-var Suggestion = require('../../models/suggestion');
+
+var Task       = require(__models + '/task');
+var Message    = require(__models + '/message');
+var Suggestion = require(__models + '/suggestion');
 
 module.exports = TaskAPI;
 
@@ -34,9 +35,7 @@ TaskAPI.post('/:id_task/message', function(request, response) {
   }
 
   Message.create(newTask)
-    .then(function(newMessage) {
-      response.send(newMessage)
-    })
+    .then(sendStatusAndData(response, 201))
     .catch(function(error) {
       console.error('ERROR POST:', request.url);
       response.status(500).send('Server error posting new message to task');
@@ -69,9 +68,7 @@ TaskAPI.post('/:id_task/message', function(request, response) {
   }
 
   Suggestion.create(newSuggestion)
-    .then(function(newSuggestion) {
-      response.send(newSuggestion)
-    })
+    .then(sendStatusAndData(response, 201))
     .catch(function(error) {
       console.error('ERROR POST:', request.url);
       response.status(500).send('Server error posting new suggestion to task');
@@ -122,9 +119,7 @@ TaskAPI.get('/:id_task/messages', function(request, response) {
   var id_task = request.params.id_task;
 
   Message.allOfTask(id_task)
-    .then(function(allMessages) {
-      response.send(allMessages);
-    })
+    .then(sendStatusAndData(response, 200))
     .catch(function(error) {
       console.error('ERROR GET:', request.url);
       response.status(500).send('Server error getting messages by task id');
@@ -153,9 +148,7 @@ TaskAPI.get('/:id_task/suggestions', function(request, response) {
   var id_task = request.params.id_task;
 
   Suggestion.allOfTask(id_task)
-    .then(function(allSuggestions) {
-      response.send(allSuggestions);
-    })
+    .then(sendStatusAndData(response, 200))
     .catch(function(error) {
       console.error('ERROR GET:', request.url);
       response.status(500).send('Server error getting suggestions by task id');
