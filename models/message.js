@@ -37,3 +37,19 @@ Message.allOfTask = function(taskId) {
       throw error;
     })
 }
+
+/*
+  Delete a message
+*/
+Message.deleteMessage = function(messageId) {
+  return db('message').where({'id': messageId}).del()
+    .catch(function(error) {
+      console.warn('error deleting message', messageId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success deleting message');
+      return result;
+    })
+}
