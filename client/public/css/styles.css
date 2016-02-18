@@ -173,5 +173,22 @@ hr {
 
 .message-input {
   width:100%;
+  background-color:#ccc;
+  padding:10px;
 }
 
+.message-input button {
+/*  float:right;
+  margin-right:60px;*/
+}
+
+.message-input form {
+  margin-top:1.5rem;
+  text-align:left;
+}
+
+.message-input input {
+  width:70%;
+  margin-right:10px;
+  height:38px;
+}

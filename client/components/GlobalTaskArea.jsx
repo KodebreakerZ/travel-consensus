@@ -15,7 +15,10 @@ GlobalTaskArea = React.createClass({
           <MessageList messages={this.props.messages} />
         </div>
         <div className="message-input">
-          <p> Message input</p>
+          <form action="postNewMessage" method="post">
+            <input type="text" id="newmessage"></input>
+            <button type="submit">Post</button>
+          </form>
         </div>
       </div>
     
