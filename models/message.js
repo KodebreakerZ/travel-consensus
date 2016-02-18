@@ -30,7 +30,7 @@ Message.create = function(attrs) {
   TODO: Sort messages by createdAt dates
 */
 Message.allOfTask = function(taskId) {
-  return db.select('*').from('message').where({'id_task': taskId})
+  return db.select('*').from('message').where({'id_task': taskId}).orderBy('createdAt', 'asc')
     .catch(function(error) {
       console.warn('error reading all messages of task:', taskId);
       // console.warn(error);

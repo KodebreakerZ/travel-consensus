@@ -30,7 +30,7 @@ Suggestion.create = function(attrs) {
   TODO: Sort suggestions by createdAt dates
 */
 Suggestion.allOfTask = function(taskId) {
-  return db.select('*').from('suggestion').where({'id_task': taskId})
+  return db.select('*').from('suggestion').where({'id_task': taskId}).orderBy('createdAt', 'asc')
     .catch(function(error) {
       console.warn('error reading all suggestions of task:', taskId);
       // console.warn(error);
