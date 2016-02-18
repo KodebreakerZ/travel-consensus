@@ -7,7 +7,7 @@ var Reactify = require('reactify')
 var routes = express.Router()
 
 // Commented out because these require a configured and running database.
-// var tripRouter = require('./apis/trip-api');
+var tripRouter = require('./apis/trip-api');
 // var taskRouter = require('./apis/task-api');
 // var messageRouter = require('./apis/message-api');
 
@@ -56,6 +56,8 @@ if (process.env.NODE_ENV !== 'test') {
   // Mount our main router
   app.use('/', routes)
 
+  routes.use('/trip', tripRouter);
+
 /*
   These handles requests directed to different models.
 
@@ -63,7 +65,6 @@ if (process.env.NODE_ENV !== 'test') {
   problems unless a dev database is up and running, which can be a little
   complicated so we need a group info session before that happens.
 
-  routes.use('/trip', tripRouter);
   routes.use('/task', taskRouter);
   routes.use('/message', messageRouter);
 */

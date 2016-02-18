@@ -42,12 +42,18 @@
     To seed the database with data so that model operations can be tested
     run the ^^above^^ database setup steps with the following additions:
       > 'npm install -g knex' to access knex on the command line
-      > if you don't have a database server running,
-        > 'postgres -D db/' to start database server
-      > if you don't have a database intialized,
-        > createdb development' to create a database for development
+      > Now we need to build the database structure we've defined onto the database.
+        We run a schema file that to do so. Once it's done, you can ctrl-C out.
+        > 'node lib/schema.js'
       > 'knex --env development seed:run' to seed the 'development' database
-        with data munchkins!
+        with data monsters!
+
+    To verify that you've been successful we should check the database.
+      > 'psql development' to open a command-line database explorer
+      > '\d' to look at the tables in our database.
+        > if 'no relations exist', you've done something wrong!
+      > You can run postgreSQL commands here (don't forget semi-colons!)
+        > 'SELECT * FROM message;'
 */
 
 module.exports = {
