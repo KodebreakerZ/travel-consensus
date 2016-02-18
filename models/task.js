@@ -39,3 +39,48 @@ Task.allOfTrip = function(tripId) {
       return result;
     })
 }
+
+/*
+  Delete a task
+*/
+Task.deleteTask = function(taskId) {
+  return db('task').where({'id': taskId}).del()
+    .catch(function(error) {
+      console.warn('error deleting task', taskId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success deleting task');
+      return result;
+    })
+}
+
+/*
+  If foreign keys need to be deleted as well
+*/
+Task.deleteTaskFromMessage = function(taskId) {
+  return db('message').where({'id_task': taskId}).del()
+    .catch(function(error) {
+      console.warn('error deleting task', taskId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success deleting task');
+      return result;
+    })
+}
+
+Task.deleteTaskFromSuggestion = function(taskId) {
+  return db('suggestion').where({'id_task': taskId}).del()
+    .catch(function(error) {
+      console.warn('error deleting task', taskId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success deleting task');
+      return result;
+    })
+}

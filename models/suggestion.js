@@ -37,3 +37,21 @@ Suggestion.allOfTask = function(taskId) {
       throw error;
     })
 }
+
+
+/*
+  Delete a task
+*/
+Suggestion.delete = function(suggestionId) {
+  return db('suggestion').where({'id': suggestionId}).del()
+    .catch(function(error) {
+      console.warn('error deleting suggestion', suggestionId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success deleting suggestion');
+      return result;
+    })
+}
+

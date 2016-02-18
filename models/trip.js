@@ -81,3 +81,61 @@ Trip.allOfUser = function(userId) {
       )
     })
 }
+
+/*
+  Delete a trip
+*/
+Trip.deleteTrip = function(tripId) {
+  return db('trip').where({'id': tripId}).del()
+    .catch(function(error) {
+      console.warn('error deleting trip', tripId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success deleting trip');
+      return result;
+    })
+}
+
+/*
+  If foreign keys need to be deleted as well
+*/
+Trip.deleteTripFromJoin = function(tripId) {
+  return db('trip_users').where({'id_trip': tripId}).del()
+    .catch(function(error) {
+      console.warn('error deleting trip', tripId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success deleting trip');
+      return result;
+    })
+}
+
+Trip.deleteTripFromTask = function(tripId) {
+  return db('task').where({'id_trip': tripId}).del()
+    .catch(function(error) {
+      console.warn('error deleting trip', tripId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success deleting trip');
+      return result;
+    })
+}
+
+Trip.deleteTripFromSuggestion = function(tripId) {
+  return db('suggestion').where({'id_trip': tripId}).del()
+    .catch(function(error) {
+      console.warn('error deleting trip', tripId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success deleting trip');
+      return result;
+    })
+}
