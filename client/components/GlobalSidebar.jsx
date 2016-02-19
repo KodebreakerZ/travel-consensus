@@ -1,4 +1,4 @@
-var React    = require('react');
+var React = require('react');
 var ReactDOM = require('react-dom');
 var TaskList = require('./TaskList.jsx');
 var TaskItem = require('./TaskItem.jsx');
@@ -13,7 +13,6 @@ GlobalSidebar = React.createClass({
 
   render: function() {
     return (
-    <div className="sidebarMain">
       <div className="sidebar">
         <div className="twelve columns sidebar-height">
           <div className="location-display">
@@ -23,7 +22,6 @@ GlobalSidebar = React.createClass({
           <TaskList tasks={this.state.tasksInList} addNewTask={this.props.addNewTask} />
         </div>
       </div>
-    </div>
     )
   }
 });
