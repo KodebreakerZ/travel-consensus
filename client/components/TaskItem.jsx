@@ -6,7 +6,7 @@ var TaskItem = React.createClass({
     return (
       <div className="task-item">
         <hr />
-        <p>{this.props.task}</p>
+        <p>{this.props.task.name}</p>
       </div>
     )
   }

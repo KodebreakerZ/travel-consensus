@@ -18,7 +18,7 @@ GlobalSidebar = React.createClass({
           <i className="fa fa-circle fa-paper-plane-o fa-5x"></i>
           <h5>Las Vegas | 62</h5>
         </div>
-        <TaskList tasks={this.state.tasksInList} />
+        <TaskList tasks={this.state.tasksInList} addNewTask={this.props.addNewTask} />
       </div>
     </div>
     )
