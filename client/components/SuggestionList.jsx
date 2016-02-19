@@ -3,12 +3,6 @@ var ReactDOM = require('react-dom');
 var SuggestionItem = require('./SuggestionItem.jsx');
 
 SuggestionList = React.createClass({
-  getInitialState: function() {
-    return {
-      suggestions: this.props.suggestions
-    }
-  }
-
   render: function() {
     console.log('this.props.suggestions (SuggestionList.jsx) ', this.props.suggestions);
     var suggestionList = this.props.suggestions.map(function(suggestion) {
