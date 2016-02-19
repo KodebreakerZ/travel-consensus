@@ -1,4 +1,5 @@
 const db = require('../lib/db');
+const User = require('')
 
 const Message = module.exports;
 
@@ -31,6 +32,13 @@ Message.create = function(attrs) {
 */
 Message.allOfTask = function(taskId) {
   return db.select('*').from('message').where({'id_task': taskId}).orderBy('createdAt', 'asc')
+    .then(function(messages) {
+      return Promise.all(
+        messages.map(function(message) {
+          message.username = User.usernameById(message.id_user);
+        })
+      )
+    })
     .catch(function(error) {
       console.warn('error reading all messages of task:', taskId);
       // console.warn(error);
