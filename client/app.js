@@ -4,13 +4,6 @@ var GlobalTopBar = require('./components/GlobalTopBar.jsx');
 var GlobalSidebar = require('./components/GlobalSidebar.jsx');
 var GlobalTaskArea = require('./components/GlobalTaskArea.jsx');
 
-// Currently only using React & ReactDOM require to test if this will show on html page
-//
-//
-// This component will be changed later to be the connection for all of our react view components
-//
-//
-// Check README for how we start everything straight from git clone ( npm i, npm start, etc )
 
 // Adding options for use in:
   // TaskItem
@@ -63,6 +56,9 @@ var topbar   = React.createElement(GlobalTopBar);
 var taskArea = React.createElement(GlobalTaskArea, options);
 
 // Pass in the addNewTask function of the post.js helper file as a prop.
+// We pass this method down to the TaskList child so that it can
+// addNewTask. I think this might make global state easier but I'm
+// still not sure how to implement it.
 var sidebar  = React.createElement(GlobalSidebar, {
   addNewTask: require('./requests/post').addNewTask
 });
@@ -77,10 +73,13 @@ var globalComponents = [ sidebar ];
 var requestHandler = require('./requests/get')
 requestHandler.setViewDataUpdateInterval(globalComponents, 2000);
 
+/*
+  on the index.html located within client/public/index.html, we've added
+  "<div id='react-main-mount'></div>" within the body tag.
+  this appends the react view into the html page which uses the app-bundle.js
 
-// on the index.html located within client/public/index.html, we've added "<div id='react-main-mount'></div>" within the body tag
-// this appends the react view into the html page which uses the app-bundle.js
-//
-// we'll continue refactoring the dom elements into individual react component as we progress. Be explicit when naming files.
-//
-// script for app-bundle.js is located at the bottom before the </body> tag
+  we'll continue refactoring the dom elements into individual react component as
+  we progress. Be explicit when naming files.
+
+  script for app-bundle.js is located at the bottom before the </body> tag
+*/

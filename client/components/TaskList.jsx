@@ -19,9 +19,11 @@ var TaskList = React.createClass({
     */
     return { tasks: this.props.tasks };
   },
+
   handleClick: function() {
     $(".taskpop").fadeToggle('fast');
   },
+
   newTask: function(e){
     e.preventDefault();
     var newTask = {
@@ -41,6 +43,7 @@ var TaskList = React.createClass({
       this.setState({tasks: this.props.tasks})
     }
   },
+
   render: function() {
     return (
       <div>

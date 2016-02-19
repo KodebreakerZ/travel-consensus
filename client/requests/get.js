@@ -8,6 +8,8 @@ exports.setViewDataUpdateInterval = function(globalComponents, interval) {
         globalComponents[0].setState({tasksInList: tasks});
         console.log('setting state');
       })
+    // fetchSuggestions?
+    // fetchMessages?
   }, interval)
 }
 
