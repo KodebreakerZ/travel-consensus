@@ -13,7 +13,7 @@ exports.setViewDataUpdateInterval = function(globalComponents, interval) {
 
 function fetchTasks(tripId) {
   return fetch('trip/' + tripId + '/tasks', {
-    headers: headers
+    headers: requestHeaders
   })
     .then(function(response) {
       return response.json();
@@ -22,7 +22,7 @@ function fetchTasks(tripId) {
 
 function fetchMessages(taskId) {
   return fetch('task' + taskId + '/messages', {
-    headers: headers
+    headers: requestHeaders
   })
     .then(function(response) {
       return response.json();
@@ -31,7 +31,7 @@ function fetchMessages(taskId) {
 
 function fetchSuggestions(taskId) {
   return fetch('tash/' + taskId + '/suggestions', {
-    headers: headers
+    headers: requestHeaders
   })
     .then(function(response) {
       return response.json();

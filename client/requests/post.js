@@ -8,7 +8,7 @@ exports.addNewTask = function(taskObject) {
 
   return fetch('trip/' + globalStateTripId + '/task', {
     method: 'POST',
-    headers: headers,
+    headers: requestHeaders,
     body: JSON.stringify(taskObject)
   })
     .then(function(response) {
