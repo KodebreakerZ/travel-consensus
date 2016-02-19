@@ -33,6 +33,8 @@ var TaskList = React.createClass({
     }, false);
 
     if(!exists){
+      console.log('TaskList this.props:', this.props)
+      console.log('posting new task');
       this.props.addNewTask(newTask);
 
       // this.props.tasks.push(newTask);

@@ -58,10 +58,12 @@ var options = {
   ]
 };
 
+console.log('requests/post require contents', require('./requests/post'))
+
 
 //TODO: how to substitute options?
 var topbar   = React.createElement(GlobalTopBar);
-var sidebar  = React.createElement(GlobalSidebar);
+var sidebar  = React.createElement(GlobalSidebar, require('./requests/post'));
 var taskArea = React.createElement(GlobalTaskArea, options);
 
 

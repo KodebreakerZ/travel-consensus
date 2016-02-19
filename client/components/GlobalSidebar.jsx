@@ -11,6 +11,7 @@ GlobalSidebar = React.createClass({
   },
 
   render: function() {
+    console.log('global sidebar this.props:', this.props);
     return (
     <div className="sidebar">
       <div className="twelve columns sidebar-height">
