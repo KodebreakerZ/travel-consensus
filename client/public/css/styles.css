@@ -13,7 +13,7 @@ html, body
 
 img {
   max-width:100%;
-max-height:100%;
+  max-height:100%;
 }
 
 hr {
@@ -26,7 +26,8 @@ hr {
 */
 
 .darkgray {
-  background-color:#303030
+  background-color:#303030;
+  width:99%;
 }
 
 .darkgray p {
@@ -34,6 +35,11 @@ hr {
   text-align:right;
   margin: 10px 0;
 }
+
+.container {
+
+}
+
 .fa, .close, .task-item {
   cursor:pointer;
 }
@@ -130,27 +136,36 @@ hr {
 .task-item p {
   color:#fff;
   text-align:right;
-  margin:10px;
+  margin: -8px 10px -8px;
+  font-size: 18px;
+}
+
+.addTaskArea {
+  margin-left:10px;
+}
+
+.addTaskLabel {
   font-size:18px;
 }
 
-.taskpop {
-  /*display:none;*/
-}
 
 /* Main Content Area
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */
 
+#react-task-mount {
+  height:100%;
+}
+
 .main {
   position:relative;
   float:left;
-  width:80%;
+  width:79%;
   /*min-width:200px;*/
+  height:100%;
 }
 
 .suggestion-display {
-  width:100%;
   background-color:#c0392b;
   color:#fff;
   padding:10px;
@@ -162,9 +177,9 @@ hr {
 }
 
 .chat-display {
-  width:100%;
   background-color:#E3E3E3;
   padding:5px;
+  height:66%;
 }
 
 .message-author {
@@ -172,7 +187,6 @@ hr {
 }
 
 .message-input {
-  width:100%;
   background-color:#ccc;
   padding:10px;
 }
@@ -188,7 +202,11 @@ hr {
 }
 
 .message-input input {
-  width:70%;
+  width:80%;
+  margin-left:3%;
   margin-right:10px;
-  height:38px;
+  height: 38px;
+  position: relative;
+  padding-top: 24px;
+  top: 10px;
 }
