@@ -32,17 +32,20 @@ GlobalTaskArea = React.createClass({
   render: function() {
     return (
       <div className="main">
+
         <SuggestionList suggestions={this.state.suggestionsInTask} />
 
         <div className="chat-display">
           <MessageList messages={this.state.messagesInTask} />
         </div>
+
         <div className="message-input">
           <form onSubmit={this.handleNewMessage}>
             <input className="newMessageContent" type="text"></input>
             <button type="submit">Post</button>
           </form>
         </div>
+
       </div>
     )
   }

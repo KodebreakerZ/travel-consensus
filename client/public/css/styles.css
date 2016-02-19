@@ -3,8 +3,8 @@
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */
 
-html, body
-{
+html,
+body {
   height: 100%;
   min-height: 100%;
   margin: 0;
@@ -12,13 +12,13 @@ html, body
 }
 
 img {
-  max-width:100%;
-  max-height:100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 hr {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 /* Global Top Bar
@@ -26,38 +26,43 @@ hr {
 */
 
 .darkgray {
-  background-color:#303030;
-  width:99%;
+  margin: 0 5%;
+
+  background-color: #303030;
 }
 
 .darkgray p {
-  color:#fff;
-  text-align:right;
   margin: 10px 0;
+
+  text-align: right;
+
+  color: #fff;
 }
 
-.container {
-
-}
-
-.fa, .close, .task-item {
-  cursor:pointer;
+.fa,
+.close,
+.task-item {
+  cursor: pointer;
 }
 
 /* Global Top Bar - Popup
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */
 
-.invitepop {
-  background-color:#FFF;
-  border:1px solid #999;
-  display:none;
-  right:0;
+.invitepopup {
+  position: absolute;
+  z-index: 50;
+  right: 0;
+
+  display: none;
+
+  width: 394px;
   margin-top: 15px;
-  position:absolute;
-  width:394px;
-  z-index:50;
+  margin-right: 7%;
   padding: 25px 25px 20px;
+
+  border: 1px solid #999;
+  background-color: #fff;
 }
 
 /* Global Top Bar - Popup Invite tags
@@ -65,37 +70,43 @@ hr {
 */
 
 .jq_tags_editor {
-  border: solid 1px #aaa;
-  color: #222;
   min-height: 30px;
   padding: 5px 5px 10px 5px;
+
+  color: #222;
+  border: solid 1px #aaa;
 }
 
-.jq_tags_editor input[type="text"] {
+.jq_tags_editor input[type='text'] {
+  height: 20px;
+
   border: none;
-  background:#fff;
-  height:20px;
+  background: #fff;
 }
 
-.jq_tags_editor input[type="text"]:focus {
-  outline: none; 
+.jq_tags_editor input[type='text']:focus {
+  outline: none;
 }
 
 .jq_tags_editor .jq_tags_tokens  .jq_tags_token {
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  background-color: #c7da76;
-  border: solid 1px #b7c963;
-  color: #111;
   float: left;
+
   margin: 0 5px 5px 0;
   padding: 3px 5px;
+
+  color: #111;
+  border: solid 1px #b7c963;
+  -moz-border-radius: 2px;
+       border-radius: 2px;
+  background-color: #c7da76;
 }
 
 .jq_tags_editor .jq_tags_tokens  .jq_tags_token a {
-  color: #749440;
-  fon-weight: bold;
   margin-left: 7px;
+
+  color: #749440;
+
+  fon-weight: bold;
 }
 
 /* Static Sidebar
@@ -103,49 +114,59 @@ hr {
 */
 
 .sidebar {
+  position: relative;
+  /*min-width:200px;*/
+
+  float: left;
+
+  width: 20%;
   height: 100%;
   min-height: 100%;
-  width:20%;
-  /*min-width:200px;*/
-  float:left;
-  position:relative;
-  background-color:#198c8c;
+  margin-left: 5%;
+
+  background-color: #198c8c;
 }
 
 .location-display {
-  height:175px;
-  margin-bottom:0px;
-  text-align:center;
-  color:#fff;
+  height: 175px;
+  margin-bottom: 0;
+
+  text-align: center;
+
+  color: #fff;
 }
 
 .location-display h4 {
-  color:#fff;
+  color: #fff;
 }
 
 .location-display .fa {
-  margin:25px 0;
+  margin: 25px 0;
 }
 
 .task-item {
-  background-color:#198c8c;
-  margin-bottom:2px;
-  height:100%;
+  height: 100%;
+  margin-bottom: 2px;
+
+  background-color: #198c8c;
 }
 
 .task-item p {
-  color:#fff;
-  text-align:right;
-  margin: -8px 10px -8px;
   font-size: 18px;
+
+  margin: -8px 10px -8px;
+
+  text-align: right;
+
+  color: #fff;
 }
 
-.addTaskArea {
-  margin-left:10px;
+.addTaskBox {
+  margin-left: 10px;
 }
 
 .addTaskLabel {
-  font-size:18px;
+  font-size: 18px;
 }
 
 
@@ -154,59 +175,69 @@ hr {
 */
 
 #react-task-mount {
-  height:100%;
+  height: 100%;
 }
 
 .main {
-  position:relative;
-  float:left;
-  width:79%;
+  position: relative;
+
+  float: left;
+
+  width: 70%;
   /*min-width:200px;*/
-  height:100%;
+  height: 100%;
 }
 
 .suggestion-display {
-  background-color:#c0392b;
-  color:#fff;
-  padding:10px;
+  padding: 10px;
+
+  color: #fff;
+  background-color: #c0392b;
 }
 
 .suggestion-display p {
-  display:inline;
-  margin-right:15px;
+  display: inline;
+
+  margin-right: 15px;
 }
 
 .chat-display {
-  background-color:#E3E3E3;
-  padding:5px;
-  height:66%;
+  height: 66%;
+  padding: 5px;
+
+  background-color: #e3e3e3;
 }
 
 .message-author {
-  font-weight:500;
+  font-weight: 500;
 }
 
 .message-input {
-  background-color:#ccc;
-  padding:10px;
+  padding: 10px;
+
+  background-color: #ccc;
 }
 
 .message-input button {
-/*  float:right;
+  /*  float:right;
   margin-right:60px;*/
+  position: relative;
+  top: 6px;
 }
 
 .message-input form {
-  margin-top:1.5rem;
-  text-align:left;
+  margin-top: 1.5rem;
+
+  text-align: left;
 }
 
 .message-input input {
-  width:80%;
-  margin-left:3%;
-  margin-right:10px;
-  height: 38px;
   position: relative;
-  padding-top: 24px;
   top: 10px;
+
+  width: 80%;
+  height: 38px;
+  margin-right: 10px;
+  margin-left: 3%;
+  padding-top: 10px;
 }

@@ -3,10 +3,6 @@ var ReactDOM = require('react-dom');
 var TaskItem = require('./TaskItem.jsx');
 
 var TaskList = React.createClass({
-  handleClick: function() {
-    $(".taskpop").fadeToggle('fast');
-  },
-
   newTask: function(e){
     e.preventDefault();
     var newTask = {
@@ -30,22 +26,20 @@ var TaskList = React.createClass({
     return (
       <div>
         <div className="task-list">
-
           {this.props.tasks.map(function(task) {
             return (<TaskItem task={task} />)
           }.bind(this))}
 
           <div className="task-item">
             <hr />
-            <p style={{opacity:0.5}} onClick={this.handleClick}>+ Task</p>
           </div>
         </div>
 
-        <div className="taskpop">
+        <div className="addTaskBox">
           <form onSubmit={this.newTask}>
-              <label>Add a task</label>
-              <input className="newTask" type="text" size="15" />
-              <input type="submit" name="Add" />
+            <label>Add a task</label>
+            <input className="newTask" type="text" size="15" />
+            <input type="submit" name="AddTask" />
           </form>
         </div>
       </div>

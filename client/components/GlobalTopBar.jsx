@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 
 var GlobalTopBar = React.createClass({
 	handleClick: function(){
-		$(".invitepop").fadeToggle('fast');
+		$(".invitepopup").fadeToggle('fast');
 	},
 	// getInitialState: function(){
 	//    return {
@@ -22,14 +22,13 @@ var GlobalTopBar = React.createClass({
 				    </div>
 				  </div>
 				</div>
-				<div className='invitepop'>
-	    			<input type="text" value="" className="tags"/>
-	    			<div className="jq_tags_editor">
-		    			<div className="jq_tags_tokens">
-		    			</div>
-	    			<input type="text" className="jq_tags_editor_input"/>
-	    			</div>
-	    			<button className="inviteUsers">Invite Users</button>
+				<div className='invitepopup'>
+    			<input type="text" value="" className="tags"/>
+    			<div className="jq_tags_editor">
+	    			<div className="jq_tags_tokens"></div>
+    				<input type="text" className="jq_tags_editor_input"/>
+    			</div>
+    			<button className="inviteUsers">Invite Users</button>
 				</div>
 			</div>
 		);
