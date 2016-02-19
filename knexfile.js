@@ -55,6 +55,14 @@
         > if 'no relations exist', you've done something wrong!
       > You can run postgreSQL commands here (don't forget semi-colons!)
         > 'SELECT * FROM message;'
+
+  ***********************************
+
+  DATABASE CONFIGURATION for test
+
+    With a running postgres server process (postgres -D)
+      > 'NODE_ENV=test node lib/schema.js'
+      Do not seed database for tests
 */
 
 module.exports = {
