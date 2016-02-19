@@ -8,7 +8,7 @@ GlobalSidebar = React.createClass({
     return {
       tasksInList: []
     }
-  }
+  },
 
   render: function() {
     return (

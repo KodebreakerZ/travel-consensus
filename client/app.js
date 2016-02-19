@@ -67,18 +67,12 @@ var taskArea = React.createElement(GlobalTaskArea, options);
 
 topbar   = ReactDOM.render(topbar, document.getElementById('react-main-mount'));
 sidebar  = ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount'));
-taskArea = ReactDOM.render(task, document.getElementById('react-task-mount'));
+taskArea = ReactDOM.render(taskArea, document.getElementById('react-task-mount'));
 
 
-var globalComponents = [
-  {
-    component: sidebar,
-    container: 'react-sidebar-mount'
-  }
-];
+var globalComponents = [ sidebar ];
 
 var requestHandler = require('./requests/get')
-
 requestHandler.setViewDataUpdateInterval(globalComponents, 1000);
 
 
