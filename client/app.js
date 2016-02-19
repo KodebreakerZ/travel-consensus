@@ -58,18 +58,28 @@ var options = {
   ]
 };
 
-var topbar = React.createElement(GlobalTopBar);
-ReactDOM.render(topbar, document.getElementById('react-main-mount'));
 
-var sidebar = React.createElement(GlobalSidebar, options);
-ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount'));
+//TODO: how to substitute options?
+var topbar   = React.createElement(GlobalTopBar);
+var sidebar  = React.createElement(GlobalSidebar);
+var taskArea = React.createElement(GlobalTaskArea, options);
 
-var task = React.createElement(GlobalTaskArea, options);
-ReactDOM.render(task, document.getElementById('react-task-mount'));
 
-var globalComponents = [topBar, sideBar, task];
+topbar   = ReactDOM.render(topbar, document.getElementById('react-main-mount'));
+sidebar  = ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount'));
+taskArea = ReactDOM.render(task, document.getElementById('react-task-mount'));
 
-require('./requests/get')(.setViewDataUpdateInterval(1000);
+
+var globalComponents = [
+  {
+    component: sidebar,
+    container: 'react-sidebar-mount'
+  }
+];
+
+var requestHandler = require('./requests/get')
+
+requestHandler.setViewDataUpdateInterval(globalComponents, 1000);
 
 
 // ReactDOM.render (<GlobalTopBar />, document.getElementById('react-main-mount'));
