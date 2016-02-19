@@ -14,8 +14,19 @@ GlobalTaskArea = React.createClass({
     }
   },
 
-  handleClick: function(e) {
-    // do nothing for now.
+  handleNewMessage: function(e) {
+    e.preventDefault();
+
+    var newMessage = {
+      content: $('.newMessageContent').val(),
+      id_user: 1    /////// MUST CHANGE TO CURRENTLY LOGGED IN USER
+    }
+
+    this.props.addNewMessage(newMessage);
+
+    // intermediary setState; takes care of server-delay
+    this.props.messagesInTask.push(newMessage)
+    this.setState( {messagesInTask: this.props.messagesInTask} )
   },
 
   render: function() {
@@ -27,9 +38,9 @@ GlobalTaskArea = React.createClass({
           <MessageList messages={this.state.messagesInTask} />
         </div>
         <div className="message-input">
-          <form action="postNewMessage" method="post">
-            <input id="newMessage" type="text"></input>
-            <button onClick={this.handleClick} type="submit">Post</button>
+          <form onSubmit={this.handleNewMessage}>
+            <input className="newMessageContent" type="text"></input>
+            <button type="submit">Post</button>
           </form>
         </div>
       </div>

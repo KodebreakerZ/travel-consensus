@@ -18,7 +18,6 @@ var TaskList = React.createClass({
     }, false);
 
     if(!exists){
-      console.log('posting new task');
       this.props.addNewTask(newTask);
 
       // intermediary setState; takes care of server-delay
