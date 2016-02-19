@@ -69,9 +69,9 @@ var reportError = function(description, error) {
 global.reportError = ramda.curry(reportError);
 
 
-//
-//  Mocha 'helpers' to support coroutine tests
-//
+
+/*  Mocha 'helpers' to support coroutine tests */
+var Bluebird = require('bluebird');
 global.before_ = function (f) { before ( Bluebird.coroutine(f) ) }
 global.beforeEach_ = function (f) { beforeEach ( Bluebird.coroutine(f) ) }
 global.it_ = function (description, f) { it ( description, Bluebird.coroutine(f) ) }

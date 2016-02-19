@@ -25,7 +25,7 @@ describe('Trip model', function() {
         })
     })
 
-    it ('should create a new trip', function * () {
+    it_ ('should create a new trip', function * () {
       let newTrip = {
         name: 'Bat Cave'
       }
@@ -38,7 +38,7 @@ describe('Trip model', function() {
         .catch(reportError('creating new valid trip'));
     })
 
-    it ('should associate a user with a trip', function * () {
+    it_ ('should associate a user with a trip', function * () {
       let newTrip_User = {
         id_trip: 2,
         id_user: 1
@@ -57,7 +57,7 @@ describe('Trip model', function() {
         .catch(reportError('finding trips of user'));
     })
 
-    it ('should report no trips for a user without any', function * () {
+    it_ ('should report no trips for a user without any', function * () {
       yield Trip.allOfUser(404)
         .then(function(trips) {
           expect(trips).to.have.length(0);

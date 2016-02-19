@@ -50,7 +50,7 @@ Trip.addUser = function(attrs) {
   Retrieve a trip by its ID
 */
 Trip.byId = function(tripId) {
-  return db.select('*').from('trip').where({ 'id_trip': tripId })
+  return db.select('*').from('trip').where({ 'id': tripId })
     .catch(function(error) {
       console.warn('error finding trip from id:', tripId);
       console.warn(error);
@@ -65,7 +65,7 @@ Trip.byId = function(tripId) {
   Retrieve all trips of a user
 */
 Trip.allOfUser = function(userId) {
-  db.select('id_trip').from('trip_users').where({ 'id_user': userId })
+  return db.select('id_trip').from('trip_users').where({ 'id_user': userId })
     .catch(function(error) {
       console.warn('error retrieving trips for user', userId);
       console.warn(error);
@@ -73,7 +73,6 @@ Trip.allOfUser = function(userId) {
     })
     .then(function(tripsOfUser) {
       console.log('success retrieving users trips');
-      console.log('shape of All trips by UserId', tripsOfUser);
       return Promise.all(
         tripsOfUser.map(function(tripOfUser) {
           return Trip.byId(tripOfUser.id_trip);
