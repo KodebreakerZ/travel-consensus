@@ -18,9 +18,12 @@ MessageList = React.createClass({
              />
     }.bind(this));
 
-    return <div className="chat-display">
-      <h4>messages:</h4>{messageList}
-    </div>
+    return (
+      <div className="chat-display">
+        <h4>messages:</h4>
+        {messageList}
+      </div>
+    )
   }
 });
 

@@ -5,7 +5,8 @@ MessageItem = React.createClass({
   render: function() {
     return (
       <p className="message">
-        <span className="message-author">{this.props.message.id_user}:</span>{this.props.message.content}
+        <span className="message-author">{this.props.message.id_user}:</span>
+        {this.props.message.content}
       </p>
     )
   }
