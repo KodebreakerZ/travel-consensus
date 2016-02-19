@@ -31,7 +31,6 @@ Message.create = function(attrs) {
   TODO: Sort messages by createdAt dates
 */
 Message.allOfTask = function(taskId) {
-  console.log('retrieving all messages of task', taskId);
   return db.select('*').from('message').where({'id_task': taskId}).orderBy('createdAt', 'asc')
     .then(function(messages) {
       // Append a username to each of the messages
@@ -50,10 +49,6 @@ Message.allOfTask = function(taskId) {
       // console.warn(error);
       throw error;
     })
-    .then(function(usernameAppended) {
-      console.log('usernamed data:', usernameAppended);
-      return usernameAppended;
-    })
 }
 
 /*
@@ -63,7 +58,7 @@ Message.deleteMessage = function(messageId) {
   return db('message').where({'id': messageId}).del()
     .catch(function(error) {
       console.warn('error deleting message', messageId);
-      console.warn(error);
+      // console.warn(error);
       throw error;
     })
     .then(function(result) {
