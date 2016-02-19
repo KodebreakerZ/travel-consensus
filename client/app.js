@@ -4,8 +4,23 @@ var GlobalTopBar = require('./components/GlobalTopBar.jsx');
 var GlobalSidebar = require('./components/GlobalSidebar.jsx');
 var GlobalTaskArea = require('./components/GlobalTaskArea.jsx');
 
+
+
+/**** THIS IS GLOBAL STATE *********/
 window.globalStateTripId = 1;
 window.globalStateTaskId = 1;
+/***********************************/
+/*
+    Just these two variables allow us to dynamically update
+    our app. Every couple of seconds, the app asks the database
+    for the tasks, messages, and suggestions for the task and trip
+    we are looking at. We then pass those lists of data to the
+    React components we build. They each detect new data has been
+    passed, virtually build a new component, then only if there has
+    been a change will it actually change the app view.
+
+    That's pretty much the crux of the app updating.
+*/
 
 // Adding options for use in:
   // TaskItem

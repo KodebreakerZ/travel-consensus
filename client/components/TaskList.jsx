@@ -3,23 +3,6 @@ var ReactDOM = require('react-dom');
 var TaskItem = require('./TaskItem.jsx');
 
 var TaskList = React.createClass({
-  getInitialState: function () {
-    /*
-      this.props.task looks like this:
-      [
-        {
-          name: "Hotel"
-          id: 2
-          id_trip: 1
-          status: "decided"
-          decision: "Hilton"
-        },
-        ...
-      ]
-    */
-    return { tasks: this.props.tasks };
-  },
-
   handleClick: function() {
     $(".taskpop").fadeToggle('fast');
   },
