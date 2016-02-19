@@ -14,12 +14,14 @@ var headers = {
 exports.setViewDataUpdateInterval = function(globalComponents, interval) {
   console.log('running setViewDataUpdateInterval');
 
-  return fetchTasks(1)
-    .then(function(tasks) {
-      // ReactDOM.render(component.component, component.container);
-      globalComponents[0].setState({tasksInList: tasks});
-      console.log('setting state!!!');
-    })
+  setInterval(function() {
+    fetchTasks(1)
+      .then(function(tasks) {
+        // ReactDOM.render(component.component, component.container);
+        globalComponents[0].setState({tasksInList: tasks});
+        console.log('setting state!!!');
+      })
+  }, interval)
 }
 
 function fetchTasks(tripId) {

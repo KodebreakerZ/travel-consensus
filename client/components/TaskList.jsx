@@ -4,6 +4,19 @@ var TaskItem = require('./TaskItem.jsx');
 
 var TaskList = React.createClass({
   getInitialState: function () {
+    /*
+      this.props.task looks like this:
+      [
+        {
+          name: "Hotel"
+          id: 2
+          id_trip: 1
+          status: "decided"
+          decision: "Hilton"
+        },
+        ...
+      ]
+    */
     return { items: this.props.tasks };
   },
   handleClick: function() {
@@ -26,7 +39,7 @@ var TaskList = React.createClass({
         <div className="task-list">
 
           {this.props.tasks.map(function(task) {
-            return (<TaskItem task={task} />)
+            return (<TaskItem task={task.name} />)
           }.bind(this))}
 
           <div className="task-item">
