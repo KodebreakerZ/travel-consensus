@@ -3,23 +3,30 @@ var ReactDOM = require('react-dom');
 var TaskItem = require('./TaskItem.jsx');
 
 var TaskList = React.createClass({
-  getInitialState: function () {
-    return { items: this.props.tasks };
-  },
   handleClick: function() {
     $(".taskpop").fadeToggle('fast');
   },
-  newTask:function(e){
-    if(e.charCode == 13){
-      e.preventDefault();
-      var task = $('.newTask').val();
-      if(this.props.tasks.indexOf(task) === -1){
-        this.props.tasks.push(task);
-        console.log(this.props.tasks);
-        this.setState({items: this.props.tasks})
-      }
+
+  newTask: function(e){
+    e.preventDefault();
+    var newTask = {
+      name: $('.newTask').val()
+    }
+
+    var exists = this.props.tasks.reduce(function(exists, existingTask) {
+      return exists || newTask.name.toLowerCase() === existingTask.name.toLowerCase();
+    }, false);
+
+    if(!exists){
+      console.log('posting new task');
+      this.props.addNewTask(newTask);
+
+      // intermediary setState; takes care of server-delay
+      this.props.tasks.push(newTask);
+      this.setState({tasks: this.props.tasks})
     }
   },
+
   render: function() {
     return (
       <div>
@@ -36,9 +43,9 @@ var TaskList = React.createClass({
         </div>
 
         <div className="taskpop">
-          <form>
+          <form onSubmit={this.newTask}>
               <label>Add a task</label>
-              <input className="newTask" type="text" size="15" onKeyPress={this.newTask} />
+              <input className="newTask" type="text" size="15" />
               <input type="submit" name="Add" />
           </form>
         </div>

@@ -7,40 +7,24 @@ var MessageItem = require('./MessageItem.jsx');
 // var Post = require('../requests/post.js')
 
 GlobalTaskArea = React.createClass({
-  handleClick: function(event){
-    var headers = {
-      "access-control-allow-origin": "*",
-      "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
-      "access-control-allow-headers": "content-type, accept",
-      "access-control-max-age": 10, // Seconds.
-      'Content-Type': "application/json"
-    };
-    event.preventDefault();
+  getInitialState: function() {
+    return {
+      messagesInTask: [],
+      suggestionsInTask: []
+    }
+  },
 
-    // Post.newMessage();
-    console.log('handleClick running');
-
-    $.ajax({
-      headers: headers,
-      method: 'POST',
-      url: '/task/' + 1 + '/message',
-      data: JSON.stringify({ 
-        content: 'New message posteddd',
-        id_user: 2
-       }),
-      dataType: 'json'
-
-    })
-
+  handleClick: function(e) {
+    // do nothing for now.
   },
 
   render: function() {
     return (
       <div className="main">
-        <SuggestionList suggestions={this.props.suggestions} />
+        <SuggestionList suggestions={this.state.suggestionsInTask} />
 
         <div className="chat-display">
-          <MessageList messages={this.props.messages} />
+          <MessageList messages={this.state.messagesInTask} />
         </div>
         <div className="message-input">
           <form action="postNewMessage" method="post">
@@ -49,7 +33,6 @@ GlobalTaskArea = React.createClass({
           </form>
         </div>
       </div>
-    
     )
   }
 });

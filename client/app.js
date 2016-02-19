@@ -4,13 +4,23 @@ var GlobalTopBar = require('./components/GlobalTopBar.jsx');
 var GlobalSidebar = require('./components/GlobalSidebar.jsx');
 var GlobalTaskArea = require('./components/GlobalTaskArea.jsx');
 
-// Currently only using React & ReactDOM require to test if this will show on html page
-// 
-// 
-// This component will be changed later to be the connection for all of our react view components
-// 
-// 
-// Check README for how we start everything straight from git clone ( npm i, npm start, etc )
+
+
+/**** THIS IS GLOBAL STATE *********/
+window.globalStateTripId = 1;
+window.globalStateTaskId = 1;
+/***********************************/
+/*
+    Just these two variables allow us to dynamically update
+    our app. Every couple of seconds, the app asks the database
+    for the tasks, messages, and suggestions for the task and trip
+    we are looking at. We then pass those lists of data to the
+    React components we build. They each detect new data has been
+    passed, virtually build a new component, then only if there has
+    been a change will it actually change the app view.
+
+    That's pretty much the crux of the app updating.
+*/
 
 // Adding options for use in:
   // TaskItem
@@ -37,7 +47,7 @@ var options = {
       id_task: 4, id_user: 2, nickname: 'Jacob'
     },
     {
-      id: 1236, content: 'i like turtles',
+      id: 1236, content: 'i like turtles, too',
       id_task: 6, id_user: 3, nickname: 'Ashley'
     },
     {
@@ -59,22 +69,32 @@ var options = {
 };
 
 
-var topbar = React.createElement(GlobalTopBar);
-ReactDOM.render(topbar, document.getElementById('react-main-mount'));
+var topbar   = React.createElement(GlobalTopBar);
+var taskArea = React.createElement(GlobalTaskArea);
 
-var sidebar = React.createElement(GlobalSidebar, options);
-ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount'));
+// Pass in the addNewTask function of the post.js helper file as a prop.
+// We pass this method down to the TaskList child so that it can
+// addNewTask. I think this might make global state easier but I'm
+// still not sure how to implement it.
+var sidebar  = React.createElement(GlobalSidebar, {
+  addNewTask: require('./requests/post').addNewTask
+});
 
-var task = React.createElement(GlobalTaskArea, options);
-ReactDOM.render(task, document.getElementById('react-task-mount'));
 
-// ReactDOM.render (<GlobalTopBar />, document.getElementById('react-main-mount'));
-// ReactDOM.render (<GlobalSidebar />, document.getElementById('react-sidebar-mount'));
+topbar   = ReactDOM.render(topbar, document.getElementById('react-main-mount'));
+sidebar  = ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount'));
+taskArea = ReactDOM.render(taskArea, document.getElementById('react-task-mount'));
 
+var requestHandler = require('./requests/get')
+requestHandler.setViewDataUpdateInterval(sidebar, taskArea, 2000);
 
-// on the index.html located within client/public/index.html, we've added "<div id='react-main-mount'></div>" within the body tag
-// this appends the react view into the html page which uses the app-bundle.js
-// 
-// we'll continue refactoring the dom elements into individual react component as we progress. Be explicit when naming files.
-// 
-// script for app-bundle.js is located at the bottom before the </body> tag
+/*
+  on the index.html located within client/public/index.html, we've added
+  "<div id='react-main-mount'></div>" within the body tag.
+  this appends the react view into the html page which uses the app-bundle.js
+
+  we'll continue refactoring the dom elements into individual react component as
+  we progress. Be explicit when naming files.
+
+  script for app-bundle.js is located at the bottom before the </body> tag
+*/

@@ -100,7 +100,7 @@ TaskAPI.put('/:id_task/', function(request, response) {
 
 })
 
-/* TODO: Sort messages in chronological order in message model.
+/* Big TODO: return username!
 
   GET task/:id_task/messages
 

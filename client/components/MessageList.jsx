@@ -6,17 +6,18 @@ MessageList = React.createClass({
   render: function() {
     console.log('this.props.messages (MessageList.jsx) ', this.props.messages);
 
-    var message = this.props.messages.map(function(message) {
-      var user = message['nickname'];
-      var content = message['content'];
+    var messageList = this.props.messages.map(function(message) {
       return <MessageItem
-              message={content} user={user}
+               message={message}
              />
     }.bind(this));
 
-    return <div className="chat-display">
-      <h4>messages:</h4>{message}
-    </div>
+    return (
+      <div className="chat-display">
+        <h4>messages:</h4>
+        {messageList}
+      </div>
+    )
   }
 });
 

@@ -4,7 +4,10 @@ var ReactDOM = require('react-dom');
 MessageItem = React.createClass({
   render: function() {
     return (
-      <p className="message"><span className="message-author">{this.props.user}:</span> {this.props.message}</p>
+      <p className="message">
+        <span className="message-author">{this.props.message.id_user}:</span>
+        {this.props.message.content}
+      </p>
     )
   }
 })
