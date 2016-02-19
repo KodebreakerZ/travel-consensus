@@ -5,11 +5,11 @@ var GlobalSidebar = require('./components/GlobalSidebar.jsx');
 var GlobalTaskArea = require('./components/GlobalTaskArea.jsx');
 
 // Currently only using React & ReactDOM require to test if this will show on html page
-// 
-// 
+//
+//
 // This component will be changed later to be the connection for all of our react view components
-// 
-// 
+//
+//
 // Check README for how we start everything straight from git clone ( npm i, npm start, etc )
 
 // Adding options for use in:
@@ -58,7 +58,6 @@ var options = {
   ]
 };
 
-
 var topbar = React.createElement(GlobalTopBar);
 ReactDOM.render(topbar, document.getElementById('react-main-mount'));
 
@@ -68,13 +67,18 @@ ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount'));
 var task = React.createElement(GlobalTaskArea, options);
 ReactDOM.render(task, document.getElementById('react-task-mount'));
 
+var globalComponents = [topBar, sideBar, task];
+
+require('./requests/get')(.setViewDataUpdateInterval(1000);
+
+
 // ReactDOM.render (<GlobalTopBar />, document.getElementById('react-main-mount'));
 // ReactDOM.render (<GlobalSidebar />, document.getElementById('react-sidebar-mount'));
 
 
 // on the index.html located within client/public/index.html, we've added "<div id='react-main-mount'></div>" within the body tag
 // this appends the react view into the html page which uses the app-bundle.js
-// 
+//
 // we'll continue refactoring the dom elements into individual react component as we progress. Be explicit when naming files.
-// 
+//
 // script for app-bundle.js is located at the bottom before the </body> tag

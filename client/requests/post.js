@@ -6,22 +6,22 @@ exports.newMessage = function() {
   var taskId = 1;
   var reqUrl = 'http://localhost:4000/task/' + taskId + '/message'; // task # will need to be grabbed dynamically
 
-  var options = { 
+  var options = {
 
   method: 'POST',
 
   url: reqUrl,
 
-  headers: 
+  headers:
    { 'content-type': 'application/json' },
 
-  body: { 
-    content: msgContent, 
+  body: {
+    content: msgContent,
     id_user: userId
   },
 
-  json: true 
-  
+  json: true
+
   };
 
   request(options, function (error, response, body) {
