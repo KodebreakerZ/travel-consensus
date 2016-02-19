@@ -54,9 +54,8 @@ User.usernameById = function(userId) {
       throw error;
     })
     .then(function(username) {
-      console.log('shape of User.usernameById data', username);
       return username[0];
-    }
+    })
 }
 
 /*

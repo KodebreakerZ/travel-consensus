@@ -3,11 +3,9 @@ var ReactDOM = require('react-dom');
 
 MessageItem = React.createClass({
   render: function() {
-    console.log('RENDERING MESSAGE:', this.props.message);
-
     return (
       <p className="message">
-        <span className="message-author">{this.props.message.id_user}:</span>
+        <span className="message-author">{this.props.message.username}: </span>
         {this.props.message.content}
       </p>
     )
