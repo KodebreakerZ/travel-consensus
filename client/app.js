@@ -4,6 +4,8 @@ var GlobalTopBar = require('./components/GlobalTopBar.jsx');
 var GlobalSidebar = require('./components/GlobalSidebar.jsx');
 var GlobalTaskArea = require('./components/GlobalTaskArea.jsx');
 
+window.globalStateTripId = 1;
+window.globalStateTaskId = 1;
 
 // Adding options for use in:
   // TaskItem
@@ -30,7 +32,7 @@ var options = {
       id_task: 4, id_user: 2, nickname: 'Jacob'
     },
     {
-      id: 1236, content: 'i like turtles',
+      id: 1236, content: 'i like turtles, too',
       id_task: 6, id_user: 3, nickname: 'Ashley'
     },
     {
@@ -53,7 +55,7 @@ var options = {
 
 
 var topbar   = React.createElement(GlobalTopBar);
-var taskArea = React.createElement(GlobalTaskArea, options);
+var taskArea = React.createElement(GlobalTaskArea);
 
 // Pass in the addNewTask function of the post.js helper file as a prop.
 // We pass this method down to the TaskList child so that it can
@@ -63,15 +65,13 @@ var sidebar  = React.createElement(GlobalSidebar, {
   addNewTask: require('./requests/post').addNewTask
 });
 
+
 topbar   = ReactDOM.render(topbar, document.getElementById('react-main-mount'));
 sidebar  = ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount'));
 taskArea = ReactDOM.render(taskArea, document.getElementById('react-task-mount'));
 
-
-var globalComponents = [ sidebar ];
-
 var requestHandler = require('./requests/get')
-requestHandler.setViewDataUpdateInterval(globalComponents, 2000);
+requestHandler.setViewDataUpdateInterval(sidebar, taskArea, 2000);
 
 /*
   on the index.html located within client/public/index.html, we've added

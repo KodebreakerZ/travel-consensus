@@ -4,8 +4,9 @@ var ReactDOM = require('react-dom');
 SuggestionItem = React.createClass({
   render: function() {
     return (
-      <p className="suggestion">{this.props.suggestion} <i className="fa fa-times"></i></p>
-
+      <p className="suggestion">
+      {this.props.suggestion.suggestion} <i className="fa fa-times"></i>
+      </p>
     )
   }
 })

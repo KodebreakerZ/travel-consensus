@@ -7,16 +7,24 @@ var MessageItem = require('./MessageItem.jsx');
 // var Post = require('../requests/post.js')
 
 GlobalTaskArea = React.createClass({
-  handleClick: function(event){
+  getInitialState: function() {
+    return {
+      messagesInTask: [],
+      suggestionsInTask: []
+    }
+  },
+
+  handleClick: function(e) {
+    // do nothing for now.
   },
 
   render: function() {
     return (
       <div className="main">
-        <SuggestionList suggestions={this.props.suggestions} />
+        <SuggestionList suggestions={this.props.suggestionsInTask} />
 
         <div className="chat-display">
-          <MessageList messages={this.props.messages} />
+          <MessageList messages={this.props.messagesInTask} />
         </div>
         <div className="message-input">
           <form action="postNewMessage" method="post">
@@ -25,7 +33,6 @@ GlobalTaskArea = React.createClass({
           </form>
         </div>
       </div>
-
     )
   }
 });

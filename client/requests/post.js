@@ -2,11 +2,7 @@ require('./request-helpers');
 require('whatwg-fetch');
 
 exports.addNewTask = function(taskObject) {
-  console.log('POST POST POST NEWNEWNEW TASK TASK TASK');
-
-  var globalStateTripId = 1; // HOW BEST DO?
-
-  return fetch('trip/' + globalStateTripId + '/task', {
+  return fetch('trip/' + window.globalStateTripId + '/task', {
     method: 'POST',
     headers: requestHeaders,
     body: JSON.stringify(taskObject)

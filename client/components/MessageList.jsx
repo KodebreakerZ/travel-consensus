@@ -3,19 +3,23 @@ var ReactDOM = require('react-dom');
 var MessageItem = require('./MessageItem.jsx');
 
 MessageList = React.createClass({
+  getInitialState: function() {
+    return {
+      messages: this.props.messages
+    }
+  },
+
   render: function() {
     console.log('this.props.messages (MessageList.jsx) ', this.props.messages);
 
-    var message = this.props.messages.map(function(message) {
-      var user = message['nickname'];
-      var content = message['content'];
+    var messageList = this.props.messages.map(function(message) {
       return <MessageItem
-              message={content} user={user}
+               message={message}
              />
     }.bind(this));
 
     return <div className="chat-display">
-      <h4>messages:</h4>{message}
+      <h4>messages:</h4>{messageList}
     </div>
   }
 });
