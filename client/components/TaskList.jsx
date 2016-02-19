@@ -33,13 +33,12 @@ var TaskList = React.createClass({
     }, false);
 
     if(!exists){
-      console.log('TaskList this.props:', this.props)
       console.log('posting new task');
       this.props.addNewTask(newTask);
 
-      // this.props.tasks.push(newTask);
-      // console.log(this.props.tasks);
-      // this.setState({tasks: this.props.tasks})
+      // intermediary setState; takes care of server-delay
+      this.props.tasks.push(newTask);
+      this.setState({tasks: this.props.tasks})
     }
   },
   render: function() {

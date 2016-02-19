@@ -58,14 +58,14 @@ var options = {
   ]
 };
 
-console.log('requests/post require contents', require('./requests/post'))
 
-
-//TODO: how to substitute options?
 var topbar   = React.createElement(GlobalTopBar);
-var sidebar  = React.createElement(GlobalSidebar, require('./requests/post'));
 var taskArea = React.createElement(GlobalTaskArea, options);
 
+// Pass in the addNewTask function of the post.js helper file as a prop.
+var sidebar  = React.createElement(GlobalSidebar, {
+  addNewTask: require('./requests/post').addNewTask
+});
 
 topbar   = ReactDOM.render(topbar, document.getElementById('react-main-mount'));
 sidebar  = ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount'));
@@ -76,10 +76,6 @@ var globalComponents = [ sidebar ];
 
 var requestHandler = require('./requests/get')
 requestHandler.setViewDataUpdateInterval(globalComponents, 2000);
-
-
-// ReactDOM.render (<GlobalTopBar />, document.getElementById('react-main-mount'));
-// ReactDOM.render (<GlobalSidebar />, document.getElementById('react-sidebar-mount'));
 
 
 // on the index.html located within client/public/index.html, we've added "<div id='react-main-mount'></div>" within the body tag
