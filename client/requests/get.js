@@ -3,20 +3,18 @@ require('whatwg-fetch');      // imports 'fetch' function
 
 exports.setViewDataUpdateInterval = function(taskList, taskArea, interval) {
   setInterval(function() {
-    fetchTasks(window.globalStateTripId)
+    fetchTasks(window.GlobalState.tripId)
       .then(function(tasks) {
         taskList.setState( {tasksInList: tasks} );
-        console.log('setting state');
       })
 
-    fetchMessages(window.globalStateTaskId)
+    fetchMessages(window.GlobalState.taskId)
       .then(function(messages) {
         taskArea.setState( {messagesInTask: messages} );
       })
 
-    fetchSuggestions(window.globalStateTaskId)
+    fetchSuggestions(window.GlobalState.taskId)
       .then(function(suggestions) {
-        console.log('fetched suggestions:', suggestions);
         taskArea.setState( {suggestionsInTask: suggestions} );
       })
   }, interval)

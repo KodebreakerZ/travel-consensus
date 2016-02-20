@@ -43,6 +43,12 @@ User.usernameById = function(userId) {
     .then(first)
 }
 
+User.idByEmail = function(userEmail) {
+  return db.select('id').from('users').where( {'email': userEmail} )
+    .catch(reportError('error retrieving user id by email'))
+    .then(first)
+}
+
 /*
   Delete a user from a trip id
 */

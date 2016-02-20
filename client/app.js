@@ -7,8 +7,10 @@ var GlobalTaskArea = require('./components/GlobalTaskArea.jsx');
 
 
 /**** THIS IS GLOBAL STATE *********/
-window.globalStateTripId = 1;
-window.globalStateTaskId = 1;
+window.GlobalState = {
+  tripId: 1,
+  taskId: 1
+}
 /***********************************/
 /*
     Just these two variables allow us to dynamically update
@@ -41,7 +43,7 @@ var taskArea = React.createElement(GlobalTaskArea, {
   addNewSuggestion: postRequests.addNewSuggestion
 });
 var topbar   = React.createElement(GlobalTopBar, {
-  // empty props
+  inviteUsersByEmail: postRequests.inviteUsersByEmail
 });
 
 topbar   = ReactDOM.render(topbar, document.getElementById('react-main-mount'));
