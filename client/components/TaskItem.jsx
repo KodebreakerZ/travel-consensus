@@ -10,7 +10,6 @@ var TaskItem = React.createClass({
   render: function() {
     return (
       <div className="task-item" onClick={this.clickHandler}>
-        <hr />
         <p>{this.props.task.name}</p>
       </div>
     )

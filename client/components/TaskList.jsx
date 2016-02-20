@@ -29,12 +29,9 @@ var TaskList = React.createClass({
           {this.props.tasks.map(function(task) {
             return (<TaskItem task={task} />)
           }.bind(this))}
-
-          <div className="task-item">
-            <hr />
-          </div>
         </div>
 
+            <hr />
         <div className="addTaskBox">
           <form onSubmit={this.newTask}>
             <label>Add a task</label>

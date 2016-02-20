@@ -161,6 +161,51 @@ hr {
   color: #fff;
 }
 
+.task-item {
+  font-size: 28px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 20px;
+
+  cursor: pointer;
+  -webkit-transition-duration: .4s; /* Safari */
+          transition-duration: .4s;
+  text-decoration: none;
+
+  color: #fff;
+  border: none;
+}
+
+.task-item:after {
+  position: absolute;
+
+  display: block;
+
+  margin-top: -120%;
+  margin-left: -20px!important;
+  padding-top: 300%;
+  padding-left: 350%;
+
+  content: '';
+  transition: all .8s;
+
+  opacity: 0;
+  background: #90ee90;
+}
+
+.task-item:active:after {
+  margin: 0;
+  padding: 0;
+
+  transition: 0s;
+
+  opacity: 1;
+}
+
+
 .addTaskBox {
   margin-left: 10px;
 }
