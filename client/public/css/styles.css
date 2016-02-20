@@ -25,6 +25,18 @@ hr {
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */
 
+.title {
+  font-size: 31px;
+
+  position: relative;
+  top: 4px;
+
+  margin-bottom: -34px;
+  padding-left: 34px;
+
+  color: #fff;
+}
+
 .darkgray {
   margin: 0 5%;
 
@@ -145,10 +157,51 @@ hr {
 }
 
 .task-item {
+  font-size: 28px;
+
+  position: relative;
+
+  overflow: hidden;
+
   height: 100%;
   margin-bottom: 2px;
+  padding: 20px;
 
+  cursor: pointer;
+  -webkit-transition-duration: .4s; /* Safari */
+          transition-duration: .4s;
+  text-decoration: none;
+
+  color: #fff;
+  border: none;
   background-color: #198c8c;
+}
+
+
+.task-item:after {
+  position: absolute;
+
+  display: block;
+
+  margin-top: -120%;
+  margin-left: -20px!important;
+  padding-top: 300%;
+  padding-left: 350%;
+
+  content: '';
+  transition: all .8s;
+
+  opacity: 0;
+  background: #90ee90;
+}
+
+.task-item:active:after {
+  margin: 0;
+  padding: 0;
+
+  transition: 0s;
+
+  opacity: 1;
 }
 
 .task-item p {

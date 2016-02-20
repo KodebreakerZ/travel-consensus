@@ -14,7 +14,8 @@ SuggestionList = React.createClass({
 
     return (
       <div className="suggestion-display">
-        <h4>Suggestions:</h4>{suggestionList}
+        <h4>Suggestions:</h4>
+        {suggestionList}
       </div>
     )
   }
