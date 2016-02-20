@@ -5,9 +5,6 @@ var Reactify = require('reactify')
 
 var routes = express.Router()
 
-// Commented out because these require a configured and running database.
-// var tripRouter = require('./apis/trip-api');
-// var taskRouter = require('./apis/task-api');
 
 /* --- Added Reactify require and "...transform: [Reactify]" ---  */
 routes.get('/app-bundle.js',
@@ -26,8 +23,7 @@ routes.use(express.static(assetFolder))
 
 
 if (process.env.NODE_ENV !== 'test') {
-  // We're in development or production mode;
-  // create and run a real server.
+  // We're in development or production mode
   var app = express()
 
   // use Morgan to log concise and colorful http information
@@ -39,13 +35,7 @@ if (process.env.NODE_ENV !== 'test') {
   // of our app. This delegates almost all routing to 'routes'
   app.use('/', routes)
 
-/*
-  These handle requests directed to different models.
-
-  They are commented because they require a running development
-  database. When you're ready to use sample data and the database
-  we can talk about how to do it. Just a few extra things to do.
-*/
+  // use our apis!
   var tripRouter = require('./apis/trip-api');
   var taskRouter = require('./apis/task-api');
 
