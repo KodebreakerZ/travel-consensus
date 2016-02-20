@@ -25,6 +25,18 @@ hr {
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */
 
+.title {
+  font-size: 31px;
+
+  position: relative;
+  top: 4px;
+
+  margin-bottom: -34px;
+  padding-left: 34px;
+
+  color: #fff;
+}
+
 .darkgray {
   margin: 0 5%;
 
@@ -145,29 +157,14 @@ hr {
 }
 
 .task-item {
-  height: 100%;
-  margin-bottom: 2px;
-
-  background-color: #198c8c;
-}
-
-.task-item p {
-  font-size: 18px;
-
-  margin: -8px 10px -8px;
-
-  text-align: right;
-
-  color: #fff;
-}
-
-.task-item {
   font-size: 28px;
 
   position: relative;
 
   overflow: hidden;
 
+  height: 100%;
+  margin-bottom: 2px;
   padding: 20px;
 
   cursor: pointer;
@@ -177,7 +174,9 @@ hr {
 
   color: #fff;
   border: none;
+  background-color: #198c8c;
 }
+
 
 .task-item:after {
   position: absolute;
@@ -205,6 +204,15 @@ hr {
   opacity: 1;
 }
 
+.task-item p {
+  font-size: 18px;
+
+  margin: -8px 10px -8px;
+
+  text-align: right;
+
+  color: #fff;
+}
 
 .addTaskBox {
   margin-left: 10px;

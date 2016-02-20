@@ -14,6 +14,7 @@ var GlobalTopBar = React.createClass({
 		return (
 			<div>
 				<div className="darkgray">
+				<h1 className="title">Travel-Consensus</h1>
 				  <div className="container">
 				    <div className="row">
 				      <div className="three columns offset-by-nine">
