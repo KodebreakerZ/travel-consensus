@@ -1,4 +1,5 @@
 const db = require('../lib/db');
+const first = require('ramda').head;
 
 const Trip = module.exports;
 
@@ -18,10 +19,7 @@ Trip.create = function(attrs) {
       console.warn(error);
       throw error;
     })
-    .then(function(result) {
-      console.log('success inserting new trip');
-      return result[0];
-    })
+    .then(first)
 }
 
 /*
@@ -40,40 +38,33 @@ Trip.addUser = function(attrs) {
       console.warn(error);
       throw error;
     })
-    .then(function(trip_user) {
-      console.log('success inserting trip/user info');
-      return trip_user[0];
-    })
+    .then(first)
 }
 
 /*
   Retrieve a trip by its ID
 */
 Trip.byId = function(tripId) {
-  return db.select('*').from('trip').where({ 'id_trip': tripId })
+  return db.select('*').from('trip').where({ 'id': tripId })
     .catch(function(error) {
       console.warn('error finding trip from id:', tripId);
       console.warn(error);
       throw error;
     })
-    .then(function(trip) {
-      return trip[0];
-    })
+    .then(first)
 }
 
 /*
   Retrieve all trips of a user
 */
 Trip.allOfUser = function(userId) {
-  db.select('id_trip').from('trip_users').where({ 'id_user': userId })
+  return db.select('id_trip').from('trip_users').where({ 'id_user': userId })
     .catch(function(error) {
       console.warn('error retrieving trips for user', userId);
       console.warn(error);
       throw error;
     })
     .then(function(tripsOfUser) {
-      console.log('success retrieving users trips');
-      console.log('shape of All trips by UserId', tripsOfUser);
       return Promise.all(
         tripsOfUser.map(function(tripOfUser) {
           return Trip.byId(tripOfUser.id_trip);
@@ -137,3 +128,14 @@ function deleteTripFromSuggestion(tripId) {
       throw error;
     })
 }
+
+/*
+  Helper function for testing.
+*/
+Trip.idByName = function(tripName) {
+  return db.select('id').from('trip').where( {'name': tripName} )
+    .then(function(trip) {
+      return trip[0].id;
+    })
+}
+

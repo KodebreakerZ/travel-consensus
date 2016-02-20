@@ -1,4 +1,5 @@
 const db = require('../lib/db');
+const first = require('ramda').head;
 const User = require('./user')
 
 const Message = module.exports;
@@ -19,10 +20,7 @@ Message.create = function(attrs) {
       // console.warn(error)
       throw error;
     })
-    .then(function(result) {
-      console.log('\tsuccess inserting new message', attrs)
-      return result[0];
-    })
+    .then(first)
 }
 
 /*
@@ -38,7 +36,9 @@ Message.allOfTask = function(taskId) {
         messages.map(function(message) {
           return User.usernameById(message.id_user)
             .then(function(user) {
-              message.username = user.username;
+              if (user) {
+                message.username = user.username;
+              }
               return message;
             })
         })
@@ -46,7 +46,6 @@ Message.allOfTask = function(taskId) {
     })
     .catch(function(error) {
       console.warn('error reading all messages of task:', taskId);
-      // console.warn(error);
       throw error;
     })
 }

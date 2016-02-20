@@ -1,4 +1,5 @@
 const db = require('../lib/db');
+const first = require('ramda').head;
 
 const Task = module.exports;
 
@@ -14,29 +15,19 @@ Task.create = function(attrs) {
   return db('task').insert(attrs, ['id', 'name', 'status', 'decision', 'id_trip'])
     .catch(function(error) {
       console.warn('error inserting task into db', attrs);
-      // console.warn(error);
       throw error;
     })
-    .then(function(result) {
-      console.log('success inserting new task');
-      return result[0];
-    })
+    .then(first)
 }
 
 /*
   Retrieve all tasks of a certain trip
 */
 Task.allOfTrip = function(tripId) {
-  // console.log('all of trip running')
   return db.select('*').from('task').where({'id_trip': tripId})
     .catch(function(error) {
       console.warn('error retrieving tasks for trip:', tripId);
-      // console.warn(error);
       throw error;
-    })
-    .then(function(result) {
-      console.log('success retrieving trip tasks');
-      return result;
     })
 }
 
@@ -56,10 +47,6 @@ Task.deleteTask = function(taskId) {
     .then(function() {
       deleteTaskFromSuggestion(taskId)
     })
-    .then(function(result) {
-      console.log('success deleting task');
-      return result;
-    })
 }
 
 /*
@@ -70,7 +57,7 @@ Task.deleteTask = function(taskId) {
 function deleteTaskFromMessage(taskId) {
   return db('message').where({'id_task': taskId}).del()
     .catch(function(error) {
-      console.warn('error deleting task', taskId);
+      console.warn('error deleting task from message', taskId);
       console.warn(error);
       throw error;
     })
@@ -79,7 +66,7 @@ function deleteTaskFromMessage(taskId) {
 function deleteTaskFromSuggestion(taskId) {
   return db('suggestion').where({'id_task': taskId}).del()
     .catch(function(error) {
-      console.warn('error deleting task', taskId);
+      console.warn('error deleting task from suggestion', taskId);
       console.warn(error);
       throw error;
     })
