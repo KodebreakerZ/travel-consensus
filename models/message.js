@@ -1,4 +1,5 @@
 const db = require('../lib/db');
+const User = require('./user')
 
 const Message = module.exports;
 
@@ -31,6 +32,18 @@ Message.create = function(attrs) {
 */
 Message.allOfTask = function(taskId) {
   return db.select('*').from('message').where({'id_task': taskId}).orderBy('createdAt', 'asc')
+    .then(function(messages) {
+      // Append a username to each of the messages
+      return Promise.all(
+        messages.map(function(message) {
+          return User.usernameById(message.id_user)
+            .then(function(user) {
+              message.username = user.username;
+              return message;
+            })
+        })
+      )
+    })
     .catch(function(error) {
       console.warn('error reading all messages of task:', taskId);
       // console.warn(error);
@@ -45,7 +58,7 @@ Message.deleteMessage = function(messageId) {
   return db('message').where({'id': messageId}).del()
     .catch(function(error) {
       console.warn('error deleting message', messageId);
-      console.warn(error);
+      // console.warn(error);
       throw error;
     })
     .then(function(result) {

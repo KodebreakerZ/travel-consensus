@@ -46,6 +46,18 @@ User.allOfTrip = function(tripId) {
     })
 }
 
+User.usernameById = function(userId) {
+  return db.select('username').from('users').where( {id: userId} )
+    .catch(function(error) {
+      console.warn('error retrieving username by userId', userId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(username) {
+      return username[0];
+    })
+}
+
 /*
   Delete a user from a trip id
 */

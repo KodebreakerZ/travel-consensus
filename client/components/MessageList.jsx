@@ -4,8 +4,6 @@ var MessageItem = require('./MessageItem.jsx');
 
 MessageList = React.createClass({
   render: function() {
-    console.log('this.props.messages (MessageList.jsx) ', this.props.messages);
-
     var messageList = this.props.messages.map(function(message) {
       return <MessageItem
                message={message}
