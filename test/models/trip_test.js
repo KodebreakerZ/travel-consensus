@@ -32,26 +32,26 @@ describe('Trip model', function() {
 
       yield Trip.create(newTrip)
         .then(function(newTrip) {
-          console.log('created new trip:', newTrip);
           expect(newTrip.name).to.equal('Bat Cave');
         })
         .catch(reportError('creating new valid trip'));
     })
 
     it_ ('should associate a user with a trip', function * () {
+      let denverId = yield Trip.idByName('San Cristobal');
       let newTrip_User = {
-        id_trip: 2,
+        id_trip: denverId,
         id_user: 1
       }
+
       yield Trip.addUser(newTrip_User)
         .then(function(newRelationship) {
-          expect(newRelationship).to.deep.equal({ id_trip: 2, id_user: 1 });
+          expect(newRelationship.id_user).to.equal(1);
         })
         .catch(reportError('creating new trip_user relationship'));
 
       yield Trip.allOfUser(1)
         .then(function(trips) {
-          console.log('shape of trips');
           expect(trips).to.have.length(1);
           expect(trips[0].name).to.equal('San Cristobal');
         })
