@@ -7,7 +7,22 @@ var GlobalTopBar = React.createClass({
 	handleClick: function(){
 		$(".invitepopup").fadeToggle('fast');
 	},
+	// getInitialState: function(){
+	//    return {
+	//      open: false,
+	//    }
+	// },
 
+	submitUserInvites: function() {
+		var emailsToInvite = $('.jq_tags_token').map(function(index, email) {
+			var content = email.textContent;
+
+			// remove an 'x' from the end of the textContent
+			return content.slice(0, content.length - 1);
+		})
+
+		this.props.inviteUsersByEmail(emailsToInvite);
+	},
 
 	render: function(){
 		return (
@@ -29,7 +44,7 @@ var GlobalTopBar = React.createClass({
 	    			<div className="jq_tags_tokens"></div>
     				<input type="text" className="jq_tags_editor_input"/>
     			</div>
-    			<button className="inviteUsers">Invite Users</button>
+    			<button className="inviteUsers" onClick={this.submitUserInvites}>Invite Users</button>
 				</div>
 
     			<Login className="login-form"/>
