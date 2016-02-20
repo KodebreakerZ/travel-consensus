@@ -1,6 +1,9 @@
+require('./model-helper');
+
 const db = require('../lib/db');
 const first = require('ramda').head;
 const User = require('./user')
+
 
 const Message = module.exports;
 

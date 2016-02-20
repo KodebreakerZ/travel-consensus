@@ -1,3 +1,5 @@
+require('./model-helper');
+
 const db = require('../lib/db');
 
 const Suggestion = module.exports;

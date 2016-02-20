@@ -1,3 +1,6 @@
+require('./model-helper');
+
+const first = require('ramda').head;
 const db = require('../lib/db');
 
 const User = module.exports;
@@ -13,15 +16,7 @@ const User = module.exports;
 */
 User.create = function(attrs) {
   return db('user').insert(attrs, ['id', 'username', 'email'])
-    .catch(function(error) {
-      console.warn('error inserting user into db', attrs);
-      console.warn(error);
-      throw error;
-    })
-    .then(function(result) {
-      console.log('success inserting new user');
-      return result;
-    })
+    .catch(reportError('error inserting user into db'))
 }
 
 // User.hashPassword = function(password) {
@@ -35,63 +30,39 @@ User.create = function(attrs) {
 User.allOfTrip = function(tripId) {
   // TODO: do not select password_digest
   return db.select('*').from('trip_users').where({ 'id_trip': tripId })
-    .catch(function(error) {
-      console.warn('error retrieving users for trip', tripId);
-      console.warn(error);
-      throw error;
-    })
-    .then(function(result) {
-      console.log('success retrieving trip users');
-      return result;
-    })
+    .catch(reportError('error retrieving users for trip'))
 }
 
+
+/*
+  Retrieve username for an id
+*/
 User.usernameById = function(userId) {
   return db.select('username').from('users').where( {id: userId} )
-    .catch(function(error) {
-      console.warn('error retrieving username by userId', userId);
-      console.warn(error);
-      throw error;
-    })
-    .then(function(username) {
-      return username[0];
-    })
+    .catch(reportError('error retrieving username by userId'))
+    .then(first)
 }
 
 /*
   Delete a user from a trip id
 */
-
 User.deleteFromTrip = function(userId, tripId) {
   return db('trip_users').where({'id_trip': tripId}).andWhere({'id_user': userId}).del()
-    .catch(function(error) {
-      console.warn('error deleting user from trip', tripId);
-      console.warn(error);
-      throw error;
+    .catch(reportError('error deleting user from trip'))
+    .then(function() {
+      return deleteUserFromMessage(userId)
     })
     .then(function() {
-      deleteUserFromMessage(userId)
-    })
-    .then(function() {
-      deleteUserFromSuggestion(userId)
-    })
-    .then(function(result) {
-      console.log('success deleting user');
-      return result;
+      return deleteUserFromSuggestion(userId)
     })
 }
 
 /*
   We should not need a delete user functions, but in case
 */
-
 User.deleteUser = function(userId) {
   return db('user').where({'id': userId}).del()
-    .catch(function(error) {
-      console.warn('error deleting user', userId);
-      console.warn(error);
-      throw error;
-    })
+    .catch(reportError('error deleting user'))
     .then(function(result) {
       console.log('success deleting user');
       return result;
@@ -103,22 +74,13 @@ User.deleteUser = function(userId) {
 
   Helper functions for deleteUserFromTrim
 */
-
 function deleteUserFromMessage(userId) {
   return db('message').where({'id_user': userId}).del()
-    .catch(function(error) {
-      console.warn('error deleting user', userId);
-      console.warn(error);
-      throw error;
-    })
+    .catch(reportError('error deleting user from message'))
 }
 
 function deleteUserFromSuggestion(userId) {
   return db('suggestion').where({'id_user': userId}).del()
-    .catch(function(error) {
-      console.warn('error deleting user', userId);
-      console.warn(error);
-      throw error;
-    })
+    .catch(reportError('error deleting user from suggestion'))
 }
 
