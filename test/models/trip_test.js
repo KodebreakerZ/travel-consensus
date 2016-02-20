@@ -52,6 +52,7 @@ describe('Trip model', function() {
 
       yield Trip.allOfUser(1)
         .then(function(trips) {
+          console.log('shape of trips');
           expect(trips).to.have.length(1);
           expect(trips[0].name).to.equal('San Cristobal');
         })
