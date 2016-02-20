@@ -100,8 +100,7 @@ TaskAPI.put('/:id_task/', function(request, response) {
 
 })
 
-/* Big TODO: return username!
-
+/*
   GET task/:id_task/messages
 
   Returns an array of messages for the given task
@@ -129,8 +128,7 @@ TaskAPI.get('/:id_task/messages', function(request, response) {
 })
 
 
-/* TODO: Sort suggestions in chronological order in suggestion model.
-
+/*
   GET task/:id_task/suggestions
 
   Returns an array of suggestions for a given task
