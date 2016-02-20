@@ -1,3 +1,5 @@
+const ramda = require('ramda');
+
 /*
   Provide a description to log when it is invoked with an error or
   psuedo-error

@@ -16,11 +16,7 @@ const Trip = module.exports;
 */
 Trip.create = function(attrs) {
   return db('trip').insert(attrs, ['name'])
-    .catch(function(error) {
-      console.warn('error inserting trip into db', attrs);
-      console.warn(error);
-      throw error;
-    })
+    .catch(reportError('error inserting trip into db'))
     .then(first)
 }
 
@@ -35,11 +31,7 @@ Trip.create = function(attrs) {
 */
 Trip.addUser = function(attrs) {
   return db('trip_users').insert(attrs, ['id_trip', 'id_user'])
-    .catch(function(error) {
-      console.warn('error inserting trip/user into db', attrs);
-      console.warn(error);
-      throw error;
-    })
+    .catch(reportError('error inserting trip/user into db'))
     .then(first)
 }
 
@@ -48,11 +40,7 @@ Trip.addUser = function(attrs) {
 */
 Trip.byId = function(tripId) {
   return db.select('*').from('trip').where({ 'id': tripId })
-    .catch(function(error) {
-      console.warn('error finding trip from id:', tripId);
-      console.warn(error);
-      throw error;
-    })
+    .catch(reportError('error finding trip from id:'))
     .then(first)
 }
 
@@ -61,11 +49,7 @@ Trip.byId = function(tripId) {
 */
 Trip.allOfUser = function(userId) {
   return db.select('id_trip').from('trip_users').where({ 'id_user': userId })
-    .catch(function(error) {
-      console.warn('error retrieving trips for user', userId);
-      console.warn(error);
-      throw error;
-    })
+    .catch(reportError('error retrieving trips for user'))
     .then(function(tripsOfUser) {
       return Promise.all(
         tripsOfUser.map(function(tripOfUser) {
@@ -80,11 +64,7 @@ Trip.allOfUser = function(userId) {
 */
 Trip.deleteTrip = function(tripId) {
   return db('trip').where({'id': tripId}).del()
-    .catch(function(error) {
-      console.warn('error deleting trip', tripId);
-      console.warn(error);
-      throw error;
-    })
+    .catch(reportError('error deleting trip'))
     .then(function() {
       deleteTripFromJoin(tripId)
     })
@@ -94,10 +74,6 @@ Trip.deleteTrip = function(tripId) {
     .then(function() {
       deleteTripFromSuggestion(tripId)
     })
-    .then(function(result) {
-      console.log('success deleting trip');
-      return result;
-    })
 }
 
 /*
@@ -106,29 +82,17 @@ Trip.deleteTrip = function(tripId) {
 */
 function deleteTripFromJoin(tripId) {
   return db('trip_users').where({'id_trip': tripId}).del()
-    .catch(function(error) {
-      console.warn('error deleting trip', tripId);
-      console.warn(error);
-      throw error;
-    })
+    .catch(reportError('error deleting trip from trip_users'))
 }
 
 function deleteTripFromTask(tripId) {
   return db('task').where({'id_trip': tripId}).del()
-    .catch(function(error) {
-      console.warn('error deleting trip', tripId);
-      console.warn(error);
-      throw error;
-    })
+    .catch(reportError('error deleting trip from task'))
 }
 
 function deleteTripFromSuggestion(tripId) {
   return db('suggestion').where({'id_trip': tripId}).del()
-    .catch(function(error) {
-      console.warn('error deleting trip', tripId);
-      console.warn(error);
-      throw error;
-    })
+    .catch(reportError('error deleting trip from suggestion'))
 }
 
 /*
@@ -140,4 +104,3 @@ Trip.idByName = function(tripName) {
       return trip[0].id;
     })
 }
-

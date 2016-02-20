@@ -18,11 +18,7 @@ const Message = module.exports;
 */
 Message.create = function(attrs) {
   return db('message').insert(attrs, ['id', 'id_user', 'id_task', 'createdAt', 'content'])
-    .catch(function(error) {
-      console.warn('error inserting message into db', attrs)
-      // console.warn(error)
-      throw error;
-    })
+    .catch(reportError('error inserting message into db'))
     .then(first)
 }
 
@@ -47,10 +43,7 @@ Message.allOfTask = function(taskId) {
         })
       )
     })
-    .catch(function(error) {
-      console.warn('error reading all messages of task:', taskId);
-      throw error;
-    })
+    .catch(reportError('error reading all messages of task:'))
 }
 
 /*
@@ -58,13 +51,5 @@ Message.allOfTask = function(taskId) {
 */
 Message.deleteMessage = function(messageId) {
   return db('message').where({'id': messageId}).del()
-    .catch(function(error) {
-      console.warn('error deleting message', messageId);
-      // console.warn(error);
-      throw error;
-    })
-    .then(function(result) {
-      console.log('success deleting message');
-      return result;
-    })
+    .catch(reportError('error deleting message'))
 }

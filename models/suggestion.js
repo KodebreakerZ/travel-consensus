@@ -15,15 +15,8 @@ const Suggestion = module.exports;
 */
 Suggestion.create = function(attrs) {
   return db('suggestion').insert(attrs, ['id', 'suggestion', 'id_user', 'id_task', 'createdAt'])
-    .catch(function(error) {
-      console.warn('error inserting suggestion into db', attrs)
-      // console.warn(error)
-      throw error;
-    })
-    .then(function(result) {
-      console.log('\tsuccess inserting new suggestion', attrs)
-      return result[0];
-    })
+    .catch(reportError('error inserting suggestion into db'))
+    .then(first)
 }
 
 /*
@@ -33,11 +26,7 @@ Suggestion.create = function(attrs) {
 */
 Suggestion.allOfTask = function(taskId) {
   return db.select('*').from('suggestion').where({'id_task': taskId}).orderBy('createdAt', 'asc')
-    .catch(function(error) {
-      console.warn('error reading all suggestions of task:', taskId);
-      // console.warn(error);
-      throw error;
-    })
+    .catch(reportError('error reading all suggestions of task:'))
 }
 
 
@@ -46,15 +35,7 @@ Suggestion.allOfTask = function(taskId) {
 */
 Suggestion.delete = function(suggestionId) {
   return db('suggestion').where({'id': suggestionId}).del()
-    .catch(function(error) {
-      console.warn('error deleting suggestion', suggestionId);
-      console.warn(error);
-      throw error;
-    })
-    .then(function(result) {
-      console.log('success deleting suggestion');
-      return result;
-    })
+    .catch(reportError('error deleting suggestion'))
 }
 
 /*
@@ -62,15 +43,7 @@ Suggestion.delete = function(suggestionId) {
 */
 Suggestion.addVote = function(suggestionID) {
   return db('suggestion').where({id: suggestionId}).increment('votes', 1)
-    .catch(function(error) {
-      console.warn('error updating votes on suggestion', suggestionId);
-      console.warn(error);
-      throw error;
-    })
-    .then(function(result) {
-      console.log('success updating votes');
-      return result;
-    })
+    .catch(reportError('error updating votes on suggestion')
 }
 
 /*
@@ -79,13 +52,5 @@ Suggestion.addVote = function(suggestionID) {
 
 Suggestion.removeVote = function(suggestionID) {
   return db('suggestion').where({id: suggestionId}).decrement('votes', 1)
-    .catch(function(error) {
-      console.warn('error updating votes on suggestion', suggestionId);
-      console.warn(error);
-      throw error;
-    })
-    .then(function(result) {
-      console.log('success updating votes');
-      return result;
-    })
+    .catch(reportError('error updating votes on suggestion'))
 }

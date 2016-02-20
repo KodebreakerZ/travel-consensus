@@ -15,10 +15,7 @@ const Task = module.exports;
 */
 Task.create = function(attrs) {
   return db('task').insert(attrs, ['id', 'name', 'status', 'decision', 'id_trip'])
-    .catch(function(error) {
-      console.warn('error inserting task into db', attrs);
-      throw error;
-    })
+    .catch(reportError('error inserting task into db'))
     .then(first)
 }
 
@@ -27,10 +24,7 @@ Task.create = function(attrs) {
 */
 Task.allOfTrip = function(tripId) {
   return db.select('*').from('task').where({'id_trip': tripId})
-    .catch(function(error) {
-      console.warn('error retrieving tasks for trip:', tripId);
-      throw error;
-    })
+    .catch(reportError('error retrieving tasks for trip:'))
 }
 
 /*
@@ -38,16 +32,12 @@ Task.allOfTrip = function(tripId) {
 */
 Task.deleteTask = function(taskId) {
   return db('task').where({'id': taskId}).del()
-    .catch(function(error) {
-      console.warn('error deleting task', taskId);
-      console.warn(error);
-      throw error;
+    .catch(reportError('error deleting task'))
+    .then(function() {
+      return deleteTaskFromMessage(taskId);
     })
     .then(function() {
-      deleteTaskFromMessage(taskId)
-    })
-    .then(function() {
-      deleteTaskFromSuggestion(taskId)
+      return deleteTaskFromSuggestion(taskId);
     })
 }
 
@@ -58,18 +48,10 @@ Task.deleteTask = function(taskId) {
 */
 function deleteTaskFromMessage(taskId) {
   return db('message').where({'id_task': taskId}).del()
-    .catch(function(error) {
-      console.warn('error deleting task from message', taskId);
-      console.warn(error);
-      throw error;
-    })
+    .catch(reportError('error deleting task from message'))
 }
 
 function deleteTaskFromSuggestion(taskId) {
   return db('suggestion').where({'id_task': taskId}).del()
-    .catch(function(error) {
-      console.warn('error deleting task from suggestion', taskId);
-      console.warn(error);
-      throw error;
-    })
+    .catch(reportError('error deleting task from suggestion'))
 }

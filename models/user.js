@@ -50,10 +50,10 @@ User.deleteFromTrip = function(userId, tripId) {
   return db('trip_users').where({'id_trip': tripId}).andWhere({'id_user': userId}).del()
     .catch(reportError('error deleting user from trip'))
     .then(function() {
-      return deleteUserFromMessage(userId)
+      return deleteUserFromMessage(userId);
     })
     .then(function() {
-      return deleteUserFromSuggestion(userId)
+      return deleteUserFromSuggestion(userId);
     })
 }
 
@@ -63,10 +63,6 @@ User.deleteFromTrip = function(userId, tripId) {
 User.deleteUser = function(userId) {
   return db('user').where({'id': userId}).del()
     .catch(reportError('error deleting user'))
-    .then(function(result) {
-      console.log('success deleting user');
-      return result;
-    })
 }
 
 /*
