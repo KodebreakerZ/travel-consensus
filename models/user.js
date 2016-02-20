@@ -1,7 +1,7 @@
 require('./model-helper');
 
-const first = require('ramda').head;
 const db = require('../lib/db');
+const first = require('ramda').head;
 
 const User = module.exports;
 
