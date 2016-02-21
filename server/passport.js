@@ -61,7 +61,7 @@ module.exports = function(passport) {
                 // // set the user's local credentials
                 // newUser.local.email    = email;
                 // newUser.local.password = newUser.generateHash(password);;
-
+                var hashedPassword = User.generateHash(password)
                 var newUser = {
                   email: email,
                   username: username,
@@ -69,11 +69,12 @@ module.exports = function(passport) {
                 }
 
                 // save the user
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, newUser);
-                });
+                User.create(newUser)
+                // newUser.save(function(err) {
+                //     if (err)
+                //         throw err;
+                //     return done(null, newUser);
+                // });
             }
 
         });    
