@@ -27,15 +27,30 @@ User.create = function(attrs) {
 */
 
 
-User.hashPassword = function(password) {
-  var hasher = password + 'salted';
-  return new Promise(function (resolve, reject) {
-    bcrypt.hash(hasher, null, null, function (err, hashResult) {
-      if (err) reject(err);
-      else     resolve(hashResult);
-    });
-  });
+// User.hashPassword = function(password) {
+//   var hasher = password + 'salted';
+//   return new Promise(function (resolve, reject) {
+//     bcrypt.hash(hasher, null, null, function (err, hashResult) {
+//       if (err) reject(err);
+//       else     resolve(hashResult);
+//     });
+//   });
+// };
+// }
+User.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
+
+User.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.local.password);
+};
+
+User.findOne = function(email) {
+  //find one row in postgres based on email
+}
+
+User.findById = function(id) {
+ //find one id in postgres
 }
 
 /*
