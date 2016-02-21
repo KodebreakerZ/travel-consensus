@@ -67,17 +67,22 @@ exports.addNewSuggestion = function(suggestionObject) {
 exports.inviteUsersByEmail = function(userEmails) {
   if (!Array.isArray(userEmails)) userEmails = [ userEmails ];
 
-  return fetch('trip/' + window.GlobalState.tripId + '/user', {
-    method: 'POST',
-    headers: requestHeaders,
-    body: JSON.stringify(userEmails)
-  })
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(data) {
-    console.log('!Posted new users to the user_trips table!', data);
-    return data;
+  // send a request for each of the emails to invite.
+  userEmails.map(function(email) {
+
+    console.log('SUBMITTING EMAIL TO POST', email);
+    return fetch('trip/' + window.GlobalState.tripId + '/user', {
+      method: 'POST',
+      headers: requestHeaders,
+      body: JSON.stringify({ 'email': email })
+    })
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      console.log('!Posted new users to the user_trips table!', data);
+      return data;
+    })
   })
 }
 
