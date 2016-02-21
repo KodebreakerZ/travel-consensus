@@ -2,6 +2,9 @@ require('./model-helper');
 
 const db = require('../lib/db');
 const first = require('ramda').head;
+const bcrypt = require('bcrypt-nodejs');
+const Promise = require('bluebird');
+
 
 const User = module.exports;
 
@@ -19,14 +22,26 @@ User.create = function(attrs) {
     .catch(reportError('error inserting user into db'))
 }
 
-// User.hashPassword = function(password) {
-// 	password encryption function
-// }
+/*
+  Password hash function
+*/
 
+
+User.hashPassword = function(password) {
+  var hasher = password + 'salted';
+  return new Promise(function (resolve, reject) {
+    bcrypt.hash(hasher, null, null, function (err, hashResult) {
+      if (err) reject(err);
+      else     resolve(hashResult);
+    });
+  });
+};
+}
 
 /*
   Retrieve all users of a trip
 */
+
 User.allOfTrip = function(tripId) {
   // TODO: do not select password_digest
   return db.select('*').from('trip_users').where({ 'id_trip': tripId })
