@@ -55,17 +55,22 @@ TripAPI.post('/', function(request, response) {
 TripAPI.post('/:id_trip/user', function(request, response) {
   console.log('TRIP POST USERS request body:', request.body);
 
-  var newTripUsers = request.body.map(function(email) {
-    return {
-      id_user:
+  var userIdsByEmail = Promise.all(
+    request.body.map(function(email) {
+      console.log('email to search for:', email);
+      return User.idByEmail(email)
+    })
+  )
+
+  var newTripUsers = userIdsByEmail
+    .then(function(userIds) {
+      userIds.map(function(userId) {
+        return {
+          id_user: userId,
+          id_trip: request.params.id_trip
+        }
+      })
     }
-  })
-
-
-  var newUserTrip = {
-    id_user: request.body.id_user,
-    id_trip: request.params.id_trip
-  }
 
   Trip.addUser(newUserTrip)
     .then(sendStatusAndData(response, 201))
