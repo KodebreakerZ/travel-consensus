@@ -44,7 +44,7 @@ Suggestion.delete = function(suggestionId) {
 */
 Suggestion.addVote = function(suggestionID) {
   return db('suggestion').where({id: suggestionId}).increment('votes', 1)
-    .catch(reportError('error updating votes on suggestion')
+    .catch(reportError('error updating votes on suggestion'))
 }
 
 /*
