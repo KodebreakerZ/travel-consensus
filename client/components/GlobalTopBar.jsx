@@ -21,11 +21,8 @@ var GlobalTopBar = React.createClass({
 			return content.slice(0, content.length - 1);
 		})
 
-<<<<<<< HEAD
 		console.log('emails to invite:', emailsToInvite);
 
-=======
->>>>>>> b3016da6a5081db68c4b18d03c6296b0a828ca32
 		this.props.inviteUsersByEmail(emailsToInvite);
 	},
 
