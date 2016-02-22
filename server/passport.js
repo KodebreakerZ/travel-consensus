@@ -123,7 +123,7 @@ module.exports = function(passport) {
                 return done(err);            
           })
 
-    };
+    }
 
     ));
 

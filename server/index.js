@@ -49,7 +49,12 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(cookieParser()); 
 
   // required for passport
-  app.use(session({ secret: 'secretword' })); // session secret
+  app.use(session({ 
+                   secret: 'secretword',
+                   resave: true,
+                   saveUninitialized: true
+                  }));
+
   app.use(passport.initialize());
   app.use(passport.session()); // persistent login sessions
   app.use(flash()); // use connect-flash for flash messages stored in session
