@@ -3,6 +3,20 @@ var express = require('express')
 var Path = require('path')
 var Reactify = require('reactify')
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var flash    = require('connect-flash');
+
+require('./passport')(passport); // pass passport for configuration
+
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session')
+var morgan = require('morgan');
+
+// var User = require(__models + '/user');
+var User = require('../models/user');
+
 var routes = express.Router()
 
 
@@ -30,12 +44,61 @@ if (process.env.NODE_ENV !== 'test') {
   app.use( require('morgan')('dev') )
   // Parse incoming request bodies as JSON
   app.use( require('body-parser').json() )
+    app.use(bodyParser.urlencoded({ extended: true }));
+  // read cookies (needed for auth)
+  app.use(cookieParser()); 
+
+  // required for passport
+  app.use(session({ 
+                   secret: 'secretword',
+                   resave: true,
+                   saveUninitialized: true
+                  }));
+
+  app.use(passport.initialize());
+  app.use(passport.session()); // persistent login sessions
+  app.use(flash()); // use connect-flash for flash messages stored in session
 
   // Mount our main router, 'routes' to the root path
   // of our app. This delegates almost all routing to 'routes'
   app.use('/', routes)
 
   // use our apis!
+
+/*
+  Signin and signup routes handled by Passport
+*/
+  app.get('/signup', function (request, response) {
+    //implement signup render
+  })
+
+  // process the signup form
+  app.post('/signup', passport.authenticate('local-signup', {
+    successRedirect : '/trip', // redirect to the secure profile section
+    failureRedirect : '/signup', // redirect back to the signup page if there is an error
+    failureFlash : true // allow flash messages
+  }));
+
+  app.get('/login', function (request, response) {
+    //implement login render
+  })
+
+  // process the login form
+  app.post('/login', passport.authenticate('local-login', {
+    successRedirect : '/trip', // redirect to the secure profile section
+    failureRedirect : '/login', // redirect back to the signup page if there is an error
+    failureFlash : true // allow flash messages
+  }));
+
+/*
+  These handle requests directed to different models.
+
+  They are commented because they require a running development
+  database. When you're ready to use sample data and the database
+  we can talk about how to do it. Just a few extra things to do.
+*/
+
+//First attempt at passport integration, need to adapt for postgreSQL environment
   var tripRouter = require('./apis/trip-api');
   var taskRouter = require('./apis/task-api');
 

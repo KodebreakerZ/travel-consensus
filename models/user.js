@@ -2,6 +2,9 @@ require('./model-helper');
 
 const db = require('../lib/db');
 const first = require('ramda').head;
+const bcrypt = require('bcrypt-nodejs');
+const Promise = require('bluebird');
+
 
 const User = module.exports;
 
@@ -19,14 +22,69 @@ User.create = function(attrs) {
     .catch(reportError('error inserting user into db'))
 }
 
+/*
+  Password hash function
+*/
+
+
 // User.hashPassword = function(password) {
-// 	password encryption function
+//   var hasher = password + 'salted';
+//   return new Promise(function (resolve, reject) {
+//     bcrypt.hash(hasher, null, null, function (err, hashResult) {
+//       if (err) reject(err);
+//       else     resolve(hashResult);
+//     });
+//   });
+// };
 // }
+User.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
 
+User.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.local.password);
+};
 
+User.findOne = function(email) {
+  //find one row in postgres based on email
+  var isNotAvailable = false;
+
+  return db.select('*').from('users').where({ 'email': email })
+    .catch(function(error) {
+      console.warn('error retrieving user', email);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      if (result.rows.length > 0){
+        isNotAvailable = true;
+        console.warn(email + ' is not available!');
+        return isNotAvailable;
+      }
+      else{
+        isNotAvailable = false;
+        console.log(email + ' is available');
+        return isNotAvailable;
+      }
+    })
+}
+
+User.findById = function(id) {
+  return db.select('*').from('users').where({ 'id': id })
+    .catch(function(error) {
+      console.warn('error retrieving user id', id);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success retrieving trip users');
+      return result;
+    })
+}
 /*
   Retrieve all users of a trip
 */
+
 User.allOfTrip = function(tripId) {
   // TODO: do not select password_digest
   return db.select('*').from('trip_users').where({ 'id_trip': tripId })
@@ -63,6 +121,16 @@ User.deleteFromTrip = function(userId, tripId) {
 User.deleteUser = function(userId) {
   return db('user').where({'id': userId}).del()
     .catch(reportError('error deleting user'))
+  return db('users').where({'id': userId}).del()
+    .catch(function(error) {
+      console.warn('error deleting user', userId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success deleting user');
+      return result;
+    })
 }
 
 /*
