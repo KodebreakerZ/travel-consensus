@@ -49,6 +49,7 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(cookieParser()); 
 
   // required for passport
+  // not implemented
   app.use(session({ 
                    secret: 'secretword',
                    resave: true,
@@ -67,6 +68,7 @@ if (process.env.NODE_ENV !== 'test') {
 
 /*
   Signin and signup routes handled by Passport
+  not implemented
 */
   app.get('/signup', function (request, response) {
     //implement signup render
@@ -86,7 +88,7 @@ if (process.env.NODE_ENV !== 'test') {
   // process the login form
   app.post('/login', passport.authenticate('local-login', {
     successRedirect : '/trip', // redirect to the secure profile section
-    failureRedirect : '/login', // redirect back to the signup page if there is an error
+    failureRedirect : '/signup', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
   }));
 
