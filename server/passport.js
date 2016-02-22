@@ -2,7 +2,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 
 // load up the user model
-var User = require(__models + '/user');
+var User = require('../models/user');
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
@@ -88,9 +88,9 @@ module.exports = function(passport) {
 
         });    
 
-        });
 
-    });
+        }));
+
 
     //Local login
 
@@ -122,5 +122,9 @@ module.exports = function(passport) {
             if (err)
                 return done(err);            
           })
+
     };
+
+    ));
+
 };

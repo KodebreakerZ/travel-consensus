@@ -7,14 +7,15 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash    = require('connect-flash');
 
-require('./server/passport')(passport); // pass passport for configuration
+require('./passport')(passport); // pass passport for configuration
 
 var cookieParser = require('cookie-parser');
-// var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 var session = require('express-session')
-// var morgan = require('morgan');
+var morgan = require('morgan');
 
-var User = require(__models + '/user');
+// var User = require(__models + '/user');
+var User = require('../models/user');
 
 var routes = express.Router()
 
