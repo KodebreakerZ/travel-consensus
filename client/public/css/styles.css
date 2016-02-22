@@ -469,10 +469,11 @@ div.three {
 }
 
 .chat-display {
-  height: 66%;
+  height: 65%;
   padding: 5px;
 
   background-color: #e3e3e3;
+  overflow-y: scroll
 }
 
 .message-author {
@@ -480,6 +481,9 @@ div.three {
 }
 
 .message-input {
+  position:absolute;
+  width:100%;
+  
   padding: 10px;
 
   background-color: #ccc;
