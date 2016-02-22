@@ -88,7 +88,8 @@ TaskAPI.post('/:id_task/suggestion', function(request, response) {
   
   Responds with the number of deleted rows (hopefully > 0)
 */
-TaskAPI.delete(':id_task/suggestion', function(request, response) {
+TaskAPI.delete('/:id_task/suggestion', function(request, response) {
+  console.log('in delete suggestion in taskapi');
   Suggestion.delete(request.body.id_suggestion)
     .then(sendStatusAndData(response, 201))
     .catch(function(error) {
