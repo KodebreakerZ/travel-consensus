@@ -69,6 +69,8 @@ TaskAPI.post('/:id_task/suggestion', function(request, response) {
     id_task: request.params.id_task
   }
 
+  console.log('TaskAPI.post req.body ', request.body);
+
   Suggestion.create(newSuggestion)
     .then(sendStatusAndData(response, 201))
     .catch(function(error) {
