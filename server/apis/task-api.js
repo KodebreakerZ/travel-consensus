@@ -62,7 +62,7 @@ TaskAPI.post('/:id_task/message', function(request, response) {
     id_task:    Number <In which task>
   }
 */
-TaskAPI.post('/:id_task/message', function(request, response) {
+TaskAPI.post('/:id_task/suggestion', function(request, response) {
   var newSuggestion = {
     suggestion: request.body.suggestion,
     id_user: request.body.id_user,
