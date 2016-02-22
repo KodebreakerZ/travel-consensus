@@ -254,6 +254,25 @@ hr {
   margin-right: 15px;
 }
 
+.suggestion-display form {
+  margin-bottom:0;}
+
+/*.suggestion .newSuggestionContent{
+    color: #000;
+}*/
+
+.suggestion-display input {
+    color: #000 !important;
+}
+
+.suggestion-display input:focus {
+    color: #000 !important;
+}
+
+.suggestion-display button {
+  background: #fff;
+  margin-left:15px;
+}
 .chat-display {
   height: 66%;
   padding: 5px;
