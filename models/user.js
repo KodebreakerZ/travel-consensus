@@ -23,20 +23,10 @@ User.create = function(attrs) {
 }
 
 /*
-  Password hash function
+  Password hash and decrypt functions, using bcrypt
 */
 
 
-// User.hashPassword = function(password) {
-//   var hasher = password + 'salted';
-//   return new Promise(function (resolve, reject) {
-//     bcrypt.hash(hasher, null, null, function (err, hashResult) {
-//       if (err) reject(err);
-//       else     resolve(hashResult);
-//     });
-//   });
-// };
-// }
 User.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
@@ -45,8 +35,13 @@ User.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
 
+/*
+  function to look for a user based on email, for use by passport
+  adapting a native Mongo function for use with PostGreSQL
+*/
 User.findOne = function(email) {
   //find one row in postgres based on email
+  //returns a boolean for logic in possport 
   var isNotAvailable = false;
 
   return db.select('*').from('users').where({ 'email': email })
@@ -69,6 +64,10 @@ User.findOne = function(email) {
     })
 }
 
+/*
+  function to find user by ID 
+  used in pasport deserialize to pass user id to session
+*/
 User.findById = function(id) {
   return db.select('*').from('users').where({ 'id': id })
     .catch(function(error) {
@@ -77,7 +76,7 @@ User.findById = function(id) {
       throw error;
     })
     .then(function(result) {
-      console.log('success retrieving trip users');
+      console.log('success retrieving user');
       return result;
     })
 }

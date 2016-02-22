@@ -1,4 +1,7 @@
-// load all the things we need
+/*
+  Not implemented, attempt at using Passport library to handle authentication and session 
+  using custom User functions and local user database in PostgreSQL
+*/
 var LocalStrategy = require('passport-local').Strategy;
 
 // load up the user model
@@ -26,18 +29,15 @@ module.exports = function(passport) {
                 done(error, null)
             })
 
-        // User.findById(id, function(err, user) {
-        //     done(err, user);
-        // });
     });
 
-    //local signup
+    //local strategy term used for app/server specific logins
 
     passport.use('local-signup', new LocalStrategy({
-        // by default, local strategy uses username and password, we will override with email
+        // by default, local strategy uses username and password, setting to use email address instead
         usernameField : 'email',
         passwordField : 'password',
-        passReqToCallback : true // allows us to pass back the entire request to the callback
+        passReqToCallback : true // this allows the entire request to be used, including the username/chat name 
     },
     function(req, email, password, done) {
 
@@ -59,13 +59,9 @@ module.exports = function(passport) {
                 return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
             } else {
 
-                // // if there is no user with that email
-                // // create the user
-                // var newUser            = new User();
-
-                // // set the user's local credentials
-                // newUser.local.email    = email;
-                // newUser.local.password = newUser.generateHash(password);;
+                // if there is no user with that email
+                // create the user
+                //hash the entered password
                 var hashedPassword = User.generateHash(password)
 
                 var newUser = {
@@ -73,26 +69,14 @@ module.exports = function(passport) {
                   username: username,
                   password: hashedPassword 
                 }
-
                 // save the user
                 User.create(newUser)
-                // newUser.save(function(err) {
-                //     if (err)
-                //         throw err;
-                //     return done(null, newUser);
-                // });
             }            
           })
-
-
-
         });    
+    }));
 
-
-        }));
-
-
-    //Local login
+    //Local strategy login
 
     passport.use('local-login', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
@@ -122,9 +106,6 @@ module.exports = function(passport) {
             if (err)
                 return done(err);            
           })
-
     }
-
     ));
-
 };
