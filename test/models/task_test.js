@@ -8,7 +8,7 @@ const dbCleaner = require('knex-cleaner');
 describe('Task model', function() {
   describe('interface with database', function() {
 
-    beforeEach (function() {
+    beforeEach(function() {
       return dbCleaner.clean(db, {mode: 'truncate'})
         .then(function() {
           return db('task').insert([
@@ -32,7 +32,7 @@ describe('Task model', function() {
         })
     })
 
-    it_ ('should list all tasks of a trip', function * () {
+    it_('should list all tasks of a trip', function * () {
       yield Task.allOfTrip(2)
         .then(function(tasks) {
           expect(tasks).to.have.length(2);
@@ -41,7 +41,7 @@ describe('Task model', function() {
         .catch(reportError('listing tasks from trip by id'));
     })
 
-    it_ ('should list no tasks for a trip that does not exist', function * () {
+    it_('should list no tasks for a trip that does not exist', function * () {
       yield Task.allOfTrip(404)
         .then(function(tasks) {
           expect(tasks).to.have.length(0);
@@ -49,7 +49,7 @@ describe('Task model', function() {
         .catch(reportError('listing tasks from invalid tripId'));
     })
 
-    it_ ('should create a new task including defaults', function * () {
+    it_('should create a new task including defaults', function * () {
       let newTask = {
         name: 'Things to do',
       }
@@ -63,7 +63,7 @@ describe('Task model', function() {
         .catch(reportError('creating a new task'));
     })
 
-    it_ ('should not create a task with an invalid name', function * () {
+    it_('should not create a task with an invalid name', function * () {
       let badNameTask = {
         name: null,
       }

@@ -20,7 +20,7 @@ describe('Message model', function() {
         })
     })
 
-    it_ ('should list all messages of a task', function * () {
+    it_('should list all messages of a task', function * () {
       yield Message.allOfTask(2)
         .then(function(messages) {
           expect(messages).to.have.length(1);
@@ -29,7 +29,7 @@ describe('Message model', function() {
         .catch(reportError('listing messages from task by id'))
     })
 
-    it_ ('should create a new message', function * () {
+    it_('should create a new message', function * () {
       let newMessage = {
         id_user: 1,
         id_task: 2,
@@ -45,7 +45,7 @@ describe('Message model', function() {
         .catch(reportError('creating a new message'))
     })
 
-    it_ ('should error on invalid user/task information', function * () {
+    it_('should error on invalid user/task information', function * () {
       let badUserMessage = {
         id_user: 99,
         id_task: 2,
@@ -84,7 +84,7 @@ describe('Message model', function() {
         })
     })
 
-    it_ ('should not accept invalid message content', function * () {
+    it_('should not accept invalid message content', function * () {
       let badContentMessage = {
         id_user: 1,
         id_task: 2,

@@ -4,7 +4,6 @@ var SuggestionList = require('./SuggestionList.jsx');
 var SuggestionItem = require('./SuggestionItem.jsx');
 var MessageList = require('./MessageList.jsx');
 var MessageItem = require('./MessageItem.jsx');
-// var Post = require('../requests/post.js')
 
 GlobalTaskArea = React.createClass({
   getInitialState: function() {

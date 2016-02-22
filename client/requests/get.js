@@ -6,7 +6,6 @@ exports.setViewDataUpdateInterval = function(taskList, taskArea, interval) {
     fetchTasks(window.globalStateTripId)
       .then(function(tasks) {
         taskList.setState( {tasksInList: tasks} );
-        console.log('setting state');
       })
 
     fetchMessages(window.globalStateTaskId)
@@ -21,7 +20,6 @@ exports.setViewDataUpdateInterval = function(taskList, taskArea, interval) {
 
     fetchSuggestions(window.globalStateTaskId)
       .then(function(suggestions) {
-        console.log('fetched suggestions:', suggestions);
         taskArea.setState( {suggestionsInTask: suggestions} );
       })  
   }, interval)

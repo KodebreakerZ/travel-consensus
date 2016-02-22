@@ -36,6 +36,7 @@ User.validPassword = function(password) {
 };
 
 /*
+<<<<<<< HEAD
   function to look for a user based on email, for use by passport
   adapting a native Mongo function for use with PostGreSQL
 */
@@ -44,22 +45,20 @@ User.findOne = function(email) {
   //returns a boolean for logic in possport 
   var isNotAvailable = false;
 
+=======
+  Find user by email. Used by passport.
+*/
+User.findOne = function(email) {
+>>>>>>> feat/cleanup
   return db.select('*').from('users').where({ 'email': email })
-    .catch(function(error) {
-      console.warn('error retrieving user', email);
-      console.warn(error);
-      throw error;
-    })
-    .then(function(result) {
-      if (result.rows.length > 0){
-        isNotAvailable = true;
+    .catch(reportError('error retrieving user'))
+    .then(function(user) {
+      if (user) {
         console.warn(email + ' is not available!');
-        return isNotAvailable;
-      }
-      else{
-        isNotAvailable = false;
+        return true;
+      } else {
         console.log(email + ' is available');
-        return isNotAvailable;
+        return false;
       }
     })
 }
@@ -79,6 +78,8 @@ User.findById = function(id) {
       console.log('success retrieving user');
       return result;
     })
+    .catch(reportError('error retrieving user id'))
+    .then(first)
 }
 /*
   Retrieve all users of a trip
