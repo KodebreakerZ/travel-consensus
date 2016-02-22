@@ -45,41 +45,27 @@ User.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
 
+/*
+  Find user by email. Used by passport.
+*/
 User.findOne = function(email) {
-  //find one row in postgres based on email
-  var isNotAvailable = false;
-
   return db.select('*').from('users').where({ 'email': email })
-    .catch(function(error) {
-      console.warn('error retrieving user', email);
-      console.warn(error);
-      throw error;
-    })
-    .then(function(result) {
-      if (result.rows.length > 0){
-        isNotAvailable = true;
+    .catch(reportError('error retrieving user'))
+    .then(function(user) {
+      if (user) {
         console.warn(email + ' is not available!');
-        return isNotAvailable;
-      }
-      else{
-        isNotAvailable = false;
+        return true;
+      } else {
         console.log(email + ' is available');
-        return isNotAvailable;
+        return false;
       }
     })
 }
 
 User.findById = function(id) {
   return db.select('*').from('users').where({ 'id': id })
-    .catch(function(error) {
-      console.warn('error retrieving user id', id);
-      console.warn(error);
-      throw error;
-    })
-    .then(function(result) {
-      console.log('success retrieving trip users');
-      return result;
-    })
+    .catch(reportError('error retrieving user id'))
+    .then(first)
 }
 /*
   Retrieve all users of a trip
