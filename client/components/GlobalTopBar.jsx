@@ -8,7 +8,6 @@ var GlobalTopBar = React.createClass({
 		$(".invitepopup").fadeToggle('fast');
 	},
 
-
 	render: function(){
 		return (
 			<div>

@@ -9,6 +9,7 @@ body {
   min-height: 100%;
   margin: 0;
   padding: 0;
+
   background-color: #198c8c;
 }
 
@@ -43,8 +44,7 @@ div.three {
 }
 
 .darkgray {
- /* margin: 0 5%;*/
-
+  /* margin: 0 5%;*/
   background-color: #303030;
 }
 
@@ -67,154 +67,189 @@ div.three {
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */
 
-.top-bar-login, .top-bar-signup {
+.top-bar-login,
+.top-bar-signup {
   position: absolute;
-  background: white;
   z-index: 1;
   top: 4px;
   right: 0;
-  margin-right: 7%;
+
   height: 36px;
+  margin-right: 7%;
+
+  background: white;
 }
 
-.top-bar-login:hover, .top-bar-signup:hover {
-  background:#F0F0F0;
+.top-bar-login:hover,
+.top-bar-signup:hover {
+  background: #f0f0f0;
 }
 .top-bar-signup {
-  right:8% !important;
+  right: 8% !important;
 }
 
 .form-wrapper,
 .form-wrapper-signup {
-  display:none;
-  pointer-events: none;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+
+  display: none;
+
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.26);
-  position: fixed;
-  top: 0;
-  z-index: 2;
+
+  pointer-events: none;
+
+  background: rgba(0,0,0,.26);
 }
+
 .form {
-  display:none;
+  position: fixed;
+  z-index: 3;
+
+  display: none;
+
   width: 18em;
+  margin: 7% 43%;
+
   border: 1px solid black;
   border-radius: 11px;
-  margin: 7% 43%;
-  z-index: 3;
   background: white;
-  position: fixed;
 }
 
 .form-signup {
-  display:none;
+  position: fixed;
+  z-index: 3;
+
+  display: none;
+
   width: 18em;
+  margin: 7% 43%;
+
   border: 1px solid black;
   border-radius: 11px;
-  margin: 7% 43%;
-  z-index: 3;
   background: white;
-  position: fixed;
 }
 
-.form > h2 ,
+.form > h2,
 .form-signup > h2 {
   font-size: 4.2rem;
-      margin-left: 20px;
+
+  margin-left: 20px;
 }
 
-.form__field-wrapper ,
+.form__field-wrapper,
 .form__field-wrapper-signup {
+  position: relative;
+
   width: 77%;
   margin: 0 auto;
-  position: relative;
   padding-top: 1.75em;
+
   background-color: #fff;
 }
 
-.form__field-wrapper + .form__field-wrapper ,
+.form__field-wrapper + .form__field-wrapper,
 .form__field-wrapper-signup + .form__field-wrapper-signup {
   border-top: none;
 }
 
-.form__field-label ,
+.form__field-label,
 .form__field-label-signup {
+  font-size: .8em;
+  font-weight: 400;
+
   position: absolute;
+  z-index: 1;
   top: -16px;
   left: 0;
+
   width: 100%;
+  margin: 0;
   padding: 16px;
   padding-top: 20px;
   padding-bottom: 0;
-  margin: 0;
-  z-index: 1;
-  font-size: .8em;
-  font-weight: 400;
+
   cursor: text;
 }
 
-.form__field-input ,
+.form__field-input,
 .form__field-input-signup {
   position: relative;
-  padding: 1.625em 16px;
+
   width: 100%;
+  padding: 1.625em 16px;
+
+  letter-spacing: .05em;
+
   border: none;
   outline: 0;
-  letter-spacing: 0.05em;
 }
 
-.form__submit-btn ,
+.form__submit-btn,
 .form__submit-btn-signup {
-  border: none;
-  background-color: #fff;
-  border: 1px solid black;
-  width:36%;
-  height: 36px;
-  padding: 0 1em;
-  border-radius: 3px;
-  background-color: rgba(42,45,52,0.40);
-  color: white;
-  display: block;
-  margin: 8% 5%;
   position: relative;
-  display:inline-block;
+
+  display: block;
+  display: inline-block;
+
+  width: 36%;
+  height: 36px;
+  margin: 8% 5%;
+  padding: 0 1em;
+
+  color: white;
+  border: none;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: #fff;
+  background-color: rgba(42,45,52,.40);
 }
 
 .form__cancel,
-.form__cancel-signup{
-  margin-left:34%;
-  cursor:pointer;
-  z-index:3;
+.form__cancel-signup {
+  z-index: 3;
+
+  margin-left: 34%;
+
+  cursor: pointer;
 }
 
-.form__submit-btn:hover ,
+.form__submit-btn:hover,
 .form__submit-btn-signup:hover {
-  background-color: rgba(50,112,119,0.40);
+  background-color: rgba(50,112,119,.40);
 }
 
-.js-form__err-animation ,
+.js-form__err-animation,
 .js-form__err-animation-signup {
   animation: shake 150ms ease-in-out;
 }
 
-.form__error-wrapper ,
+.form__error-wrapper,
 .form__error-wrapper-signup {
   display: none;
-  justify-content: center;
+
   max-width: calc(100% - 2em);
   margin: 0 auto;
   margin-bottom: 1em;
+
+  justify-content: center;
 }
 
-.form__error ,
+.form__error,
 .form__error-signup {
+  font-size: .8em;
+
   display: none;
-  background-color: red;
-  color: white;
+
   margin: 0;
-  padding: 0.5em 1em;
-  font-size: 0.8em;
+  padding: .5em 1em;
+
   user-select: none;
+
+  color: white;
+  background-color: red;
 }
 
 /* Global Top Bar - Popup
@@ -371,7 +406,7 @@ div.three {
   transition: all .8s;
 
   opacity: 0;
-  background: #22BFBF;
+  background: #22bfbf;
 }
 
 .task-item:active:after {
@@ -406,9 +441,10 @@ div.three {
 }
 
 .addTaskBox input {
+  width: 40%;
+  margin-left: 10px;
+
   background-color: #fff;
-  width:40%;
-  margin-left:10px;
 }
 
 .addTaskLabel {
@@ -438,8 +474,8 @@ div.three {
   padding: 10px;
 
   color: #fff;
-  background-color: #c0392b;
   border-bottom: 1px solid #ccc;
+  background-color: #c0392b;
 }
 
 .suggestion-display p {
@@ -449,31 +485,34 @@ div.three {
 }
 
 .suggestion-display form {
-  margin-bottom:0;}
+  margin-bottom: 0;
+}
 
 /*.suggestion .newSuggestionContent{
     color: #000;
 }*/
 
 .suggestion-display input {
-    color: #000 !important;
+  color: #000 !important;
 }
 
 .suggestion-display input:focus {
-    color: #000 !important;
+  color: #000 !important;
 }
 
 .suggestion-display button {
+  margin-left: 15px;
+
   background: #fff;
-  margin-left:15px;
 }
 
 .chat-display {
+  overflow-y: scroll;
+
   height: 65%;
   padding: 5px;
 
   background-color: #e3e3e3;
-  overflow-y: scroll
 }
 
 .message-author {
@@ -481,9 +520,9 @@ div.three {
 }
 
 .message-input {
-  position:absolute;
-  width:100%;
-  
+  position: absolute;
+
+  width: 100%;
   padding: 10px;
 
   background-color: #ccc;
@@ -512,6 +551,3 @@ div.three {
   margin-left: 3%;
   padding-top: 10px;
 }
-
-
-

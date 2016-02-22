@@ -44,17 +44,17 @@ if (process.env.NODE_ENV !== 'test') {
   app.use( require('morgan')('dev') )
   // Parse incoming request bodies as JSON
   app.use( require('body-parser').json() )
-    app.use(bodyParser.urlencoded({ extended: true }));
+  app.use( bodyParser.urlencoded({ extended: true }) );
   // read cookies (needed for auth)
-  app.use(cookieParser()); 
+  app.use( cookieParser() ); 
 
   // required for passport
   // not implemented
   app.use(session({ 
-                   secret: 'secretword',
-                   resave: true,
-                   saveUninitialized: true
-                  }));
+            secret: 'secretword',
+            resave: true,
+            saveUninitialized: true
+          }));
 
   app.use(passport.initialize());
   app.use(passport.session()); // persistent login sessions

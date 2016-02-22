@@ -6,10 +6,10 @@ var GlobalTaskArea = require('./components/GlobalTaskArea.jsx');
 
 
 
-/**** THIS IS GLOBAL STATE *********/
-window.globalStateTripId = 1;
-window.globalStateTaskId = 1;
-/***********************************/
+/******** THIS IS GLOBAL STATE *********/
+/**/  window.globalStateTripId = 1;  /**/
+/**/  window.globalStateTaskId = 1;  /**/
+/***************************************/
 /*
     Just these two variables allow us to dynamically update
     our app. Every couple of seconds, the app asks the database
