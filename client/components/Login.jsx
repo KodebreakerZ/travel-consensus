@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var TaskItem = React.createClass({
+var Login = React.createClass({
   showLogin: function(){  
     $(".form").fadeToggle('fast');
     $(".form-wrapper").fadeToggle('fast');
@@ -41,4 +41,4 @@ var TaskItem = React.createClass({
   }
 })
 
-module.exports = TaskItem;
+module.exports = Login;

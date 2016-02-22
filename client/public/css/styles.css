@@ -37,6 +37,10 @@ hr {
   color: #fff;
 }
 
+div.three {
+  margin-left: 67% !important;
+}
+
 .darkgray {
   margin: 0 5%;
 
@@ -58,11 +62,11 @@ hr {
   cursor: pointer;
 }
 
-/* Global Top Bar - Login-btn
+/* Global Top Bar - btns "yup, got lazy"
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */
 
-.top-bar-login {
+.top-bar-login, .top-bar-signup {
   position: absolute;
   background: white;
   z-index: 1;
@@ -72,11 +76,15 @@ hr {
   height: 36px;
 }
 
-.top-bar-login:hover {
+.top-bar-login:hover, .top-bar-signup:hover {
   background:#F0F0F0;
 }
+.top-bar-signup {
+  right:8% !important;
+}
 
-.form-wrapper {
+.form-wrapper,
+.form-wrapper-signup {
   display:none;
   pointer-events: none;
   width: 100%;
@@ -97,12 +105,25 @@ hr {
   position: fixed;
 }
 
-.form > h2 {
+.form-signup {
+  display:none;
+  width: 18em;
+  border: 1px solid black;
+  border-radius: 11px;
+  margin: 7% 43%;
+  z-index: 3;
+  background: white;
+  position: fixed;
+}
+
+.form > h2 ,
+.form-signup > h2 {
   font-size: 4.2rem;
       margin-left: 20px;
 }
 
-.form__field-wrapper {
+.form__field-wrapper ,
+.form__field-wrapper-signup {
   width: 77%;
   margin: 0 auto;
   position: relative;
@@ -110,11 +131,13 @@ hr {
   background-color: #fff;
 }
 
-.form__field-wrapper + .form__field-wrapper {
+.form__field-wrapper + .form__field-wrapper ,
+.form__field-wrapper-signup + .form__field-wrapper-signup {
   border-top: none;
 }
 
-.form__field-label {
+.form__field-label ,
+.form__field-label-signup {
   position: absolute;
   top: -16px;
   left: 0;
@@ -129,7 +152,8 @@ hr {
   cursor: text;
 }
 
-.form__field-input {
+.form__field-input ,
+.form__field-input-signup {
   position: relative;
   padding: 1.625em 16px;
   width: 100%;
@@ -138,7 +162,8 @@ hr {
   letter-spacing: 0.05em;
 }
 
-.form__submit-btn {
+.form__submit-btn ,
+.form__submit-btn-signup {
   border: none;
   background-color: #fff;
   border: 1px solid black;
@@ -154,21 +179,25 @@ hr {
   display:inline-block;
 }
 
-.form__cancel{
+.form__cancel,
+.form__cancel-signup{
   margin-left:34%;
   cursor:pointer;
   z-index:3;
 }
 
-.form__submit-btn:hover {
+.form__submit-btn:hover ,
+.form__submit-btn-signup:hover {
   background-color: rgba(50,112,119,0.40);
 }
 
-.js-form__err-animation {
+.js-form__err-animation ,
+.js-form__err-animation-signup {
   animation: shake 150ms ease-in-out;
 }
 
-.form__error-wrapper {
+.form__error-wrapper ,
+.form__error-wrapper-signup {
   display: none;
   justify-content: center;
   max-width: calc(100% - 2em);
@@ -176,7 +205,8 @@ hr {
   margin-bottom: 1em;
 }
 
-.form__error {
+.form__error ,
+.form__error-signup {
   display: none;
   background-color: red;
   color: white;
@@ -184,32 +214,6 @@ hr {
   padding: 0.5em 1em;
   font-size: 0.8em;
   user-select: none;
-}
-
-.js-form__err .form__error-wrapper {
-  display: flex;
-}
-
-.js-form__err--user-doesnt-exist .form__error--username-not-registered,
-.js-form__err--username-exists .form__error--username-taken,
-.js-form__err--password-wrong .form__error--wrong-password,
-.js-form__err--field-missing .form__error--field-missing {
-  display: inline-block;
-}
-
-@keyframes shake {
-  0% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(10px);
-  }
-  75% {
-    transform: translateX(-10px);
-  }
-  100% {
-    transform: translateX(0);
-  }
 }
 
 /* Global Top Bar - Popup
