@@ -32,10 +32,6 @@ The wiki serves as a general starting point with overview information about our 
 - react-router 	v 2.0.0
 - reactify 			v 1.1.1
 
-## Development
-
-#### Check out the knexfile.js for database configuration information.
-
 ### Installing Dependencies
 
 From within the root directory:
