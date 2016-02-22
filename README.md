@@ -18,9 +18,11 @@
 1. [Team](#team)
 1. [Contributing](#contributing)
 
-## Usage
+## Development Documentation and Usage
 
-> See [the wiki](https://github.com/travel-consensus/travel-consensus/wiki) 
+### See [the wiki](https://github.com/travel-consensus/travel-consensus/wiki)
+
+The wiki serves as a general starting point with overview information about our implementation. It will guide you to further commented detail in the codebase.
 
 ## Requirements
 
