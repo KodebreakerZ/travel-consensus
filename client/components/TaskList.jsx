@@ -9,6 +9,9 @@ var TaskList = React.createClass({
       name: $('.newTask').val()
     }
 
+    // clear newTask field
+    $('.newTask').val('')
+
     var exists = this.props.tasks.reduce(function(exists, existingTask) {
       return exists || newTask.name.toLowerCase() === existingTask.name.toLowerCase();
     }, false);
