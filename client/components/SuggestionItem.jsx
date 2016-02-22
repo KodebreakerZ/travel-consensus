@@ -1,10 +1,12 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var DeleteHelper = require('../requests/delete.js')
 
 SuggestionItem = React.createClass({
   clickHandler: function() {
-    console.log('delete suggestion w id: ', this.props.suggestion.suggestion.id);
-
+    var id = {};
+    id.id_suggestion = this.props.suggestion.id;
+    DeleteHelper.deleteSuggestion(id);
 
   },
 

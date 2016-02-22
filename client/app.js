@@ -24,6 +24,7 @@ window.globalStateTaskId = 1;
 
 
 var postRequests = require('./requests/post');
+var deleteRequests = require('./requests/delete');
 
 /*
   Create the global react components we use for the
@@ -34,11 +35,13 @@ var postRequests = require('./requests/post');
   I am not sure if this is the appropriate approach.
 */
 var sidebar  = React.createElement(GlobalSidebar, {
-  addNewTask: postRequests.addNewTask
+  addNewTask: postRequests.addNewTask,
+
 });
 var taskArea = React.createElement(GlobalTaskArea, {
   addNewMessage: postRequests.addNewMessage,
-  addNewSuggestion: postRequests.addNewSuggestion
+  addNewSuggestion: postRequests.addNewSuggestion,
+  deleteSuggestion: deleteRequests.deleteSuggestion
 });
 var topbar   = React.createElement(GlobalTopBar, {
   // empty props
