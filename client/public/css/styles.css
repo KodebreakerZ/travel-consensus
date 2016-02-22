@@ -114,16 +114,6 @@ hr {
   border-top: none;
 }
 
-.form__field-input:focus ~ .form__field-label {
-  color: $dark-grey;
-  background-color: $very-light-grey;
-}
-
-.form__field-input:focus {
-  background-color: $very-light-grey;
-  color: $very-dark-grey;
-}
-
 .form__field-label {
   position: absolute;
   top: -16px;
@@ -143,7 +133,6 @@ hr {
   position: relative;
   padding: 1.625em 16px;
   width: 100%;
-  color: $dark-grey;
   border: none;
   outline: 0;
   letter-spacing: 0.05em;
@@ -189,12 +178,11 @@ hr {
 
 .form__error {
   display: none;
-  background-color: $error-color;
+  background-color: red;
   color: white;
   margin: 0;
   padding: 0.5em 1em;
   font-size: 0.8em;
-  font-family: $text-font-stack;
   user-select: none;
 }
 
