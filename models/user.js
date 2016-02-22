@@ -49,9 +49,9 @@ User.findOne = function(email) {
   //find one row in postgres based on email
   var isNotAvailable = false;
 
-  return db.select('*').from('user').where({ 'email': email })
+  return db.select('*').from('users').where({ 'email': email })
     .catch(function(error) {
-      console.warn('error retrieving users for trip', tripId);
+      console.warn('error retrieving user', email);
       console.warn(error);
       throw error;
     })
@@ -70,9 +70,17 @@ User.findOne = function(email) {
 }
 
 User.findById = function(id) {
- //find one id in postgres
+  return db.select('*').from('users').where({ 'id': id })
+    .catch(function(error) {
+      console.warn('error retrieving user id', id);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success retrieving trip users');
+      return result;
+    })
 }
-
 /*
   Retrieve all users of a trip
 */
@@ -113,6 +121,16 @@ User.deleteFromTrip = function(userId, tripId) {
 User.deleteUser = function(userId) {
   return db('user').where({'id': userId}).del()
     .catch(reportError('error deleting user'))
+  return db('users').where({'id': userId}).del()
+    .catch(function(error) {
+      console.warn('error deleting user', userId);
+      console.warn(error);
+      throw error;
+    })
+    .then(function(result) {
+      console.log('success deleting user');
+      return result;
+    })
 }
 
 /*

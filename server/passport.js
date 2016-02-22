@@ -7,9 +7,7 @@ var User = require(__models + '/user');
 // expose this function to our app using module.exports
 module.exports = function(passport) {
 
-    // =========================================================================
-    // passport session setup ==================================================
-    // =========================================================================
+    // passport session setup 
     // required for persistent login sessions
     // passport needs ability to serialize and unserialize users out of session
 
@@ -20,15 +18,20 @@ module.exports = function(passport) {
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
-            done(err, user);
-        });
+        User.findById(id)
+            .then(function(user) {
+                done(null, user)
+            })
+            .catch(function(error) {
+                done(error, null)
+            })
+
+        // User.findById(id, function(err, user) {
+        //     done(err, user);
+        // });
     });
 
-    // =========================================================================
-    // LOCAL SIGNUP ============================================================
-    // =========================================================================
-
+    //local signup
 
     passport.use('local-signup', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
@@ -44,11 +47,13 @@ module.exports = function(passport) {
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.email' :  email }, function(err, user) {
+        User.findOne(email)
+          .catch(function(err) {
             // if there are any errors, return the error
             if (err)
-                return done(err);
-
+                return done(err);            
+          })
+          .then(function(user) {
             // check to see if theres already a user with that email
             if (user) {
                 return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
@@ -62,6 +67,7 @@ module.exports = function(passport) {
                 // newUser.local.email    = email;
                 // newUser.local.password = newUser.generateHash(password);;
                 var hashedPassword = User.generateHash(password)
+
                 var newUser = {
                   email: email,
                   username: username,
@@ -75,20 +81,18 @@ module.exports = function(passport) {
                 //         throw err;
                 //     return done(null, newUser);
                 // });
-            }
+            }            
+          })
+
+
 
         });    
 
         });
 
-    }));
+    });
 
-};
-
-    // =========================================================================
-    // LOCAL LOGIN =============================================================
-    // =========================================================================
-
+    //Local login
 
     passport.use('local-login', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
@@ -100,11 +104,8 @@ module.exports = function(passport) {
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.email' :  email }, function(err, user) {
-            // if there are any errors, return the error before anything else
-            if (err)
-                return done(err);
-
+        User.findOne(email)
+          .then (function (user) {
             // if no user is found, return the message
             if (!user)
                 return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
@@ -115,8 +116,11 @@ module.exports = function(passport) {
 
             // all is well, return successful user
             return done(null, user);
-        });
-
-    }));
-
+          })
+          .catch (function(err) {
+            // if there are any errors, return the error before anything else
+            if (err)
+                return done(err);            
+          })
+    };
 };

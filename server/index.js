@@ -7,6 +7,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash    = require('connect-flash');
 
+require('./server/passport')(passport); // pass passport for configuration
+
 var cookieParser = require('cookie-parser');
 // var bodyParser = require('body-parser');
 var session = require('express-session')
