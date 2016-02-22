@@ -1,6 +1,6 @@
 # Travel-consensus
 
-> Travel-consensus description
+> Collaborative group travel plans without the hassle!
 
 ## Team
 
@@ -20,7 +20,7 @@
 
 ## Usage
 
-> Some usage instructions
+> See [the wiki](https://github.com/travel-consensus/travel-consensus/wiki) 
 
 ## Requirements
 
@@ -52,9 +52,9 @@ npm start
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/travel-consensus/travel-consensus/wiki/Project-Vision)
 
 
 ## Contributing
 
-See [CONTRIBUTING.md](https://github.com/unexpected-lion/ourglass/blob/master/contributing.md) for contribution guidelines.
+See [CONTRIBUTING.md](https://github.com/travel-consensus/travel-consensus/blob/master/CONTRIBUTING.md) for contribution guidelines.
