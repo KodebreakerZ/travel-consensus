@@ -65,26 +65,25 @@ exports.addNewSuggestion = function(suggestionObject) {
   expects: userEmails: Array
 */
 exports.inviteUsersByEmail = function(userEmails) {
-  console.log('inviting users:', userEmails);
+  console.log('inviting users:', userEmails); // why is this still jquery?
 
   if (!Array.isArray(userEmails)) userEmails = [ userEmails ];
 
   // send a request for each of the emails to invite.
   userEmails.map(function(email) {
-
     console.log('SUBMITTING EMAIL TO POST', email[0]);
     return fetch('trip/' + window.GlobalState.tripId + '/user', {
       method: 'POST',
       headers: requestHeaders,
       body: JSON.stringify({ 'email': email[0] })
     })
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      console.log('!Posted new users to the user_trips table!', data);
-      return data;
-    })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        console.log('!Posted new users to the user_trips table!', data);
+        return data;
+      })
   })
 }
 
