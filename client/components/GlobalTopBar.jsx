@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Login = require('./Login.jsx');
 
 var GlobalTopBar = React.createClass({
 	handleClick: function(){
@@ -31,6 +32,8 @@ var GlobalTopBar = React.createClass({
     			</div>
     			<button className="inviteUsers">Invite Users</button>
 				</div>
+
+    			<Login className="login-form"/>
 			</div>
 		);
 	}
