@@ -9,6 +9,7 @@ body {
   min-height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #198c8c;
 }
 
 img {
@@ -38,7 +39,7 @@ hr {
 }
 
 .darkgray {
-  margin: 0 5%;
+ /* margin: 0 5%;*/
 
   background-color: #303030;
 }
@@ -127,17 +128,36 @@ hr {
 
 .sidebar {
   position: relative;
-  /*min-width:200px;*/
 
   float: left;
 
   width: 20%;
   height: 100%;
   min-height: 100%;
-  margin-left: 5%;
+  /*margin-left: 5%;*/
 
   background-color: #198c8c;
 }
+
+/*.sidebar, .sidebar:before {
+    width:20%;
+}
+.sidebar {
+    float:left;
+    padding: 20px 30px;
+    color: #ebeef3;
+    font-size: 90%;
+    background-color: #198c8c;
+}
+.sidebar:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    left: 60%;
+    background-color: #198c8c;
+}*/
 
 .location-display {
   height: 175px;
@@ -192,7 +212,7 @@ hr {
   transition: all .8s;
 
   opacity: 0;
-  background: #90ee90;
+  background: #22BFBF;
 }
 
 .task-item:active:after {
@@ -218,6 +238,20 @@ hr {
   margin-left: 10px;
 }
 
+.addTaskBox p {
+  color: #fff;
+}
+
+.addTaskBox label {
+  color: #fff;
+}
+
+.addTaskBox input {
+  background-color: #fff;
+  width:40%;
+  margin-left:10px;
+}
+
 .addTaskLabel {
   font-size: 18px;
 }
@@ -236,7 +270,7 @@ hr {
 
   float: left;
 
-  width: 70%;
+  width: 80%;
   /*min-width:200px;*/
   height: 100%;
 }
@@ -246,6 +280,7 @@ hr {
 
   color: #fff;
   background-color: #c0392b;
+  border-bottom: 1px solid #ccc;
 }
 
 .suggestion-display p {
@@ -273,6 +308,7 @@ hr {
   background: #fff;
   margin-left:15px;
 }
+
 .chat-display {
   height: 66%;
   padding: 5px;
