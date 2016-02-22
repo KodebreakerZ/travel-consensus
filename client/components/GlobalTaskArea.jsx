@@ -22,6 +22,9 @@ GlobalTaskArea = React.createClass({
       id_user: 1    /////// MUST CHANGE TO CURRENTLY LOGGED IN USER
     }
 
+    // clear newMessageContent field
+    $('.newMessageContent').val('')
+
     this.props.addNewMessage(newMessage);
 
     // intermediary setState; takes care of server-delay
@@ -36,6 +39,9 @@ GlobalTaskArea = React.createClass({
       suggestion: $('.newSuggestionContent').val(),
       id_user: 1    /////// MUST CHANGE TO CURRENTLY LOGGED IN USER
     }
+
+    // clear newSuggestionContent field
+    $('.newSuggestionContent').val('')
 
     this.props.addNewSuggestion(newSuggestion);
 
