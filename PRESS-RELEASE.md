@@ -15,8 +15,8 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
- 
-## Heading ##
+ <!--
+ ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
 
 ## Sub-Heading ##
@@ -42,3 +42,31 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+-->
+
+## Heading ##
+  > Travel-Consensus
+
+## Sub-Heading ##
+  > Make collaborative group travel plans without the hassle!
+
+## Summary ##
+  > Give everyone a voice in travel planning, without the barriers of endless communication leading to partial consensus and an unhappy trip. Add tasks, make suggestions, discuss options, and build consensus, as you all prepare. Use Travel-Consensus to quickly get on the same page, and plan for great trip.
+
+## Problem ##
+  > Planning a trip? Tired of endless conversations and emails that leave the group unsatisfied with travel plans?
+
+## Solution ##
+  > A group decision-making system designed to optimize the travel planning process.
+
+## Quote from You ##
+  > Cheesy: Never has group travel been this delightful!
+
+## How to Get Started ##
+  > Start planning your trip today! Invite fellow travelers and resolve plans with ease.
+
+## Customer Quote ##
+  > "Being tasked with organizing a bachelor party was stressful, given that I've never even been to one! Travel-Consensus made it easy for the group to plan activities that we were all happy with!"  -Steve
+
+## Closing and Call to Action ##
+  > Don't settle for less than travel-consensus.
