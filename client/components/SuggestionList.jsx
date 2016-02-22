@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var SuggestionItem = require('./SuggestionItem.jsx');
 
-SuggestionList = React.createClass({
+var SuggestionList = React.createClass({
   render: function() {
     console.log('this.props.suggestions (SuggestionList.jsx) ', this.props.suggestions);
 

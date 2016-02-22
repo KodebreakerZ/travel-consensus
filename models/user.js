@@ -36,20 +36,11 @@ User.validPassword = function(password) {
 };
 
 /*
-<<<<<<< HEAD
   function to look for a user based on email, for use by passport
   adapting a native Mongo function for use with PostGreSQL
 */
-User.findOne = function(email) {
-  //find one row in postgres based on email
-  //returns a boolean for logic in possport 
-  var isNotAvailable = false;
 
-=======
-  Find user by email. Used by passport.
-*/
 User.findOne = function(email) {
->>>>>>> feat/cleanup
   return db.select('*').from('users').where({ 'email': email })
     .catch(reportError('error retrieving user'))
     .then(function(user) {

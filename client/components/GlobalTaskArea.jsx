@@ -5,7 +5,7 @@ var SuggestionItem = require('./SuggestionItem.jsx');
 var MessageList = require('./MessageList.jsx');
 var MessageItem = require('./MessageItem.jsx');
 
-GlobalTaskArea = React.createClass({
+var GlobalTaskArea = React.createClass({
   getInitialState: function() {
     return {
       messagesInTask: [],

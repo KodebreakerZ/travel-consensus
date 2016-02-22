@@ -14,7 +14,6 @@
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
 1. [Team](#team)
 1. [Contributing](#contributing)
 
@@ -38,15 +37,8 @@ From within the root directory:
 
 ```sh
 npm install
-npm i --save react react-dom react-router reactify
 npm start
 ```
-
-### Tasks
-
-```sh
-...
-````
 
 ### Roadmap
 

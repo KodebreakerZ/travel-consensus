@@ -2,9 +2,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var TaskList = require('./TaskList.jsx');
 var TaskItem = require('./TaskItem.jsx');
-// var AddTask  = require('./AddTask.jsx');
 
-GlobalSidebar = React.createClass({
+var GlobalSidebar = React.createClass({
   getInitialState: function() {
     return {
       tasksInList: [],

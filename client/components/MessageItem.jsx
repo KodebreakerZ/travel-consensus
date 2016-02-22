@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-MessageItem = React.createClass({
+var MessageItem = React.createClass({
   render: function() {
     return (
       <p className="message">
