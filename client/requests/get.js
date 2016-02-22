@@ -13,12 +13,17 @@ exports.setViewDataUpdateInterval = function(taskList, taskArea, interval) {
       .then(function(messages) {
         taskArea.setState( {messagesInTask: messages} );
       })
+      .then(function(){
+        var elem = document.getElementsByClassName('chat-display');
+        elem.scrollTop = elem.scrollHeight;
+        console.log('this fired!');
+      })
 
     fetchSuggestions(window.globalStateTaskId)
       .then(function(suggestions) {
         console.log('fetched suggestions:', suggestions);
         taskArea.setState( {suggestionsInTask: suggestions} );
-      })
+      })  
   }, interval)
 }
 
