@@ -93,7 +93,7 @@ TaskAPI.delete(':id_task/suggestion', function(request, response) {
     .then(sendStatusAndData(response, 201))
     .catch(function(error) {
       console.error('ERROR DELETE:', request.url);
-      response.status(500).send('Server error deleting suggestion from task'));
+      response.status(500).send('Server error deleting suggestion from task');
     })
 })
 

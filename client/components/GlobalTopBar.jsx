@@ -1,18 +1,18 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Login = require('./Login.jsx');
+var SignUp = require('./SignUp.jsx');
 
 var GlobalTopBar = React.createClass({
 	handleClick: function(){
 		$(".invitepopup").fadeToggle('fast');
 	},
-	// getInitialState: function(){
-	//    return {
-	//      open: false,
-	//    }
-	// },
+
+
 	render: function(){
 		return (
 			<div>
+
 				<div className="darkgray">
 				<h1 className="title">Travel-Consensus</h1>
 				  <div className="container">
@@ -31,6 +31,10 @@ var GlobalTopBar = React.createClass({
     			</div>
     			<button className="inviteUsers">Invite Users</button>
 				</div>
+
+    			<Login className="login-form"/>
+    			<SignUp className="signup-form"/>
+
 			</div>
 		);
 	}
