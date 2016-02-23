@@ -4,9 +4,11 @@ var SuggestionItem = require('./SuggestionItem.jsx');
 
 var SuggestionList = React.createClass({
   render: function() {
-    console.log('this.props.suggestions (SuggestionList.jsx) ', this.props.suggestions);
-
+    // can not read property `map` of undefined, yet it logs inside of this?
+    // I think it has something to do with virtual dom processing vs. actual
+    // rendering. It works!
     var suggestionList = this.props.suggestions.map(function(suggestion) {
+      console.log('suggestionssss', suggestion);
       return <SuggestionItem
                suggestion={suggestion}
              />
