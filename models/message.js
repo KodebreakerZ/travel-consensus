@@ -24,6 +24,18 @@ Message.create = function(attrs) {
 
 /*
   Retrieve all messages of a certain task
+
+  Returns: [
+    {
+      id:        Number <primary key>
+      id_user:   Number <Author>
+      id_task:   Number <Associated task>
+      content:   String <What was said>
+      createdAt: Number <Not sure what form the stamp returns. Log it ;) >
+      username:  String <Author name>
+    },
+    ...
+  ]
 */
 Message.allOfTask = function(taskId) {
   return db.select('*').from('message').where({'id_task': taskId}).orderBy('createdAt', 'asc')

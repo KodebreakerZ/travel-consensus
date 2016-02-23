@@ -46,16 +46,15 @@ if (process.env.NODE_ENV !== 'test') {
   app.use( require('body-parser').json() )
   app.use( bodyParser.urlencoded({ extended: true }) );
   // read cookies (needed for auth)
-  app.use( cookieParser() ); 
+  app.use( cookieParser() );
 
   // required for passport
   // not implemented
-  app.use(session({ 
+  app.use(session({
             secret: 'secretword',
             resave: true,
             saveUninitialized: true
           }));
-
   app.use(passport.initialize());
   app.use(passport.session()); // persistent login sessions
   app.use(flash()); // use connect-flash for flash messages stored in session
@@ -64,7 +63,15 @@ if (process.env.NODE_ENV !== 'test') {
   // of our app. This delegates almost all routing to 'routes'
   app.use('/', routes)
 
-  // use our apis!
+/* !important
+  These handle requests directed to the main components of our app,
+  trips and tasks.
+*/
+  var tripRouter = require('./apis/trip-api');
+  var taskRouter = require('./apis/task-api');
+
+  routes.use('/trip', tripRouter);
+  routes.use('/task', taskRouter);
 
 /*
   Signin and signup routes handled by Passport
@@ -91,28 +98,13 @@ if (process.env.NODE_ENV !== 'test') {
     failureRedirect : '/signup', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
   }));
-
-/*
-  These handle requests directed to different models.
-
-  They are commented because they require a running development
-  database. When you're ready to use sample data and the database
-  we can talk about how to do it. Just a few extra things to do.
-*/
-
-//First attempt at passport integration, need to adapt for postgreSQL environment
-  var tripRouter = require('./apis/trip-api');
-  var taskRouter = require('./apis/task-api');
-
-  routes.use('/trip', tripRouter);
-  routes.use('/task', taskRouter);
+/* end passport implementation */
 
 
   //
   // The Catch-all Route
   // This is for supporting browser history pushstate.
   // NOTE: Make sure this route is always LAST.
-  //
   routes.get('/*', function(req, res){
     console.log('catch-all route triggered');
     res.sendFile( assetFolder + '/index.html' )

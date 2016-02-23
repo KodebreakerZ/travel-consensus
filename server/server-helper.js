@@ -1,7 +1,6 @@
 var ramda = require('ramda');
 
 global.__models = __dirname + '/../models';
-global.__server = __dirname + '/../server';
 
 /*
     A NOTE ON CURRY
@@ -15,9 +14,10 @@ global.__server = __dirname + '/../server';
   we have built an error reporter that you can use to eat an error
   and then spit back out the error and a description that tells you
   where it came from.
-  
+
     -!- they do not run until the last parameter is passed -!-
 */
+
 
 /*
   Provide a description to log when it is invoked with an error or
@@ -32,6 +32,13 @@ global.reportError = ramda.curry( function(description, error) {
 
   if (error instanceof Error) throw error
 })
+// note for better implementation
+// Why not just have a function 'report'?
+//  1- logs some description with the content
+//  2- throws error if content is an error
+//  3- returns content
+// could be used everywhere you want to log some result
+// and then pass the data along or throw an error
 
 
 /*
@@ -42,9 +49,43 @@ global.reportError = ramda.curry( function(description, error) {
   use example:
     Trip.create(newTrip)
       .then(sendStatusAndData(response, 201))
-    is the same as
-      .then(function(data) { sendStatusAndData(response, 201, data) }) 
+    is the same as:
+      .then(function(data) { sendStatusAndData(response, 201, data) })
 */
 global.sendStatusAndData = ramda.curry( function(response, status, data) {
   response.status(status).send(data);
+})
+
+/*
+  Another shortcut, this time for error reporting.
+
+  Use it to describe an error to log to the server terminal and send a bad
+  message to the server, on the off-chance (or on-chance?) there is an error.
+
+  use example:
+    Trip.create(newTrip)
+      .catch(sendStatusAndError(response, 500, 'Server error posting new trip'))
+    is the same as:
+      .catch(function(error) {
+        console.error('*** Server error posting new trip ***')
+        console.error(error)
+
+        response.status(500).send('Server error posting new trip')
+
+        if (error instanceof Error) throw error
+      })
+
+  <small> must be a better way to do this, yeah? </small>
+*/
+global.sendStatusAndError = ramda.curry( function(response, status, description, error) {
+  try {
+    reportError(description, error);
+  } catch (error) {
+    throw error; //  we throw the error again so we don't lose it! Always good to know when there's an error
+  } finally {
+    // code in a finally block _always_ executes.
+    // we use it so that regardless whether the reportError above throws
+    // an error, we will always send the client a response.
+    return sendStatusAndData(response, status, error);
+  }
 })

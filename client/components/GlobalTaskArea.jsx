@@ -18,7 +18,7 @@ var GlobalTaskArea = React.createClass({
 
     var newMessage = {
       content: $('.newMessageContent').val(),
-      id_user: 1    /////// MUST CHANGE TO CURRENTLY LOGGED IN USER
+      id_user: 1    /////// CHANGE TO CURRENTLY LOGGED IN USER
     }
 
     // clear newMessageContent field
@@ -27,7 +27,7 @@ var GlobalTaskArea = React.createClass({
     this.props.addNewMessage(newMessage);
 
     // intermediary setState; takes care of server-delay
-    this.props.messagesInTask.push(newMessage)
+    this.state.messagesInTask.push(newMessage)
     this.setState( {messagesInTask: this.props.messagesInTask} )
   },
 
@@ -36,7 +36,7 @@ var GlobalTaskArea = React.createClass({
 
     var newSuggestion = {
       suggestion: $('.newSuggestionContent').val(),
-      id_user: 1    /////// MUST CHANGE TO CURRENTLY LOGGED IN USER
+      id_user: 1    /////// CHANGE TO CURRENTLY LOGGED IN USER
     }
 
     // clear newSuggestionContent field
@@ -45,9 +45,8 @@ var GlobalTaskArea = React.createClass({
     this.props.addNewSuggestion(newSuggestion);
 
     // intermediary setState; takes care of server-delay
-    this.props.suggestionsInTask.push(newSuggestion)
+    this.state.suggestionsInTask.push(newSuggestion)
     this.setState( {suggestionsInTask: this.props.suggestionsInTask} )
-    console.log('suggestionsInTask: ', suggestionsInTask)
   },
 
   render: function() {
