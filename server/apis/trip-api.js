@@ -27,8 +27,6 @@ TripAPI.post('/', function(request, response) {
     name: request.body.name
   }
 
-  console.log('posting new trip:', newTrip);
-
   Trip.create(newTrip)
     .then(sendStatusAndData(response, 201))
     .catch(sendStatusAndError(response, 500, 'Server error posting new trip'))
