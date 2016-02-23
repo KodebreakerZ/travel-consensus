@@ -55,9 +55,10 @@ User.findOne = function(email) {
 }
 
 /*
-  function to find user by ID 
+  function to find user by ID
   used in pasport deserialize to pass user id to session
 */
+
 User.findById = function(id) {
   return db.select('*').from('users').where({ 'id': id })
     .catch(function(error) {
@@ -72,10 +73,10 @@ User.findById = function(id) {
     .catch(reportError('error retrieving user id'))
     .then(first)
 }
+
 /*
   Retrieve all users of a trip
 */
-
 User.allOfTrip = function(tripId) {
   // TODO: do not select password_digest
   return db.select('*').from('trip_users').where({ 'id_trip': tripId })

@@ -18,6 +18,7 @@ global.__models = __dirname + '/../models';
     -!- they do not run until the last parameter is passed -!-
 */
 
+
 /*
   Provide a description to log when it is invoked with an error or
   psuedo-error
@@ -31,6 +32,13 @@ global.reportError = ramda.curry( function(description, error) {
 
   if (error instanceof Error) throw error
 })
+// note for better implementation
+// Why not just have a function 'report'?
+//  1- logs some description with the content
+//  2- throws error if content is an error
+//  3- returns content
+// could be used everywhere you want to log some result
+// and then pass the data along or throw an error
 
 
 /*
@@ -51,8 +59,8 @@ global.sendStatusAndData = ramda.curry( function(response, status, data) {
 /*
   Another shortcut, this time for error reporting.
 
-  Use it to describe an error to log to the server terminal and send
-  a bad message to the server.
+  Use it to describe an error to log to the server terminal and send a bad
+  message to the server, on the off-chance (or on-chance?) there is an error.
 
   use example:
     Trip.create(newTrip)

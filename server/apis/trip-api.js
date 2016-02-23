@@ -17,9 +17,9 @@ module.exports = TripAPI;
     name: String <name of trip>
   }
 
-  Responds with the new trip: {
-    id:   Number <unique id of this trip>
-    name: String <name of this trip>
+  Responds with: {
+    id:   Number <primary key of trip>
+    name: String <name of trip>
   }
 */
 TripAPI.post('/', function(request, response) {
@@ -70,7 +70,7 @@ TripAPI.post('/:id_trip/user', function(request, response) {
   }
 
   Responds with: {
-    id:       Number <unique id of this task>
+    id:       Number <primary key of task>
     name:     String <name of task>
     status:   String <status of task: 'undecided' or 'decided'>
     decision: String <the decision made for a decided task>
