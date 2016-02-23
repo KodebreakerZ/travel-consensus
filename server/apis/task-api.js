@@ -34,14 +34,9 @@ TaskAPI.post('/:id_task/message', function(request, response) {
     id_task: request.params.id_task
   }
 
-  console.log('TaskAPI.post req.body ', request.body);
-
   Message.create(newMessage)
     .then(sendStatusAndData(response, 201))
-    .catch(function(error) {
-      console.error('ERROR POST:', request.url);
-      response.status(500).send('Server error posting new message to task');
-    })
+    .catch(sendStatusAndError(response, 500, 'Server error posting new message to task'))
 })
 
 /*
@@ -71,31 +66,24 @@ TaskAPI.post('/:id_task/suggestion', function(request, response) {
 
   Suggestion.create(newSuggestion)
     .then(sendStatusAndData(response, 201))
-    .catch(function(error) {
-      console.error('ERROR POST:', request.url);
-      response.status(500).send('Server error posting new suggestion to task');
-    })
+    .catch(sendStatusAndError(response, 500, 'Server error posting new suggestion to task'))
 })
 
 /*
   DELETE task/:id_task/suggestion
-  
+
   Removes a suggestion from the database
-  
+
   Expects request: {
     id_suggestion: Number <suggestion id to delete>
   }
-  
+
   Responds with the number of deleted rows (hopefully > 0)
 */
 TaskAPI.delete('/:id_task/suggestion', function(request, response) {
-  console.log('in delete suggestion in taskapi');
   Suggestion.delete(request.body.id_suggestion)
     .then(sendStatusAndData(response, 201))
-    .catch(function(error) {
-      console.error('ERROR DELETE:', request.url);
-      response.status(500).send('Server error deleting suggestion from task');
-    })
+    .catch(sendStatusAndError(response, 500, 'Server error deleting suggestion from task'))
 })
 
 /*NOT IMPLEMENTED
@@ -117,7 +105,7 @@ TaskAPI.delete('/:id_task/suggestion', function(request, response) {
   }
 */
 TaskAPI.put('/:id_task/', function(request, response) {
-
+  throw new Error('What are you doing here?')
 })
 
 /*
@@ -141,10 +129,7 @@ TaskAPI.get('/:id_task/messages', function(request, response) {
 
   Message.allOfTask(id_task)
     .then(sendStatusAndData(response, 200))
-    .catch(function(error) {
-      console.error('ERROR GET:', request.url);
-      response.status(500).send('Server error getting messages by task id');
-    })
+    .catch(sendStatusAndError(response, 500, 'Server error getting messages by task id'))
 })
 
 
@@ -169,10 +154,7 @@ TaskAPI.get('/:id_task/suggestions', function(request, response) {
 
   Suggestion.allOfTask(id_task)
     .then(sendStatusAndData(response, 200))
-    .catch(function(error) {
-      console.error('ERROR GET:', request.url);
-      response.status(500).send('Server error getting suggestions by task id');
-    })
+    .catch(sendStatusAndError(response, 500, 'Server error getting suggestions by task id'))
 })
 
 

@@ -31,10 +31,7 @@ TripAPI.post('/', function(request, response) {
 
   Trip.create(newTrip)
     .then(sendStatusAndData(response, 201))
-    .catch(function(error) {
-      console.error('ERROR POST:', request.url);
-      response.status(500).send('Server error posting new trip');
-    })
+    .catch(sendStatusAndError(response, 500, 'Server error posting new trip'))
 })
 
 /*
@@ -60,10 +57,7 @@ TripAPI.post('/:id_trip/user', function(request, response) {
 
   Trip.addUser(newUserTrip)
     .then(sendStatusAndData(response, 201))
-    .catch(function(error) {
-      console.error('ERROR POST:', request.url);
-      response.status(500).send('Server error posting new user to trip');
-    })
+    .catch(sendStatusAndError('Server error posting new user to trip'))
 })
 
 /*
@@ -91,10 +85,7 @@ TripAPI.post('/:id_trip/task', function(request, response) {
 
   Task.create(newTask)
     .then(sendStatusAndData(response, 201))
-    .catch(function(error) {
-      console.error('ERROR POST:', request.url);
-      response.status(500).send('Server error posting new user to trip');
-    })
+    .catch(sendStatusAndError(response, 500, 'Server error posting new task to user'))
 })
 
 /*
@@ -118,10 +109,7 @@ TripAPI.get('/:tripId/tasks', function(request, response) {
 
   Task.allOfTrip(tripId)
     .then(sendStatusAndData(response, 200))
-    .catch(function(error) {
-      console.error('ERROR GET:', request.url);
-      response.status(500).send('Server error getting tasks by trip id');
-    })
+    .catch(sendStatusAndError(response, 500, 'Server error getting tasks by trip id'))
 })
 
 /*
@@ -145,9 +133,6 @@ TripAPI.get('/:tripId/users', function(request, response) {
 
   User.allOfTrip(tripId)
     .then(sendStatusAndData(response, 200))
-    .catch(function(error) {
-      console.error('ERROR GET:', request.url);
-      response.status(500).send('Server error getting users by trip id');
-    })
+    .catch(sendStatusAndError('Server error getting users by trip id'))
 })
 
