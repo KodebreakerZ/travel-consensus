@@ -62,7 +62,7 @@ TaskAPI.post('/:id_task/message', function(request, response) {
     id_task:    Number <In which task>
   }
 */
-TaskAPI.post('/:id_task/suggestion', function(request, response) {
+TaskAPI.post('/:id_task/message', function(request, response) {
   var newSuggestion = {
     suggestion: request.body.suggestion,
     id_user: request.body.id_user,
@@ -78,27 +78,7 @@ TaskAPI.post('/:id_task/suggestion', function(request, response) {
 })
 
 /*
-  DELETE task/:id_task/suggestion
-  
-  Removes a suggestion from the database
-  
-  Expects request: {
-    id_suggestion: Number <suggestion id to delete>
-  }
-  
-  Responds with the number of deleted rows (hopefully > 0)
-*/
-TaskAPI.delete('/:id_task/suggestion', function(request, response) {
-  console.log('in delete suggestion in taskapi');
-  Suggestion.delete(request.body.id_suggestion)
-    .then(sendStatusAndData(response, 201))
-    .catch(function(error) {
-      console.error('ERROR DELETE:', request.url);
-      response.status(500).send('Server error deleting suggestion from task');
-    })
-})
-
-/*NOT IMPLEMENTED
+  NOT IMPLEMENTED
 
   PUT task/:id_task
 

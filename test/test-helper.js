@@ -1,6 +1,5 @@
 process.env.NODE_ENV = 'test'
 
-
 // The following allows you to require files independent of
 // the location of your test file.
 // Example:
@@ -10,7 +9,9 @@ global.__server = __dirname + '/../server'
 global.__client = __dirname + '/../client'
 global.__models = __dirname + '/../models'
 
-
+//
+// Assertions
+//
 var chai = require('chai')
 // Option 1: Make the `expect` function available in every test file
 global.expect = chai.expect
@@ -18,15 +19,16 @@ global.expect = chai.expect
 // global.should = chai.should()
 
 
-
+//
 // Helper Functions
 //
 // This is the object you can attach any helper functions used across
 // several test files.
 global.TestHelper = {}
 
-
+//
 // Mock apps for API testing
+//
 var express = require('express')
 
 TestHelper.createApp = function (loader) {
@@ -67,9 +69,9 @@ var reportError = function(description, error) {
 global.reportError = ramda.curry(reportError);
 
 
-
-/*  Mocha 'helpers' to support coroutine tests */
-var Bluebird = require('bluebird');
+//
+//  Mocha 'helpers' to support coroutine tests
+//
 global.before_ = function (f) { before ( Bluebird.coroutine(f) ) }
 global.beforeEach_ = function (f) { beforeEach ( Bluebird.coroutine(f) ) }
 global.it_ = function (description, f) { it ( description, Bluebird.coroutine(f) ) }

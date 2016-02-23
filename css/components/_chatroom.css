@@ -1,0 +1,30 @@
+.user-chat {
+	position:fixed;
+	bottom:10%;
+	right:24%;
+}
+
+#msg-input, #msg-input:focus {
+	resize:none;
+	width:740px;
+	height:30px;
+	position:relative;
+	left:2em;
+	top:1.4em;
+	border-radius:25px;
+	margin:0 auto;
+	outline:none;
+	padding-left:15px;
+	padding-top:3px;
+}
+
+.send-message {
+	display:inline-block;
+	margin-left:13px;
+	cursor:pointer;
+}
+
+#emoji {
+	display:inline-block;
+	cursor:pointer;
+}

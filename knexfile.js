@@ -80,7 +80,7 @@ module.exports = {
     seeds: {
       directory: './lib/seeds'
     },
-    debug: false, // set true for verbose database operations
+    debug: true,
   },
 
   test: {
@@ -90,7 +90,7 @@ module.exports = {
       port: 5432,
       database: 'test'
     },
-    debug: false, // set true for verbose database operations
+    debug: false,
   },
 };
 

@@ -1,6 +1,6 @@
 # Travel-consensus
 
-> Collaborative group travel plans without the hassle!
+> Travel-consensus description
 
 ## Team
 
@@ -14,14 +14,13 @@
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
+    1. [Tasks](#tasks)
 1. [Team](#team)
 1. [Contributing](#contributing)
 
-## Development Documentation and Usage
+## Usage
 
-### See [the wiki](https://github.com/travel-consensus/travel-consensus/wiki)
-
-The wiki serves as a general starting point with overview information about our implementation. It will guide you to further commented detail in the codebase.
+> Some usage instructions
 
 ## Requirements
 
@@ -30,6 +29,10 @@ The wiki serves as a general starting point with overview information about our 
 - react-dom 		v 0.14.7
 - react-router 	v 2.0.0
 - reactify 			v 1.1.1
+
+## Development
+
+#### Check out the knexfile.js for database configuration information.
 
 ### Installing Dependencies
 
@@ -40,11 +43,17 @@ npm install
 npm start
 ```
 
+### Tasks
+
+```sh
+...
+````
+
 ### Roadmap
 
-View the project roadmap [here](https://github.com/travel-consensus/travel-consensus/wiki/Project-Vision)
+View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
 
 
 ## Contributing
 
-See [CONTRIBUTING.md](https://github.com/travel-consensus/travel-consensus/blob/master/CONTRIBUTING.md) for contribution guidelines.
+See [CONTRIBUTING.md](https://github.com/unexpected-lion/ourglass/blob/master/contributing.md) for contribution guidelines.

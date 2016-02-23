@@ -1,3 +1,5 @@
+# Project Name #
+
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
 
@@ -12,20 +14,31 @@ If the press release is more than a page and a half, it is probably too long. Ke
 Oh, and I also like to write press-releases in what I call "Oprah-speak" for mainstream consumer products. Imagine you're sitting on Oprah's couch and have just explained the product to her, and then you listen as she explains it to her audience. That's "Oprah-speak", not "Geek-speak".
 
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
--->
+ -->
+ 
+## Heading ##
+  > Name the product in a way the reader (i.e. your target customers) will understand.
 
-# Travel Consensus #
-
-## Collaborative group travel plans without the hassle! ##
+## Sub-Heading ##
+  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
 
 ## Summary ##
-  > Give everyone a voice in travel planning, without the barriers of endless communication leading to partial consensus and an unhappy trip. Add tasks, make suggestions, discuss options, and build consensus, as you all prepare. Use Travel-Consensus to quickly get on the same page, and plan for great trip.
+  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
 
 ## Problem ##
-  > Planning a trip? Tired of endless conversations and emails that leave the group unsatisfied with travel plans?
+  > Describe the problem your product solves.
 
 ## Solution ##
-  > A group decision-making system designed to optimize the travel planning process.
+  > Describe how your product elegantly solves the problem.
+
+## Quote from You ##
+  > A quote from a spokesperson in your company.
 
 ## How to Get Started ##
-  > Start planning your trip today! Invite fellow travelers and resolve plans with ease.
+  > Describe how easy it is to get started.
+
+## Customer Quote ##
+  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+
+## Closing and Call to Action ##
+  > Wrap it up and give pointers where the reader should go next.

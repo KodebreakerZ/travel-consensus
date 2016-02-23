@@ -55,7 +55,7 @@ Trip.allOfUser = function(userId) {
         tripsOfUser.map(function(tripOfUser) {
           return Trip.byId(tripOfUser.id_trip);
         })
-      );
+      )
     })
 }
 

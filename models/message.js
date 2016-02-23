@@ -24,6 +24,8 @@ Message.create = function(attrs) {
 
 /*
   Retrieve all messages of a certain task
+
+  TODO: Sort messages by createdAt dates
 */
 Message.allOfTask = function(taskId) {
   return db.select('*').from('message').where({'id_task': taskId}).orderBy('createdAt', 'asc')

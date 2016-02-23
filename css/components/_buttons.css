@@ -1,0 +1,37 @@
+/*This file contains all styles related to the button component.*/
+
+.btn {
+  padding: 0.5em 1.5em;
+  color: #2A2D34;
+  border: 1px solid #2A2D34;
+  border-radius: 3px;
+  text-decoration: none;
+  user-select: none;
+  display: inline-block;
+}
+
+.btn:hover {
+  color: white;
+  background-color: #2A2D34;
+}
+
+.btn + .btn {
+  margin-left: 1em;
+}
+
+.btn--loading {
+  color: white;
+  background-color: #2A2D34;
+}
+
+.btn--chat {
+  color: white;
+  background-color: rgba(42,45,52,0.40);
+  right: 19%;
+  position: relative;
+}
+
+.btn--chat:hover {
+  color: white;
+  background-color: rgba(50,112,119,0.40);
+}

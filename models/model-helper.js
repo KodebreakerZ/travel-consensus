@@ -2,7 +2,7 @@ const ramda = require('ramda');
 
 /*
   Provide a description to log when it is invoked with an error or
-  psuedo-error. See server/server-helper.js for more information.
+  psuedo-error
 
   use example:
     .catch(reportError('error finding messages for a task'))
