@@ -43,6 +43,10 @@ div.three {
   margin-left: 67% !important;
 }
 
+div.two{
+  margin-left: 50% !important;
+}
+
 .darkgray {
   /* margin: 0 5%;*/
   background-color: #303030;
@@ -255,6 +259,7 @@ div.three {
 /* Global Top Bar - Popup
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */
+
 
 .invitepopup {
   position: absolute;

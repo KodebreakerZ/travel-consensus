@@ -16,8 +16,12 @@ var GlobalTopBar = React.createClass({
 				<h1 className="title">Travel-Consensus</h1>
 				  <div className="container">
 				    <div className="row">
-				      <div className="three columns offset-by-nine">
-				        <p><i className="fa fa-plus-circle" onClick={this.handleClick}></i> Invite trip participants</p>
+				      <div className="six columns offset-by-one-third">
+				        <p>
+				          <i className="fa fa-plus-circle" onClick={this.handleClick}></i>Manage Trips
+				          <span>      </span>
+				          <i className="fa fa-plus-circle" onClick={this.handleClick}></i> Invite trip participants
+				        </p>
 				      </div>
 				    </div>
 				  </div>
