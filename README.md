@@ -37,6 +37,7 @@ From within the root directory:
 
 ```sh
 npm install
+npm install -g knex // for database seeding
 npm start
 ```
 
