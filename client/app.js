@@ -55,7 +55,6 @@ taskArea = ReactDOM.render(taskArea, document.getElementById('react-task-mount')
 var requestHandler = require('./requests/get')
 requestHandler.setViewDataUpdateInterval(sidebar, taskArea, 5000);
 
-console.log('addNewMessage', topbar.props.signin)
 /*
   on the index.html located within client/public/index.html, we've added
   "<div id='react-main-mount'></div>" within the body tag.

@@ -10,7 +10,7 @@ var Login = React.createClass({
     }
 
     this.props.login(login)
-    console.log('calling login', this.props)
+    // console.log('calling login', this.props)
   },
   showLogin: function(){  
     $(".form").fadeToggle('fast');

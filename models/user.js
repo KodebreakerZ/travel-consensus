@@ -32,6 +32,7 @@ User.generateHash = function(password) {
 };
 
 User.validPassword = function(password) {
+  console.log('this.local', this.local)
     return bcrypt.compareSync(password, this.local.password);
 };
 
@@ -83,6 +84,14 @@ User.allOfTrip = function(tripId) {
     .catch(reportError('error retrieving users for trip'))
 }
 
+/*
+  Retrieve username by name
+*/
+User.findByName= function(user) {
+  return db.select('username').from('users').where( {username: user} )
+    .catch(reportError('error retrieving username by username'))
+    .then(first)
+}
 
 /*
   Retrieve username for an id
