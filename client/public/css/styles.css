@@ -259,6 +259,21 @@ div.two{
 /* Global Top Bar - Popup
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */
+.tripDropdownListDiv {
+  position: absolute;
+  z-index: 50;
+  right: 0;
+
+  display: none;
+
+  width: 394px;
+  margin-top: 15px;
+  margin-right: 14%;
+  padding: 25px 25px 20px;
+
+  border: 1px solid #999;
+  background-color: #fff;
+}
 
 
 .invitepopup {

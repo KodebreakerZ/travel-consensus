@@ -5,8 +5,12 @@ var SignUp = require('./SignUp.jsx');
 var TripDropdownList = require('./TripDropdownList.jsx');
 
 var GlobalTopBar = React.createClass({
-	handleClick: function(){
+	handleParticipantsClick: function(){
 		$(".invitepopup").fadeToggle('fast');
+	},
+
+	handleTripsClick: function(){
+		$(".tripDropdownListDiv").fadeToggle('fast');
 	},
 
 	render: function(){
@@ -19,9 +23,9 @@ var GlobalTopBar = React.createClass({
 				    <div className="row">
 				      <div className="six columns offset-by-one-third">
 				        <p>
-				          <i className="fa fa-plus-circle" onClick={this.handleClick}></i>Manage Trips
+				          <i className="fa fa-plus-circle" onClick={this.handleTripsClick}></i>Manage Trips
 				          <span>      </span>
-				          <i className="fa fa-plus-circle" onClick={this.handleClick}></i> Invite trip participants
+				          <i className="fa fa-plus-circle" onClick={this.handleParticipantsClick}></i> Invite trip participants
 				        </p>
 				      </div>
 				    </div>

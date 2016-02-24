@@ -6,17 +6,15 @@ var TripDropdownList = React.createClass({
   getInitialState: function() {
     //get request to server for all the user's trips
     return {
-      usersTrips: ["Trip 1", "Trip 2"]
+      usersTrips: [{name: "Trip 1", id: 1}, {name:"Trip 2", id: 2}]
     }
   },
 
   render: function() {
-    // can not read property map of undefined.
-    // see comment in SuggestionList.
 
-    console.log('props', this.props);
-    var tripList = this.props.usersTrips.map(function(trip) {
+    var tripList = this.state.usersTrips.map(function(trip) {
       return <TripItem
+               key={trip.id}
                trip={trip}
              />
     }.bind(this));
@@ -24,7 +22,7 @@ var TripDropdownList = React.createClass({
     return (
       <div className="tripDropdownListDiv">
         <h4>Select A Trip:</h4>
-        {tripList}
+          {tripList}
         <h4>Add A Trip</h4>
       </div>
     )

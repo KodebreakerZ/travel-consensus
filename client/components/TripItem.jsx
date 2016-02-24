@@ -4,8 +4,8 @@ var ReactDOM = require('react-dom');
 var TripItem = React.createClass({
   render: function() {
     return (
-      <p className="trip">
-        <span className="trip-name">{this}</span>
+      <p className="tripItem">
+        {this.props.trip.name}
       </p>
     )
   }
