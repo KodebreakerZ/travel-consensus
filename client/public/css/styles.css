@@ -336,6 +336,15 @@ div.two{
   fon-weight: bold;
 }
 
+/* Global Top Bar - 
+––––––––––––––––––––––––––––––––––––––––––––––––––
+*/
+
+.newTripForm {
+  display: none;
+}
+
+
 /* Static Sidebar
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */

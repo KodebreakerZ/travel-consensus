@@ -28,6 +28,10 @@ TripAPI.post('/', function(request, response) {
   }
 
   Trip.create(newTrip)
+    .then(function(tripInfo) {
+      var newTripUserObject = {id_trip: tripInfo.id, id_user: request.body.id_user};
+      return Trip.addUser(newTripUserObject);
+    })
     .then(sendStatusAndData(response, 201))
     .catch(sendStatusAndError(response, 500, 'Server error posting new trip'))
 })

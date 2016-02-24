@@ -38,7 +38,7 @@ var GlobalTopBar = React.createClass({
 				  </div>
 				</div>
 
-				<TripDropdownList usersTrips={this.state.tripsInUser} />
+				<TripDropdownList usersTrips={this.state.tripsInUser} addNewTrip={this.props.addNewTrip}/>
 
 				<div className='invitepopup'>
     			  <input type="text" value="" className="tags"/>

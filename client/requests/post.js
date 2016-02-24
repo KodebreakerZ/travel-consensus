@@ -61,3 +61,20 @@ exports.addNewSuggestion = function(suggestionObject) {
       return data;
     })
 };
+
+/*
+  Sends a request to the server to create a new trip
+
+  See server/apis
+*/
+exports.addNewTrip = function(tripAndUserObject) {
+  return fetch('trip/', {
+    method: 'POST',
+    headers: requestHeaders,
+    body: JSON.stringify(tripAndUserObject)
+  })
+    .then( function(response) {
+      console.log('response from posting new trip', response);
+    })
+};
+

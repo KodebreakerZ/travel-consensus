@@ -42,6 +42,7 @@ function fetchTrips(userId) {
 }
 
 function fetchTasks(tripId) {
+  console.log('fetching tasks using trip id', tripId);
   return fetch('trip/' + tripId + '/tasks', {
     headers: requestHeaders
   })
