@@ -1,0 +1,64 @@
+LOG:  database system was shut down at 2016-02-24 11:32:42 CST
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ERROR:  relation "task" does not exist at character 15
+STATEMENT:  select * from "task" where "id_trip" = $1
+ERROR:  relation "message" does not exist at character 15
+STATEMENT:  select * from "message" where "id_task" = $1 order by "createdAt" asc
+ERROR:  relation "suggestion" does not exist at character 15
+STATEMENT:  select * from "suggestion" where "id_task" = $1 order by "createdAt" asc
+ERROR:  relation "trip_users" does not exist at character 23
+STATEMENT:  select "id_trip" from "trip_users" where "id_user" = $1
+ERROR:  relation "task" does not exist at character 15
+STATEMENT:  select * from "task" where "id_trip" = $1
+ERROR:  relation "message" does not exist at character 15
+STATEMENT:  select * from "message" where "id_task" = $1 order by "createdAt" asc
+ERROR:  relation "suggestion" does not exist at character 15
+STATEMENT:  select * from "suggestion" where "id_task" = $1 order by "createdAt" asc
+ERROR:  relation "trip_users" does not exist at character 23
+STATEMENT:  select "id_trip" from "trip_users" where "id_user" = $1
+ERROR:  relation "task" does not exist at character 15
+STATEMENT:  select * from "task" where "id_trip" = $1
+ERROR:  relation "message" does not exist at character 15
+STATEMENT:  select * from "message" where "id_task" = $1 order by "createdAt" asc
+ERROR:  relation "suggestion" does not exist at character 15
+STATEMENT:  select * from "suggestion" where "id_task" = $1 order by "createdAt" asc
+ERROR:  relation "trip_users" does not exist at character 23
+STATEMENT:  select "id_trip" from "trip_users" where "id_user" = $1
+ERROR:  relation "task" does not exist at character 15
+STATEMENT:  select * from "task" where "id_trip" = $1
+ERROR:  relation "message" does not exist at character 15
+STATEMENT:  select * from "message" where "id_task" = $1 order by "createdAt" asc
+ERROR:  relation "suggestion" does not exist at character 15
+STATEMENT:  select * from "suggestion" where "id_task" = $1 order by "createdAt" asc
+ERROR:  relation "trip_users" does not exist at character 23
+STATEMENT:  select "id_trip" from "trip_users" where "id_user" = $1
+ERROR:  relation "task" does not exist at character 15
+STATEMENT:  select * from "task" where "id_trip" = $1
+ERROR:  relation "message" does not exist at character 15
+STATEMENT:  select * from "message" where "id_task" = $1 order by "createdAt" asc
+ERROR:  relation "suggestion" does not exist at character 15
+STATEMENT:  select * from "suggestion" where "id_task" = $1 order by "createdAt" asc
+ERROR:  relation "trip_users" does not exist at character 23
+STATEMENT:  select "id_trip" from "trip_users" where "id_user" = $1
+ERROR:  relation "task" does not exist at character 15
+STATEMENT:  select * from "task" where "id_trip" = $1
+ERROR:  relation "message" does not exist at character 15
+STATEMENT:  select * from "message" where "id_task" = $1 order by "createdAt" asc
+ERROR:  relation "suggestion" does not exist at character 15
+STATEMENT:  select * from "suggestion" where "id_task" = $1 order by "createdAt" asc
+ERROR:  relation "trip_users" does not exist at character 23
+STATEMENT:  select "id_trip" from "trip_users" where "id_user" = $1
+LOG:  received smart shutdown request
+LOG:  autovacuum launcher shutting down
+FATAL:  terminating connection due to administrator command
+FATAL:  the database system is shutting down
+FATAL:  the database system is shutting down
+FATAL:  the database system is shutting down
+FATAL:  the database system is shutting down
+FATAL:  terminating connection due to administrator command
+LOG:  shutting down
+FATAL:  the database system is shutting down
+FATAL:  the database system is shutting down
+LOG:  database system is shut down

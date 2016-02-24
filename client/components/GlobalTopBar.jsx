@@ -13,6 +13,12 @@ var GlobalTopBar = React.createClass({
 		$(".tripDropdownListDiv").fadeToggle('fast');
 	},
 
+	getInitialState: function() {
+		return {
+			tripsInUser: []
+		}
+	},
+
 	render: function(){
 		return (
 			<div>
@@ -32,7 +38,7 @@ var GlobalTopBar = React.createClass({
 				  </div>
 				</div>
 
-				<TripDropdownList />
+				<TripDropdownList usersTrips={this.state.tripsInUser} />
 
 				<div className='invitepopup'>
     			  <input type="text" value="" className="tags"/>

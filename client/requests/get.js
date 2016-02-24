@@ -1,8 +1,15 @@
 require('./request-helpers.js'); // Imports headers
 require('whatwg-fetch');      // imports 'fetch' function
 
-exports.setViewDataUpdateInterval = function(taskList, taskArea, interval) {
+exports.setViewDataUpdateInterval = function(topBar, taskList, taskArea, interval) {
   setInterval(function() {
+
+    fetchTrips(window.globalStateUserId)
+     .then(function(trips) {
+       console.log('got trips back from server', trips);
+       topBar.setState( {tripsInUser: trips} );
+     })
+
     fetchTasks(window.globalStateTripId)
       .then(function(tasks) {
         taskList.setState( {tasksInList: tasks} );
@@ -25,6 +32,15 @@ exports.setViewDataUpdateInterval = function(taskList, taskArea, interval) {
   }, interval)
 }
 
+function fetchTrips(userId) {
+  return fetch('user/' + userId + '/trips', {
+    headers: requestHeaders
+  }).then( function(response) {
+    console.log('got trips', response);
+    return response.json();
+  })
+}
+
 function fetchTasks(tripId) {
   return fetch('trip/' + tripId + '/tasks', {
     headers: requestHeaders
@@ -43,7 +59,7 @@ function fetchMessages(taskId) {
     })
 }
 
-function fetchSuggestions(taskId) {
+function fetchSuggestions(userId, tripId, taskId) {
   return fetch('task/' + taskId + '/suggestions', {
     headers: requestHeaders
   })

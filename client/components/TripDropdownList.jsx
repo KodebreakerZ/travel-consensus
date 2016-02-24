@@ -3,16 +3,10 @@ var ReactDOM = require('react-dom');
 var TripItem = require('./TripItem.jsx');
 
 var TripDropdownList = React.createClass({
-  getInitialState: function() {
-    //get request to server for all the user's trips
-    return {
-      usersTrips: [{name: "Trip 1", id: 1}, {name:"Trip 2", id: 2}]
-    }
-  },
 
   render: function() {
 
-    var tripList = this.state.usersTrips.map(function(trip) {
+    var tripList = this.props.usersTrips.map(function(trip) {
       return <TripItem
                key={trip.id}
                trip={trip}
