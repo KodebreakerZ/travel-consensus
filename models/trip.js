@@ -15,7 +15,7 @@ const Trip = module.exports;
   }
 */
 Trip.create = function(attrs) {
-  return db('trip').insert(attrs, ['name'])
+  return db('trip').insert(attrs, ['id', 'name'])
     .catch(reportError('error inserting trip into db'))
     .then(first)
 }

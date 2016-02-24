@@ -43,6 +43,10 @@ div.three {
   margin-left: 67% !important;
 }
 
+div.two{
+  margin-left: 50% !important;
+}
+
 .darkgray {
   /* margin: 0 5%;*/
   background-color: #303030;
@@ -255,6 +259,22 @@ div.three {
 /* Global Top Bar - Popup
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */
+.tripDropdownListDiv {
+  position: absolute;
+  z-index: 50;
+  right: 0;
+
+  display: none;
+
+  width: 394px;
+  margin-top: 15px;
+  margin-right: 14%;
+  padding: 25px 25px 20px;
+
+  border: 1px solid #999;
+  background-color: #fff;
+}
+
 
 .invitepopup {
   position: absolute;
@@ -315,6 +335,15 @@ div.three {
 
   fon-weight: bold;
 }
+
+/* Global Top Bar - 
+––––––––––––––––––––––––––––––––––––––––––––––––––
+*/
+
+.newTripForm {
+  display: none;
+}
+
 
 /* Static Sidebar
 ––––––––––––––––––––––––––––––––––––––––––––––––––
