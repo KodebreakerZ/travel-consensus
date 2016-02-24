@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Login = require('./Login.jsx');
 var SignUp = require('./SignUp.jsx');
+var TripDropdownList = require('./TripDropdownList.jsx');
 
 var GlobalTopBar = React.createClass({
 	handleClick: function(){
@@ -26,13 +27,16 @@ var GlobalTopBar = React.createClass({
 				    </div>
 				  </div>
 				</div>
+
+				<TripDropdownList />
+
 				<div className='invitepopup'>
-    			<input type="text" value="" className="tags"/>
-    			<div className="jq_tags_editor">
+    			  <input type="text" value="" className="tags"/>
+    			  <div className="jq_tags_editor">
 	    			<div className="jq_tags_tokens"></div>
     				<input type="text" className="jq_tags_editor_input"/>
-    			</div>
-    			<button className="inviteUsers">Invite Users</button>
+    			  </div>
+    			  <button className="inviteUsers">Invite Users</button>
 				</div>
 
     			<Login className="login-form"/>
