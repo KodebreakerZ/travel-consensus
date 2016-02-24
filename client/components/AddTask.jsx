@@ -5,7 +5,7 @@ var AddTask = React.createClass({
 	render: function(){
 		return (
 			<div className="addTaskBox">
-			  <form onSubmit={this.newTask}>
+			  <form onSubmit={this.props.newTask}>
 			    <label>Add a task</label>
 			    <input className="newTask" type="text" size="15" />
 			    <input type="submit" name="AddTask" />

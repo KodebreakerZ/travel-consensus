@@ -61,3 +61,7 @@ exports.addNewSuggestion = function(suggestionObject) {
       return data;
     })
 };
+
+exports.login = function(info) {
+  console.log('got to post.js', info)
+}

@@ -1,10 +1,12 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var TaskItem = require('./TaskItem.jsx');
+var AddTask = require('./AddTask.jsx');
 
 var TaskList = React.createClass({
   newTask: function(e){
     e.preventDefault();
+    console.log('in new task')
     var newTask = {
       name: $('.newTask').val()
     }
@@ -35,13 +37,8 @@ var TaskList = React.createClass({
         </div>
 
             <hr />
-        <div className="addTaskBox">
-          <form onSubmit={this.newTask}>
-            <label>Add a task</label>
-            <input className="newTask" type="text" size="15" />
-            <input type="submit" name="AddTask" />
-          </form>
-        </div>
+            <AddTask newTask={this.newTask}/>
+        
       </div>
     );
   }
