@@ -62,6 +62,20 @@ exports.addNewSuggestion = function(suggestionObject) {
     })
 };
 
-exports.login = function(info) {
-  console.log('got to post.js', info)
-}
+exports.signin = function(info) {
+  console.log('exports.signin')
+  return fetch('login', {
+    method: 'POST',
+    headers: requestHeaders,
+    body: JSON.stringify(info)
+  })
+  .then(function(response) {
+    console.log('response')
+    return response.json();
+  })
+  .catch(function(error) {
+    if( error) {
+      console.log("ERROR:", error)
+    }
+  })
+};

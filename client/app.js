@@ -45,6 +45,7 @@ var taskArea = React.createElement(GlobalTaskArea, {
 });
 var topbar   = React.createElement(GlobalTopBar, {
   // empty props
+  signin: postRequests.signin
 });
 
 topbar   = ReactDOM.render(topbar, document.getElementById('react-main-mount'));
@@ -52,8 +53,9 @@ sidebar  = ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount
 taskArea = ReactDOM.render(taskArea, document.getElementById('react-task-mount'));
 
 var requestHandler = require('./requests/get')
-requestHandler.setViewDataUpdateInterval(sidebar, taskArea, 2000);
+requestHandler.setViewDataUpdateInterval(sidebar, taskArea, 5000);
 
+console.log('addNewMessage', topbar.props.signin)
 /*
   on the index.html located within client/public/index.html, we've added
   "<div id='react-main-mount'></div>" within the body tag.

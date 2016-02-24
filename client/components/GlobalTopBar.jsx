@@ -31,7 +31,7 @@ var GlobalTopBar = React.createClass({
     			<button className="inviteUsers">Invite Users</button>
 				</div>
 
-    			<Login className="login-form"/>
+    			<Login className="login-form" login={this.props.signin}/>
     			<SignUp className="signup-form"/>
 
 			</div>
