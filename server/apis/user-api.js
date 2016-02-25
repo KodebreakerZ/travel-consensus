@@ -46,10 +46,10 @@ UserAPI.get('/:userId/trips', function(request, response) {
 UserAPI.get('/:username/user/:id_trip', function(request, response) {
   User.useridByName(request.params.username)
     .then(function(data) {
-      var toSend = {userid: data[0].id, tripid: request.params.id_trip};
-      User.addToTrip(toSend)
-        .then(function(stuff) {
-          console.log("YOU DID IT!");
-        })
+      // var toSend = {userid: data[0].id, tripid: request.params.id_trip};
+      // User.addToTrip(toSend)
+      //   .then(function(stuff) {
+      //     console.log("YOU DID IT!");
+      //   })
     })
 })
