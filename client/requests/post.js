@@ -54,6 +54,7 @@ exports.addNewSuggestion = function(suggestionObject) {
     body: JSON.stringify(suggestionObject)
   })
     .then(function(response) {
+      console.log("WHAT IS THE RESPONSE?!", response);
       return response.json();
     })
     .then(function(data) {
@@ -75,9 +76,15 @@ exports.signin = function(info) {
     body: JSON.stringify(info)
   })
   .then(function(response) {
-    console.log('response')
-    // return response.json();
+    // console.log('response in post.js', response)
+    return response.json();
     
+  })
+  .then(function(data) {
+    console.log('THIS IS MAybe A BLOB', data)
+    window.globalStateUserId = data.id;
+    window.globalToken = data.token;
+    console.log('USERID: ', window.globalStateUserId)
   })
   .catch(function(error) {
     if( error) {

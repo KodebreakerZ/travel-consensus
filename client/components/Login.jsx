@@ -10,6 +10,7 @@ var Login = React.createClass({
     }
 
     this.props.login(login)
+    this.cancel()
     // console.log('calling login', this.props)
   },
   showLogin: function(){  

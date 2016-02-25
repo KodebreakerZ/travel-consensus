@@ -97,17 +97,23 @@ if (process.env.NODE_ENV !== 'test') {
 
   // process the login form
   app.post('/login', function (request, response) {
-     console.log('made it to the server login post', request.body)
-     User.verifyLogin(request.body)
-     .then(function(response) {
-       console.log('response', response)
-       response.send(token)
+     // console.log('made it to the server login post', request.body)
+     return User.verifyLogin(request.body)
+     .then(function(res) {
+      // status = 200;
+       // console.log('response in server', res)
+       response.send({token: res.token, id: res.id[0].id})
+
+       // response.status(status).send(res)
        // if (response !== undefined) {
        //   User.validPassword(request.body.password)
        //   .then(function(pass, fail) {
        //      console.log('pass, fail', pass, fail)
        //   })
        // }
+     })
+     .catch(function(error) {
+      console.log("ERROR:", error)
      })
   });
 /* end passport implementation */

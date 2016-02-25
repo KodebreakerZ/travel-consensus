@@ -89,13 +89,14 @@ User.allOfTrip = function(tripId) {
   Retrieve username by name
 */
 User.verifyLogin= function(user) {
-  return db.select('username').from('users').where( {username: user.username} )
+  return db.select('id').from('users').where( {username: user.username, password: user.password} )
     .then(function(response, error) {
       if(error) {
         console.log("Username does not exist")
       }
-      return db.select('password').from('users').where( {password: user.password})
-      // return response;
+      // return db.select('password').from('users').where( {password: user.password})
+      console.log('response from database query.', response)
+      return response;
     })
     .then(function(response, error) {
       if(response === undefined) {
@@ -104,7 +105,7 @@ User.verifyLogin= function(user) {
       console.log('%c success, color:red', response)
       var token = jwt.encode(user.username, 'secret');
           console.log("TOKEN", token, "user:", user)
-          return {token: token};
+          return {token: token, id: response};
     })
     .catch(reportError('error retrieving username by username'))
     // .then(first)
