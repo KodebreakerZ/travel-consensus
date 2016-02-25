@@ -9,7 +9,7 @@ var GlobalTaskArea = require('./components/GlobalTaskArea.jsx');
 /******** THIS IS GLOBAL STATE *********/
 /**/  window.globalStateTripId = null;  /**/
 /**/  window.globalStateTripName = 'please select a trip';
-/**/  window.globalStateTaskId = 1;  /**/
+/**/  window.globalStateTaskId = null;  /**/
 /**/  window.globalStateUserId = 1;  /**/
 /***************************************/
 /*
