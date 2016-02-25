@@ -47,6 +47,7 @@ var taskArea = React.createElement(GlobalTaskArea, {
 });
 var topbar   = React.createElement(GlobalTopBar, {
   signin: postRequests.signin,
+  signup: postRequests.signup,
   addNewTrip: postRequests.addNewTrip
 });
 

@@ -110,22 +110,33 @@ User.verifyLogin= function(user) {
     .catch(reportError('error retrieving username by username'))
     // .then(first)
 }
-    // var username = req.body.username,
-    //     password = req.body.password;
 
-    // db.select('username password').from('users').where({username: user.username, password: user.password})
-    // .then(function(data) {
-    //   console.log('res userctrl', data)
-    //   console.log('res.length', data[0])
-    //   if (data[0] === undefined) {
-    //   res.send({error: 'Username or password is invalid.'})
-    //   } else {
-    //     var token = jwt.encode(username, 'secret');
-    //       // console.log("TOKEN", token, "user:", user)
-    //       res.send({token: token, uid: data[0].userid});
-    //   }
-    // })
-  // }
+/*
+  Signup User
+*/
+User.signup= function(user) {
+  return db.select('id').from('users').where( {username: user.username, password: user.password} )
+    .then(function(response, error) {
+      if(error) {
+        console.log("Username does not exist")
+      }
+      // return db.select('password').from('users').where( {password: user.password})
+      console.log('response from database query.', response)
+      return response;
+    })
+    .then(function(response, error) {
+      if(response === undefined) {
+        console.log('Username or password is incorrect.')
+      }
+      console.log('%c success, color:red', response)
+      var token = jwt.encode(user.username, 'secret');
+          console.log("TOKEN", token, "user:", user)
+          return {token: token, id: response};
+    })
+    .catch(reportError('error retrieving username by username'))
+    // .then(first)
+}
+    
 /*
   Retrieve username for an id
 */

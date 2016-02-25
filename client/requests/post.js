@@ -69,8 +69,38 @@ exports.addNewSuggestion = function(suggestionObject) {
   See server/index.js/login @ POST login
 */
 exports.signin = function(info) {
-  console.log('exports.signin')
+  // console.log('exports.signin ')
   return fetch('login', {
+    method: 'POST',
+    headers: requestHeaders,
+    body: JSON.stringify(info)
+  })
+  .then(function(response) {
+    // console.log('response in post.js', response)
+    return response.json();
+    
+  })
+  .then(function(data) {
+    // console.log('THIS IS MAybe A BLOB', data)
+    window.globalStateUserId = data.id;
+    window.globalToken = data.token;
+    // console.log('USERID: ', window.globalStateUserId)
+  })
+  .catch(function(error) {
+    if( error) {
+      console.log("ERROR:", error)
+    }
+  })
+};
+
+/*
+  Sends a request to the server to signin a user
+
+  See server/index.js/signup @ POST signup
+*/
+exports.signup = function(info) {
+  console.log('exports.signup', info)
+  return fetch('signup', {
     method: 'POST',
     headers: requestHeaders,
     body: JSON.stringify(info)
