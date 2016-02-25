@@ -34,7 +34,7 @@ var GlobalTopBar = React.createClass({
 				    <div className="row">
 				      <div className="six columns offset-by-one-third">
 				        <p>
-				          <i className="fa fa-plus-circle" onClick={this.handleTripsClick}></i>Manage Trips
+				          <i className="fa fa-plus-circle" onClick={this.handleTripsClick}></i> Manage Trips
 				          <span>      </span>
 				          <i className="fa fa-plus-circle" onClick={this.handleParticipantsClick}></i> Invite trip participants
 				        </p>
