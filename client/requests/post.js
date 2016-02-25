@@ -62,6 +62,11 @@ exports.addNewSuggestion = function(suggestionObject) {
     })
 };
 
+/*
+  Sends a request to the server to signin a user
+
+  See server/index.js/login @ POST login
+*/
 exports.signin = function(info) {
   console.log('exports.signin')
   return fetch('login', {
@@ -71,7 +76,8 @@ exports.signin = function(info) {
   })
   .then(function(response) {
     console.log('response')
-    return response.json();
+    // return response.json();
+    
   })
   .catch(function(error) {
     if( error) {
@@ -79,3 +85,21 @@ exports.signin = function(info) {
     }
   })
 };
+
+/*
+  Sends a request to the server to create a new trip
+
+  See server/apis
+*/
+exports.addNewTrip = function(tripAndUserObject) {
+  return fetch('trip/', {
+    method: 'POST',
+    headers: requestHeaders,
+    body: JSON.stringify(tripAndUserObject)
+  })
+    .then( function(response) {
+      console.log('response from posting new trip', response);
+    })
+};
+
+

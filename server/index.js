@@ -69,9 +69,11 @@ if (process.env.NODE_ENV !== 'test') {
 */
   var tripRouter = require('./apis/trip-api');
   var taskRouter = require('./apis/task-api');
+  var userRouter = require('./apis/user-api');
 
   routes.use('/trip', tripRouter);
   routes.use('/task', taskRouter);
+  routes.use('/user', userRouter);
 
 /*
   Signin and signup routes handled by Passport
@@ -96,15 +98,16 @@ if (process.env.NODE_ENV !== 'test') {
   // process the login form
   app.post('/login', function (request, response) {
      console.log('made it to the server login post', request.body)
-     User.findByName(request.body.username)
+     User.verifyLogin(request.body)
      .then(function(response) {
        console.log('response', response)
-       if (response !== undefined) {
-         User.validPassword(request.body.password)
-         .then(function(pass, fail) {
-            console.log('pass, fail', pass, fail)
-         })
-       }
+       response.send(token)
+       // if (response !== undefined) {
+       //   User.validPassword(request.body.password)
+       //   .then(function(pass, fail) {
+       //      console.log('pass, fail', pass, fail)
+       //   })
+       // }
      })
   });
 /* end passport implementation */

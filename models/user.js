@@ -1,5 +1,6 @@
 require('./model-helper');
 
+const jwt  = require('jwt-simple');
 const db = require('../lib/db');
 const first = require('ramda').head;
 const bcrypt = require('bcrypt-nodejs');
@@ -27,9 +28,9 @@ User.create = function(attrs) {
 */
 
 
-User.generateHash = function(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
+// User.generateHash = function(password) {
+//     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+// };
 
 User.validPassword = function(password) {
   console.log('this.local', this.local)
@@ -87,12 +88,43 @@ User.allOfTrip = function(tripId) {
 /*
   Retrieve username by name
 */
-User.findByName= function(user) {
-  return db.select('username').from('users').where( {username: user} )
+User.verifyLogin= function(user) {
+  return db.select('username').from('users').where( {username: user.username} )
+    .then(function(response, error) {
+      if(error) {
+        console.log("Username does not exist")
+      }
+      return db.select('password').from('users').where( {password: user.password})
+      // return response;
+    })
+    .then(function(response, error) {
+      if(response === undefined) {
+        console.log('Username or password is incorrect.')
+      }
+      console.log('%c success, color:red', response)
+      var token = jwt.encode(user.username, 'secret');
+          console.log("TOKEN", token, "user:", user)
+          return {token: token};
+    })
     .catch(reportError('error retrieving username by username'))
-    .then(first)
+    // .then(first)
 }
+    // var username = req.body.username,
+    //     password = req.body.password;
 
+    // db.select('username password').from('users').where({username: user.username, password: user.password})
+    // .then(function(data) {
+    //   console.log('res userctrl', data)
+    //   console.log('res.length', data[0])
+    //   if (data[0] === undefined) {
+    //   res.send({error: 'Username or password is invalid.'})
+    //   } else {
+    //     var token = jwt.encode(username, 'secret');
+    //       // console.log("TOKEN", token, "user:", user)
+    //       res.send({token: token, uid: data[0].userid});
+    //   }
+    // })
+  // }
 /*
   Retrieve username for an id
 */
