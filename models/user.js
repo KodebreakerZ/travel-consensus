@@ -116,22 +116,17 @@ User.verifyLogin= function(user) {
 */
 User.signup= function(user) {
   return db.select('id').from('users').where( {username: user.username, password: user.password} )
-    .then(function(response, error) {
-      if(error) {
-        console.log("Username does not exist")
+    .then(function(response) {
+      console.log('in signup in db', response)
+      if(response[0] === undefined) {
+        //add user to database
+         return db('users').insert({username: user.username, password: user.password})
+         .then(function() {
+          return User.verifyLogin(user)
+         })
+      } else {
+        throw new Error("Username is Already taken");
       }
-      // return db.select('password').from('users').where( {password: user.password})
-      console.log('response from database query.', response)
-      return response;
-    })
-    .then(function(response, error) {
-      if(response === undefined) {
-        console.log('Username or password is incorrect.')
-      }
-      console.log('%c success, color:red', response)
-      var token = jwt.encode(user.username, 'secret');
-          console.log("TOKEN", token, "user:", user)
-          return {token: token, id: response};
     })
     .catch(reportError('error retrieving username by username'))
     // .then(first)
