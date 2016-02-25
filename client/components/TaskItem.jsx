@@ -3,8 +3,8 @@ var ReactDOM = require('react-dom');
 
 var TaskItem = React.createClass({
   clickHandler: function() {
-    console.log('setting globalStateTaskId');
     window.globalStateTaskId = this.props.task.id;
+    console.log('setting globalStateTaskId to', window.globalStateTaskId);
   },
 
   render: function() {

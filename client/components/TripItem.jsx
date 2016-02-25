@@ -6,6 +6,7 @@ var TripItem = React.createClass({
 	handleClick: function() {
 		window.globalStateTripId = this.props.trip.id;
     window.globalStateTripName = this.props.trip.name;
+    window.globalStateTaskId = null;
 		// console.log('set global trip state to', window.globalStateTripId);
 	},
 
