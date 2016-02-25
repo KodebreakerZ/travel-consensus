@@ -71,12 +71,14 @@ function updateAll(topBar, taskList, taskArea) {
     console.log('other thing fired');
   }
 
-  if (window.globalStateTaskId) {
-    fetchSuggestions(window.globalStateTaskId)
+  if (window.globalStateUserId && window.globalStateTripId && window.globalStateTaskId) {
+    console.log('should run fetchSuggestions')
+    fetchSuggestions(window.globalStateUserId, window.globalStateTripId, window.globalStateTaskId)
       .then(function(suggestions) {
         taskArea.setState( {suggestionsInTask: suggestions} );
       })
   } else {
+    console.log('not all set for fetchSugggestions');
     taskArea.setState( {suggestionsInTask: []} );
   }
 }
@@ -116,6 +118,7 @@ function fetchMessages(taskId) {
 
 function fetchSuggestions(userId, tripId, taskId) {
   if (userId && tripId && taskId) {
+    console.log('fetching suggestions userId=', userId, 'tripId=', tripId, 'taskId=', taskId);
     return fetch('task/' + taskId + '/suggestions', {
       headers: requestHeaders
     })

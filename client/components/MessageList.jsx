@@ -8,7 +8,6 @@ var MessageList = React.createClass({
     // can not read property map of undefined.
     // see comment in SuggestionList.
     var messageList = this.props.messages.map(function(message) {
-      console.log('mapping message ', message);
       return <MessageItem
                message={message}
                key={message.id}

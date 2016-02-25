@@ -10,6 +10,7 @@ var SuggestionList = React.createClass({
     var suggestionList = this.props.suggestions.map(function(suggestion) {
       console.log('suggestionssss', suggestion);
       return <SuggestionItem
+               key={suggestion.id}
                suggestion={suggestion}
              />
     }.bind(this));
