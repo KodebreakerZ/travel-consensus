@@ -78,3 +78,16 @@ exports.addNewTrip = function(tripAndUserObject) {
     })
 };
 
+/*
+  Sends a request to the server to get a user by username
+
+  See server/apis/user-id @ GET user/:name/user/:id_task
+*/
+exports.fetchUserByName = function(username) {
+  /////// KK - right now, trip id is null, should be set with Auth/Login
+  return fetch('/user/' + username + '/user/' + window.globalStateTripId, {
+    method: 'GET',
+    headers: requestHeaders
+  })
+}
+
