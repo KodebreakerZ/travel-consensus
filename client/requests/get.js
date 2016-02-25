@@ -66,6 +66,9 @@ function updateAll(topBar, taskList, taskArea) {
       })
   } else {
     taskArea.setState( {messagesInTask: []} );
+    var elem = document.getElementsByClassName('chat-display');
+    elem.scrollTop = elem.scrollHeight;
+    console.log('other thing fired');
   }
 
   if (window.globalStateTaskId) {

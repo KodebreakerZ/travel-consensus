@@ -26,9 +26,13 @@ var GlobalTaskArea = React.createClass({
 
     this.props.addNewMessage(newMessage);
 
+    var objDiv = document.getElementById("messageListDiv");
+    objDiv.scrollIntoView(false);
+
     // intermediary setState; takes care of server-delay
     this.state.messagesInTask.push(newMessage)
     this.setState( {messagesInTask: this.props.messagesInTask} )
+
   },
 
   handleNewSuggestion: function(e) {
@@ -47,6 +51,7 @@ var GlobalTaskArea = React.createClass({
     // intermediary setState; takes care of server-delay
     this.state.suggestionsInTask.push(newSuggestion)
     this.setState( {suggestionsInTask: this.props.suggestionsInTask} )
+
   },
 
   render: function() {

@@ -21,6 +21,12 @@ var MessageList = React.createClass({
         {messageList}
       </div>
     );
+  },
+
+  //scroll to bottom of messages
+  componentDidUpdate: function() {
+    // var objDiv = document.getElementById("messageListDiv");
+    // objDiv.scrollIntoView(false);
   }
 
 });
