@@ -115,6 +115,18 @@ TripAPI.get('/:tripId/tasks', function(request, response) {
 })
 
 /*
+  DELETE trip/:tripId/
+
+  Delete the selected trip
+*/
+TripAPI.delete('/:tripID', function(request, response) {
+  Trip.deleteTrip(request.params.tripID)
+    .then(function(trip) {
+      return;
+    })
+})
+
+/*
   NOT IMPLEMENTED
 
   GET trip/:tripId/users

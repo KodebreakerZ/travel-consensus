@@ -25,3 +25,14 @@ exports.deleteSuggestion = function(suggestionObject) {
       console.log('errored deleting suggestion', error)
     })
 };
+
+exports.deleteTripById = function(tripID) {
+  return fetch('/trip/' + tripID, {
+    method: 'DELETE',
+    headers: requestHeaders,
+    body: tripID
+  })
+  .then(function(response) {
+    console.log("Back in delete.js")
+  })
+};
