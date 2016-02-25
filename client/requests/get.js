@@ -2,34 +2,8 @@ require('./request-helpers.js'); // Imports headers
 require('whatwg-fetch');      // imports 'fetch' function
 
 exports.setViewDataUpdateInterval = function(topBar, taskList, taskArea, interval) {
-  setInterval(function() { updateAll(topBar, taskList, taskArea)
-
-    // fetchTrips(window.globalStateUserId)
-    //  .then(function(trips) {
-    //    console.log('got trips back from server', trips);
-    //    topBar.setState( {tripsInUser: trips} );
-    //  })
-
-    // fetchTasks(window.globalStateTripId)
-    //   .then(function(tasks) {
-    //     taskList.setState( {tasksInList: tasks} );
-    //   })
-
-    // fetchMessages(window.globalStateTaskId)
-    //   .then(function(messages) {
-    //     taskArea.setState( {messagesInTask: messages} );
-    //   })
-    //   .then(function(){
-    //     var elem = document.getElementsByClassName('chat-display');
-    //     elem.scrollTop = elem.scrollHeight;
-    //     console.log('this fired!');
-    //   })
-
-    // fetchSuggestions(window.globalStateTaskId)
-    //   .then(function(suggestions) {
-    //     taskArea.setState( {suggestionsInTask: suggestions} );
-    //   })
-
+  setInterval(function() { 
+    updateAll(topBar, taskList, taskArea)
   }, interval)
 }
 
