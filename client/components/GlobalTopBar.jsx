@@ -13,6 +13,11 @@ var GlobalTopBar = React.createClass({
 		$(".tripDropdownListDiv").fadeToggle('fast');
 	},
 
+	handleInviteClick: function() {
+		var input = $('.inviteUsers').val();
+		this.props.getUser(input);
+	},
+
 	getInitialState: function() {
 		return {
 			tripsInUser: []
@@ -41,12 +46,11 @@ var GlobalTopBar = React.createClass({
 				<TripDropdownList usersTrips={this.state.tripsInUser} addNewTrip={this.props.addNewTrip}/>
 
 				<div className='invitepopup'>
-    			  <input type="text" value="" className="tags"/>
-    			  <div className="jq_tags_editor">
-	    			<div className="jq_tags_tokens"></div>
-    				<input type="text" className="jq_tags_editor_input"/>
-    			  </div>
-    			  <button className="inviteUsers">Invite Users</button>
+					<form onSubmit={this.handleInviteClick}>
+						<p>Invite People</p>
+						<input className="inviteUsers" type="text"></input>
+						<button className="inviteUsers"type="submit">Invite Users</button>
+					</form>
 				</div>
 
     			<Login className="login-form"/>

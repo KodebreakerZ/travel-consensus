@@ -46,7 +46,8 @@ var taskArea = React.createElement(GlobalTaskArea, {
   deleteSuggestion: deleteRequests.deleteSuggestion
 });
 var topbar   = React.createElement(GlobalTopBar, {
-  addNewTrip: postRequests.addNewTrip
+  addNewTrip: postRequests.addNewTrip,
+  getUser: postRequests.fetchUserByName
 });
 
 topbar   = ReactDOM.render(topbar, document.getElementById('react-main-mount'));
