@@ -28,47 +28,58 @@ exports.setViewDataUpdateInterval = function(topBar, taskList, taskArea, interva
     fetchSuggestions(window.globalStateTaskId)
       .then(function(suggestions) {
         taskArea.setState( {suggestionsInTask: suggestions} );
-      })  
+      })
+
   }, interval)
 }
 
 function fetchTrips(userId) {
-  return fetch('user/' + userId + '/trips', {
-    headers: requestHeaders
-  }).then( function(response) {
-    console.log('got trips', response);
-    return response.json();
-  })
+  if (userId) {
+    return fetch('user/' + userId + '/trips', {
+      headers: requestHeaders
+    }).then( function(response) {
+      console.log('got trips', response);
+      return response.json();
+    })    
+  }
 }
 
 function fetchTasks(tripId) {
-  console.log('fetching tasks using trip id', tripId);
-  return fetch('trip/' + tripId + '/tasks', {
-    headers: requestHeaders
-  })
-    .then(function(response) {
-      return response.json();
+  if (tripId) {
+    return fetch('trip/' + tripId + '/tasks', {
+      headers: requestHeaders
     })
+      .then(function(response) {
+        return response.json();
+      })
+  }
 }
 
 function fetchMessages(taskId) {
-  return fetch('task/' + taskId + '/messages', {
-    headers: requestHeaders
-  })
+  if (taskId) {
+    return fetch('task/' + taskId + '/messages', {
+      headers: requestHeaders
+    })
     .then(function(response) {
       return response.json();
     })
+  }
 }
 
 function fetchSuggestions(userId, tripId, taskId) {
-  return fetch('task/' + taskId + '/suggestions', {
-    headers: requestHeaders
-  })
+  if (userId && tripId && taskId) {
+    return fetch('task/' + taskId + '/suggestions', {
+      headers: requestHeaders
+    })
     .then(function(response) {
       return response.json();
     })
     .catch(function(error) {
       console.error('syntax error');
       console.dir(error);
-    })
+    })  
+  } else {
+    return [];
+  }
+
 }

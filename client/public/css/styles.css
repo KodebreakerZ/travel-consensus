@@ -344,6 +344,10 @@ div.two{
   display: none;
 }
 
+.tripItem {
+  cursor: pointer;
+}
+
 
 /* Static Sidebar
 ––––––––––––––––––––––––––––––––––––––––––––––––––
