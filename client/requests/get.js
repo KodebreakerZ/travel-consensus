@@ -28,7 +28,8 @@ exports.setViewDataUpdateInterval = function(topBar, taskList, taskArea, interva
     fetchSuggestions(window.globalStateTaskId)
       .then(function(suggestions) {
         taskArea.setState( {suggestionsInTask: suggestions} );
-      })  
+      })
+
   }, interval)
 }
 
@@ -77,6 +78,8 @@ function fetchSuggestions(userId, tripId, taskId) {
       console.error('syntax error');
       console.dir(error);
     })  
+  } else {
+    return [];
   }
 
 }

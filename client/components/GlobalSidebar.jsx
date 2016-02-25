@@ -6,7 +6,7 @@ var GlobalSidebar = React.createClass({
   getInitialState: function() {
     return {
       tasksInList: [],
-      trip: 'please select a trip'
+      trip: window.globalStateTripName
       }
   },
 
