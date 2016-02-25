@@ -13,6 +13,12 @@ var Login = React.createClass({
     this.cancel()
     // console.log('calling login', this.props)
   },
+  componentDidMount: function(){
+    if(window.globalToken === null) {
+      this.showLogin();
+      $(".form__cancel").hide()
+    }
+  },
   showLogin: function(){  
     $(".form").fadeToggle('fast');
     $(".form-wrapper").fadeToggle('fast');
