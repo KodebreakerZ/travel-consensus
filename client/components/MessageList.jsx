@@ -10,6 +10,7 @@ var MessageList = React.createClass({
     var messageList = this.props.messages.map(function(message) {
       return <MessageItem
                message={message}
+               key={message.id}
              />
     }.bind(this));
 
@@ -19,6 +20,12 @@ var MessageList = React.createClass({
         {messageList}
       </div>
     );
+  },
+
+  //scroll to bottom of messages
+  componentDidUpdate: function() {
+    // var objDiv = document.getElementById("messageListDiv");
+    // objDiv.scrollIntoView(false);
   }
 
 });
