@@ -19,6 +19,7 @@
     "cookie-parser": "^1.4.1",
     "express": "^4.12.4",
     "express-session": "^1.13.0",
+    "jwt-simple": "^0.4.1",
     "knex": "^0.10.0-rc1",
     "knex-cleaner": "^1.1.1",
     "morgan": "^1.6.1",

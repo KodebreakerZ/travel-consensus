@@ -36,6 +36,12 @@ var GlobalTaskArea = React.createClass({
   },
 
   handleNewSuggestion: function(e) {
+    
+    if(!window.globalToken){
+      alert('Please sign in.')
+    }
+      else {
+
     e.preventDefault();
 
     var newSuggestion = {
@@ -52,6 +58,8 @@ var GlobalTaskArea = React.createClass({
     this.state.suggestionsInTask.push(newSuggestion)
     this.setState( {suggestionsInTask: this.props.suggestionsInTask} )
 
+    }
+   
   },
 
   render: function() {

@@ -72,7 +72,8 @@ div.two{
 */
 
 .top-bar-login,
-.top-bar-signup {
+.top-bar-signup,
+.top-bar-logout {
   position: absolute;
   z-index: 1;
   top: 4px;
@@ -85,11 +86,15 @@ div.two{
 }
 
 .top-bar-login:hover,
+.top-bar-signup:hover,
 .top-bar-signup:hover {
   background: #f0f0f0;
 }
 .top-bar-signup {
-  right: 8% !important;
+  right: 16% !important;
+}
+.top-bar-logout {
+  right: 7.6% !important;
 }
 
 .form-wrapper,
