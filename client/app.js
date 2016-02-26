@@ -61,7 +61,7 @@ sidebar  = ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount
 taskArea = ReactDOM.render(taskArea, document.getElementById('react-task-mount'));
 
 var requestHandler = require('./requests/get')
-// requestHandler.setViewDataUpdateInterval(topbar, sidebar, taskArea, 2000);
+requestHandler.setViewDataUpdateInterval(topbar, sidebar, taskArea, 2000);
 
 /*
   on the index.html located within client/public/index.html, we've added

@@ -25,6 +25,10 @@ var GlobalTopBar = React.createClass({
 		}
 	},
 
+	hide: function(e) {
+		$('.invitepopup').fadeToggle('fast');
+	},
+
 	render: function(){
 		return (
 			<div>
@@ -46,7 +50,7 @@ var GlobalTopBar = React.createClass({
 
 				<TripDropdownList usersTrips={this.state.tripsInUser} addNewTrip={this.props.addNewTrip}/>
 
-				<div className='invitepopup'>
+				<div className='invitepopup'><i className="fa fa-minus-square-o" onClick={this.hide}></i>
 					<form onSubmit={this.handleInviteClick}>
 						<p>Invite People</p>
 						<input className="inviteUsers" type="text"></input>

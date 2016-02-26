@@ -357,6 +357,11 @@ div.two{
   padding: 5px;
 }
 
+.fa-minus-square-o {
+  float: right;
+  margin: 1%;
+}
+
 /* Static Sidebar
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */
