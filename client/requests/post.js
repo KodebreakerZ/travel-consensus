@@ -76,19 +76,20 @@ exports.signin = function(info) {
     body: JSON.stringify(info)
   })
   .then(function(response) {
-    // console.log('response in post.js', response)
+    console.log('response in post.js', response)
     return response.json();
     
   })
   .then(function(data) {
-    // console.log('THIS IS MAybe A BLOB', data)
+    console.log('THIS IS MAybe A BLOB', data)
     window.globalStateUserId = data.id;
     window.globalToken = data.token;
     // console.log('USERID: ', window.globalStateUserId)
   })
   .catch(function(error) {
     if( error) {
-      console.log("ERROR:", error)
+      location.reload();
+      console.log("ERROR in client:", error)
     }
   })
 };

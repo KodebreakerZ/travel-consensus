@@ -27,6 +27,16 @@ var Login = React.createClass({
     $(".form-wrapper").fadeToggle('fast');
     $(".form").fadeToggle('fast');
   },
+  signup: function(e) {
+    e.preventDefault();
+    var signup = {
+      username: $('.form__field-input-signup-user').val(),
+      password: $('.form__field-input-signup-password').val()
+    }
+
+    this.props.signup(signup);
+    this.cancel();
+  },
 
   render: function() {
     return (
@@ -44,7 +54,8 @@ var Login = React.createClass({
               <label className="form__field-label" htmlFor="password">Password</label>
             </div>
               <a href='#' className="form__cancel" onClick={this.cancel} >Cancel</a>
-              <button className="form__submit-btn" type="submit">Submit</button>
+              <button className="form__submit-btn-signup" type="submit">Signup</button>
+              <button className="form__submit-btn" type="submit">Signin</button>
           </form>
       </div>
     )

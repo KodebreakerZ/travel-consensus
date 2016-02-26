@@ -18,7 +18,7 @@ var GlobalTaskArea = React.createClass({
 
     var newMessage = {
       content: $('.newMessageContent').val(),
-      id_user: 1    /////// CHANGE TO CURRENTLY LOGGED IN USER
+      id_user: window.globalStateUserId   
     }
 
     // clear newMessageContent field
@@ -33,16 +33,11 @@ var GlobalTaskArea = React.createClass({
 
   handleNewSuggestion: function(e) {
     
-    if(!window.globalToken){
-      alert('Please sign in.')
-    }
-      else {
-
     e.preventDefault();
 
     var newSuggestion = {
       suggestion: $('.newSuggestionContent').val(),
-      id_user: 1    /////// CHANGE TO CURRENTLY LOGGED IN USER
+      id_user: window.globalStateUserId   
     }
 
     // clear newSuggestionContent field
@@ -53,7 +48,6 @@ var GlobalTaskArea = React.createClass({
     // intermediary setState; takes care of server-delay
     this.state.suggestionsInTask.push(newSuggestion)
     this.setState( {suggestionsInTask: this.props.suggestionsInTask} )
-   }
   },
 
   render: function() {
