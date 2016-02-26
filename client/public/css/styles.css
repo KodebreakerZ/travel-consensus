@@ -481,6 +481,11 @@ div.two{
   color: #fff;
 }
 
+.selected-task p {
+  background-color: blue !important;
+  color: black !important;
+}
+
 .addTaskBox {
   margin-left: 10px;
 }
