@@ -70,7 +70,7 @@ exports.addNewSuggestion = function(suggestionObject) {
 */
 exports.signin = function(info) {
   // console.log('exports.signin ')
-  return fetch('login', {
+  return fetch('login',   {
     method: 'POST',
     headers: requestHeaders,
     body: JSON.stringify(info)
@@ -82,6 +82,16 @@ exports.signin = function(info) {
   })
   .then(function(data) {
     console.log('THIS IS MAybe A BLOB', data)
+    if(data.error) {
+    //   window.globalFailure = true; 
+    //       console.log('globalFailureeee', window.globalFailure)
+    //  // Login.failure()
+    // //   this.setState({
+      
+    // // });
+    //   alert('Username or password is incorrect.')
+      location.reload();
+    }
     window.globalStateUserId = data.id;
     window.globalToken = data.token;
     // console.log('USERID: ', window.globalStateUserId)
@@ -107,12 +117,15 @@ exports.signup = function(info) {
     body: JSON.stringify(info)
   })
   .then(function(response) {
-    // console.log('response in post.js', response)
+    console.log('response in post.js', response)
     return response.json();
     
   })
   .then(function(data) {
     console.log('THIS IS MAybe A BLOB', data)
+    if(data.error) {
+      location.reload();
+    }
     window.globalStateUserId = data.id;
     window.globalToken = data.token;
     console.log('USERID: ', window.globalStateUserId)

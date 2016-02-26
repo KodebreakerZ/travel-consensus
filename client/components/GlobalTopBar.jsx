@@ -54,7 +54,7 @@ var GlobalTopBar = React.createClass({
 					</form>
 				</div>
 
-    			<Login className="login-form" login={this.props.signin}/>
+    			<Login className="login-form" signup={this.props.signup} login={this.props.signin} />
 
     			<Logout className="logout"/>
 

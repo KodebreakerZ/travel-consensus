@@ -70,7 +70,10 @@ div.two{
 /* Global Top Bar - btns "yup, got lazy"
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */
-
+.login-h4 {
+  margin-top: 10px;
+  text-align: center;
+}
 .top-bar-login,
 /*.top-bar-signup,*/
 .top-bar-logout {
@@ -94,7 +97,7 @@ div.two{
   right: 16% !important;
 }*/
 .top-bar-logout {
-  right: 8% !important;
+  right: 0% !important;
 }
 
 .form-wrapper,

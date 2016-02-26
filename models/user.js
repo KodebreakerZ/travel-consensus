@@ -119,6 +119,7 @@ User.verifyLogin= function(user) {
   Signup User
 */
 User.signup= function(user) {
+        console.log('user in signup', user)
   return db.select('id').from('users').where( {username: user.username, password: user.password} )
     .then(function(response) {
       console.log('in signup in db', response)

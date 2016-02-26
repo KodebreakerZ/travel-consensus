@@ -14,14 +14,25 @@ var Login = React.createClass({
     // console.log('calling login', this.props)
   },
   componentDidMount: function(){
-    if(window.globalToken === null) {
+    console.log('globalFailure', window.globalFailure)
+    //  if(window.globalFailure === true && window.globalToken === null) {
+    //   console.log('failure')
+    //   this.showLogin();
+    //   this.failure();
+    // }
+    if(window.globalToken === null && window.globalFailure === undefined) {
       this.showLogin();
       $(".form__cancel").hide()
     }
   },
+  componentWillUpdate: function(){
+    console.log('componentDidUpdate')
+  },
   showLogin: function(){  
     $(".form").fadeToggle('fast');
     $(".form-wrapper").fadeToggle('fast');
+    $(".form__failure").hide()
+    $(".top-bar-login").hide()
   },
   cancel: function(){
     $(".form-wrapper").fadeToggle('fast');
@@ -30,21 +41,24 @@ var Login = React.createClass({
   signup: function(e) {
     e.preventDefault();
     var signup = {
-      username: $('.form__field-input-signup-user').val(),
-      password: $('.form__field-input-signup-password').val()
+      username: $('.form__field-input-user').val(),
+      password: $('.form__field-input-password').val()
     }
 
     this.props.signup(signup);
     this.cancel();
   },
+  failure: function() {
+    $(".form__failure").fadeToggle('fast');
+  },
 
   render: function() {
     return (
       <div>
-      <button className="top-bar-login" onClick={this.showLogin}>Login</button>
+      <button className="top-bar-login" onClick={this.showLogin}>Signup/Signin</button>
         <div className="form-wrapper"></div>
-          <form className="form" onSubmit={this.login}>
-          <h2>Login</h2>
+          <form className="form">
+          <h4 className="login-h4">Signup || Signin</h4>
             <div className="form__field-wrapper">
               <input className="form__field-input-user" type="text" id="username" placeholder="username"  autoCorrect="off" autoCapitalize="off" spellCheck="false" />
               <label className="form__field-label" htmlFor="username">Username</label>
@@ -54,8 +68,9 @@ var Login = React.createClass({
               <label className="form__field-label" htmlFor="password">Password</label>
             </div>
               <a href='#' className="form__cancel" onClick={this.cancel} >Cancel</a>
-              <button className="form__submit-btn-signup" type="submit">Signup</button>
-              <button className="form__submit-btn" type="submit">Signin</button>
+              <p className='form__failure'>Username or Password is incorrect.</p>
+              <button className="form__submit-btn-signup" type="submit" onClick={this.signup}>Signup</button>
+              <button className="form__submit-btn" type="submit" onClick={this.login}>Signin</button>
           </form>
       </div>
     )
