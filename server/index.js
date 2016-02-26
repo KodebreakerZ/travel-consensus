@@ -90,10 +90,10 @@ if (process.env.NODE_ENV !== 'test') {
   //   failureFlash : true // allow flash messages
   // }));
 
-  app.get('/login', function (request, response) {
-    //implement login render
+  // app.get('/login', function (request, response) {
+  //   //implement login render
 
-  })
+  // })
 
   // process the login form
   app.post('/login', function (request, response) {
@@ -104,7 +104,8 @@ if (process.env.NODE_ENV !== 'test') {
        response.send({token: res.token, id: res.id[0].id, username: res.id[0].username})
      })
      .catch(function(error) {
-      console.log("ERROR:", error)
+        console.log("ERROR:", error)
+        response.send({error:error})
      })
   });
 
@@ -117,6 +118,7 @@ if (process.env.NODE_ENV !== 'test') {
      })
      .catch(function(error) {
       console.log("ERROR:", error)
+      response.send({error:error})
      })
   });
 

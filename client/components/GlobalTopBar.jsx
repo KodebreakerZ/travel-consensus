@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Login = require('./Login.jsx');
-var SignUp = require('./SignUp.jsx');
+// var SignUp = require('./SignUp.jsx');
 var TripDropdownList = require('./TripDropdownList.jsx');
 var Logout = require('./Logout.jsx');
 
@@ -54,13 +54,13 @@ var GlobalTopBar = React.createClass({
 					</form>
 				</div>
 
-    			<Login className="login-form" login={this.props.signin}/>
-    			<SignUp className="signup-form" signup={this.props.signup}/>
+    			<Login className="login-form" signup={this.props.signup} login={this.props.signin} />
+
     			<Logout className="logout"/>
 
 			</div>
 		);
 	}
 });
-
+// <SignUp className="signup-form" signup={this.props.signup}/> was on line 58
 module.exports = GlobalTopBar;

@@ -70,9 +70,12 @@ div.two{
 /* Global Top Bar - btns "yup, got lazy"
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 */
-
+.login-h4 {
+  margin-top: 10px;
+  text-align: center;
+}
 .top-bar-login,
-.top-bar-signup,
+/*.top-bar-signup,*/
 .top-bar-logout {
   position: absolute;
   z-index: 1;
@@ -86,15 +89,15 @@ div.two{
 }
 
 .top-bar-login:hover,
-.top-bar-signup:hover,
+/*.top-bar-signup:hover,*/
 .top-bar-signup:hover {
   background: #f0f0f0;
 }
-.top-bar-signup {
+/*.top-bar-signup {
   right: 16% !important;
-}
+}*/
 .top-bar-logout {
-  right: 7.6% !important;
+  right: 0% !important;
 }
 
 .form-wrapper,
@@ -108,7 +111,7 @@ div.two{
   width: 100%;
   height: 100%;
 
-  pointer-events: none;
+  pointer-events: auto;
 
   background: rgba(0,0,0,.26);
 }

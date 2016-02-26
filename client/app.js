@@ -13,6 +13,7 @@ var GlobalTaskArea = require('./components/GlobalTaskArea.jsx');
 /**/  window.globalStateUserId = null;  /**/
 /**/  window.globalStateUserName = null;  /**/
 /**/  window.globalToken       = null;  /**/
+// /**/  window.globalFailure     = false;  /**/
 /***************************************/
 /*
     Just these two variables allow us to dynamically update
