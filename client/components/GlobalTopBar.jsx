@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var Login = require('./Login.jsx');
 var SignUp = require('./SignUp.jsx');
 var TripDropdownList = require('./TripDropdownList.jsx');
+var Logout = require('./Logout.jsx');
 
 var GlobalTopBar = React.createClass({
 	handleParticipantsClick: function(){
@@ -53,8 +54,9 @@ var GlobalTopBar = React.createClass({
 					</form>
 				</div>
 
-    			<Login className="login-form"/>
-    			<SignUp className="signup-form"/>
+    			<Login className="login-form" login={this.props.signin}/>
+    			<SignUp className="signup-form" signup={this.props.signup}/>
+    			<Logout className="logout"/>
 
 			</div>
 		);
