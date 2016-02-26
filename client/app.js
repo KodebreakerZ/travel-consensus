@@ -61,6 +61,8 @@ sidebar  = ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount
 taskArea = ReactDOM.render(taskArea, document.getElementById('react-task-mount'));
 
 var requestHandler = require('./requests/get')
+
+//uncomment this line to get trips for user
 // requestHandler.setViewDataUpdateInterval(topbar, sidebar, taskArea, 2000);
 
 /*

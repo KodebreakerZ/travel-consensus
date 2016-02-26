@@ -19,6 +19,7 @@ var GlobalTaskArea = React.createClass({
     var newMessage = {
       content: $('.newMessageContent').val(),
       id_user: window.globalStateUserId
+
     }
 
     // clear newMessageContent field
