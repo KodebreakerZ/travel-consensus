@@ -391,6 +391,21 @@ div.two{
     background-color: #198c8c;
 }*/
 
+.greeting {
+  height: 75px;
+  margin: 20px 0 0 30px;
+  padding-left: 9px;
+  letter-spacing: 0.25em;
+
+  color: #fff;
+}
+
+.usersName {
+  font-style: italic;
+  padding-top: 0;
+  margin-top: 0;
+}
+
 .location-display {
   height: 175px;
   margin-bottom: 0;

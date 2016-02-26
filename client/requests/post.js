@@ -81,8 +81,9 @@ exports.signin = function(info) {
     
   })
   .then(function(data) {
-    // console.log('THIS IS MAybe A BLOB', data)
+    console.log('THIS IS MAybe A BLOB', data)
     window.globalStateUserId = data.id;
+    window.globalStateUserName = data.username;
     window.globalToken = data.token;
     // console.log('USERID: ', window.globalStateUserId)
   })
@@ -114,6 +115,7 @@ exports.signup = function(info) {
     console.log('THIS IS MAybe A BLOB', data)
     window.globalStateUserId = data.id;
     window.globalToken = data.token;
+    window.globalStateUserName = data.username;
     console.log('USERID: ', window.globalStateUserId)
   })
   .catch(function(error) {
