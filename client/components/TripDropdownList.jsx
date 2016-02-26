@@ -33,6 +33,10 @@ var TripDropdownList = React.createClass({
     }
   },
 
+  hide: function() {
+    $('.tripDropdownListDiv').fadeToggle('fast');
+  },
+
 
   render: function() {
 
@@ -45,6 +49,7 @@ var TripDropdownList = React.createClass({
 
     return (
       <div className="tripDropdownListDiv">
+        <i className="fa fa-minus-square-o" onClick={this.hide}></i>
         <h4>Select A Trip:</h4>
           {tripList}
         <h4 onClick={this.showNewTripForm} >Add A Trip</h4>
