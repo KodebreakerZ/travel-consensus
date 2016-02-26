@@ -1,5 +1,6 @@
 require('./model-helper');
 
+const jwt  = require('jwt-simple');
 const db = require('../lib/db');
 const first = require('ramda').head;
 const bcrypt = require('bcrypt-nodejs');
@@ -27,11 +28,12 @@ User.create = function(attrs) {
 */
 
 
-User.generateHash = function(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
+// User.generateHash = function(password) {
+//     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+// };
 
 User.validPassword = function(password) {
+  console.log('this.local', this.local)
     return bcrypt.compareSync(password, this.local.password);
 };
 
@@ -83,7 +85,53 @@ User.allOfTrip = function(tripId) {
     .catch(reportError('error retrieving users for trip'))
 }
 
+/*
+  Retrieve username by name
+*/
+User.verifyLogin= function(user) {
+  return db.select('id').from('users').where( {username: user.username, password: user.password} )
+    .then(function(response, error) {
+      if(error) {
+        console.log("Username does not exist")
+      }
+      // return db.select('password').from('users').where( {password: user.password})
+      console.log('response from database query.', response)
+      return response;
+    })
+    .then(function(response, error) {
+      if(response === undefined) {
+        console.log('Username or password is incorrect.')
+      }
+      console.log('%c success, color:red', response)
+      var token = jwt.encode(user.username, 'secret');
+          console.log("TOKEN", token, "user:", user)
+          return {token: token, id: response};
+    })
+    .catch(reportError('error retrieving username by username'))
+    // .then(first)
+}
 
+/*
+  Signup User
+*/
+User.signup= function(user) {
+  return db.select('id').from('users').where( {username: user.username, password: user.password} )
+    .then(function(response) {
+      console.log('in signup in db', response)
+      if(response[0] === undefined) {
+        //add user to database
+         return db('users').insert({username: user.username, password: user.password})
+         .then(function() {
+          return User.verifyLogin(user)
+         })
+      } else {
+        throw new Error("Username is Already taken");
+      }
+    })
+    .catch(reportError('error retrieving username by username'))
+    // .then(first)
+}
+    
 /*
   Retrieve username for an id
 */

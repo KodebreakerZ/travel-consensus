@@ -19,14 +19,18 @@ var TripDropdownList = React.createClass({
   },
 
   handleSubmit: function(e) {
-    e.preventDefault();
-    var tripName = this.state.newTrip.trim();
-    var tripAndUserObject = {
-      name: tripName,
-      id_user: window.globalStateUserId
-    };
-    this.props.addNewTrip(tripAndUserObject);
-    $('.newTripInput').val('')
+    if(!window.globalToken){
+      alert('Please sign in.')
+    } else {
+      e.preventDefault();
+      var tripName = this.state.newTrip.trim();
+      var tripAndUserObject = {
+        name: tripName,
+        id_user: window.globalStateUserId
+      };
+      this.props.addNewTrip(tripAndUserObject);
+      $('.newTripInput').val('')
+    }
   },
 
 

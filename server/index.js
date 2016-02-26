@@ -79,27 +79,46 @@ if (process.env.NODE_ENV !== 'test') {
   Signin and signup routes handled by Passport
   not implemented
 */
-  app.get('/signup', function (request, response) {
-    //implement signup render
-  })
+  // app.get('/signup', function (request, response) {
+  //   //implement signup render
+  // })
 
-  // process the signup form
-  app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/trip', // redirect to the secure profile section
-    failureRedirect : '/signup', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-  }));
+  // // process the signup form
+  // app.post('/signup', passport.authenticate('local-signup', {
+  //   successRedirect : '/trip', // redirect to the secure profile section
+  //   failureRedirect : '/signup', // redirect back to the signup page if there is an error
+  //   failureFlash : true // allow flash messages
+  // }));
 
   app.get('/login', function (request, response) {
     //implement login render
+
   })
 
   // process the login form
-  app.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/trip', // redirect to the secure profile section
-    failureRedirect : '/signup', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-  }));
+  app.post('/login', function (request, response) {
+     // console.log('made it to the server login post', request.body)
+     return User.verifyLogin(request.body)
+     .then(function(res) {
+       response.send({token: res.token, id: res.id[0].id})
+     })
+     .catch(function(error) {
+      console.log("ERROR:", error)
+     })
+  });
+
+  //process the signup form
+  app.post('/signup', function (request, response) {
+     console.log('made it to the server signup post', request.body)
+     return User.signup(request.body)
+     .then(function(res) {
+       response.send({token: res.token, id: res.id[0].id})
+     })
+     .catch(function(error) {
+      console.log("ERROR:", error)
+     })
+  });
+
 /* end passport implementation */
 
 
