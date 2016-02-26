@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var DeleteHelper = require('../requests/delete.js')
+var DeleteHelper = require('../requests/delete.js');
 
 var TripItem = React.createClass({
 
@@ -9,12 +9,17 @@ var TripItem = React.createClass({
     window.globalStateTripName = this.props.trip.name;
     window.globalStateTaskId = null;
     $('.tripItem').parent().fadeToggle(1000);
-		// console.log('set global trip state to', window.globalStateTripId);
+		console.log('set global trip state to', window.globalStateTripId);
 	},
 
   handleTripClick: function(e) {
+    e.stopPropagation();
     var toDelete = this.props.trip.id;
+    window.globalStateTripName = 'please select a trip';
+    window.globalStateTripId = null;
+    window.globalStateTaskId = null;
     DeleteHelper.deleteTripById(toDelete);
+    $('.tripItem').parent().fadeToggle('fast');
   },
 
 

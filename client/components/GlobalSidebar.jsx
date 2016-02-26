@@ -11,7 +11,7 @@ var GlobalSidebar = React.createClass({
   },
 
   componentDidMount: function() {
-    setInterval( this.updateTrip, 2000);
+    setInterval( this.updateTrip, 500);
   },
 
   updateTrip: function() {
