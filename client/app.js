@@ -63,7 +63,7 @@ taskArea = ReactDOM.render(taskArea, document.getElementById('react-task-mount')
 var requestHandler = require('./requests/get')
 
 //uncomment this line to get trips for user
-// requestHandler.setViewDataUpdateInterval(topbar, sidebar, taskArea, 2000);
+requestHandler.setViewDataUpdateInterval(topbar, sidebar, taskArea, 2000);
 
 /*
   on the index.html located within client/public/index.html, we've added
