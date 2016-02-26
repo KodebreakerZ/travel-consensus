@@ -70,25 +70,37 @@ exports.addNewSuggestion = function(suggestionObject) {
 */
 exports.signin = function(info) {
   // console.log('exports.signin ')
-  return fetch('login', {
+  return fetch('login',   {
     method: 'POST',
     headers: requestHeaders,
     body: JSON.stringify(info)
   })
   .then(function(response) {
-    // console.log('response in post.js', response)
+    console.log('response in post.js', response)
     return response.json();
     
   })
   .then(function(data) {
-    // console.log('THIS IS MAybe A BLOB', data)
+    console.log('THIS IS MAybe A BLOB', data)
+    if(data.error) {
+    //   window.globalFailure = true; 
+    //       console.log('globalFailureeee', window.globalFailure)
+    //  // Login.failure()
+    // //   this.setState({
+      
+    // // });
+    //   alert('Username or password is incorrect.')
+      location.reload();
+    }
     window.globalStateUserId = data.id;
+    window.globalStateUserName = data.username;
     window.globalToken = data.token;
     // console.log('USERID: ', window.globalStateUserId)
   })
   .catch(function(error) {
     if( error) {
-      console.log("ERROR:", error)
+      location.reload();
+      console.log("ERROR in client:", error)
     }
   })
 };
@@ -106,14 +118,18 @@ exports.signup = function(info) {
     body: JSON.stringify(info)
   })
   .then(function(response) {
-    // console.log('response in post.js', response)
+    console.log('response in post.js', response)
     return response.json();
     
   })
   .then(function(data) {
     console.log('THIS IS MAybe A BLOB', data)
+    if(data.error) {
+      location.reload();
+    }
     window.globalStateUserId = data.id;
     window.globalToken = data.token;
+    window.globalStateUserName = data.username;
     console.log('USERID: ', window.globalStateUserId)
   })
   .catch(function(error) {

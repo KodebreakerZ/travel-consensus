@@ -252,7 +252,7 @@ ALTER SEQUENCE trip_users_id_seq OWNED BY trip_users.id;
 
 CREATE TABLE users (
     id integer NOT NULL,
-    email character varying(255) NOT NULL,
+    email character varying(255),
     username character varying(255) NOT NULL,
     password character varying(255) NOT NULL
 );
@@ -328,9 +328,61 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 --
 
 COPY message (id, "createdAt", content, id_task, id_user) FROM stdin;
-1	2016-02-23 13:56:59.178882-06	Post	1	1
-2	2016-02-23 14:56:27.603134-06	i don't know but i don't got no money, let's stay at your moms	3	1
-3	2016-02-23 15:39:29.660379-06	What about roswell?	4	1
+1   2016-02-23 16:36:05.241441-06   hey 1   1
+2   2016-02-23 16:36:05.241441-06   howdy   1   3
+3   2016-02-23 16:36:05.241441-06   how do you feel?    1   3
+4   2016-02-23 16:36:05.241441-06   with my hands, mostly   1   1
+5   2016-02-23 16:36:05.241441-06   i like turtles  2   1
+6   2016-02-23 16:36:05.241441-06   i like turtles, too 2   2
+7   2016-02-23 16:36:05.241441-06   content 2   1
+8   2016-02-23 16:36:05.241441-06   more content    3   3
+9   2016-02-23 16:36:05.241441-06   this is content 3   2
+10  2016-02-23 16:36:05.241441-06   i like content  3   1
+11  2016-02-23 16:36:05.241441-06   content overload    3   3
+12  2016-02-23 16:36:05.241441-06   there is snow on the ceiling    4   2
+13  2016-02-23 16:36:05.241441-06   no there isn't  4   1
+14  2016-02-23 16:36:05.241441-06   sammy, isn't there snow on the ceiling  4   2
+15  2016-02-23 16:36:05.241441-06   yeah, I can't figure out for the life of me how it got there though 4   3
+16  2016-02-23 16:36:05.241441-06   you're not going to fool me again, guys 4   1
+17  2016-02-23 16:36:05.241441-06   * looks up *    4   1
+18  2016-02-23 16:36:05.241441-06   Damnit! 4   1
+19  2016-02-23 16:36:05.241441-06   what do a cactus and a porcupine have in common?    5   3
+20  2016-02-23 16:36:05.241441-06   yeah! you! there at the computer - what is it?  5   3
+21  2016-02-23 16:36:05.241441-06   favorite color? 6   3
+22  2016-02-23 16:36:05.241441-06   orange  6   2
+23  2016-02-23 16:36:05.241441-06   okay    6   3
+24  2016-02-23 16:36:05.241441-06   this is not content 9   3
+25  2016-02-23 16:36:05.241441-06   as all internet debates, you're being a nazi    8   2
+26  2016-02-25 09:49:28.333695-06   knmlk   1   1
+27  2016-02-25 09:49:32.027183-06       1   1
+28  2016-02-25 09:49:44.929702-06   ressssssssssssssss  1   1
+29  2016-02-25 09:49:58.660165-06   jklj    1   1
+30  2016-02-25 09:50:00.391729-06   mkmlkm  1   1
+31  2016-02-25 09:50:04.397759-06   ,mnknkmlkmlkmlkmlkmklmlkmlkmlkmlkmlkm'ml    1   1
+32  2016-02-25 09:50:04.575186-06       1   1
+33  2016-02-25 09:50:05.690038-06   mkmlmklm    1   1
+34  2016-02-25 09:50:06.094645-06       1   1
+35  2016-02-25 09:50:06.263116-06       1   1
+36  2016-02-25 09:50:07.015831-06   mkmlkm  1   1
+37  2016-02-25 09:50:07.360777-06       1   1
+38  2016-02-25 09:50:07.540596-06       1   1
+39  2016-02-25 09:50:27.118157-06   jijjiiijjjjijijijijijijijiijjijjijijij  1   1
+40  2016-02-25 09:58:57.724232-06   Post    1   1
+41  2016-02-25 10:27:05.460985-06   asdf    8   1
+42  2016-02-25 10:27:16.270593-06   adsf    3   1
+43  2016-02-25 15:11:21.169521-06   asdf    1   1
+44  2016-02-25 15:48:23.739556-06   asdfa   1   1
+45  2016-02-25 16:09:06.952672-06   messages    1   1
+46  2016-02-25 19:11:52.228417-06   Why are we going on this trip?  30  1
+47  2016-02-25 19:14:20.854685-06   Why are we going on this trip?  32  1
+48  2016-02-25 19:26:28.914673-06   afsdf   1   1
+49  2016-02-25 19:29:21.175585-06   check   1   5
+50  2016-02-25 19:29:53.241354-06   Why do we need to find a bus?   32  5
+51  2016-02-25 19:48:56.733976-06   check it out    1   5
+52  2016-02-25 19:52:07.296224-06   This isn't a task.  30  5
+53  2016-02-25 22:23:14.939665-06   Stay in roswell 33  5
+54  2016-02-25 22:23:53.387653-06   roswell 33  5
+55  2016-02-25 22:30:38.651009-06   sleep   1   1
 \.
 
 
@@ -338,7 +390,7 @@ COPY message (id, "createdAt", content, id_task, id_user) FROM stdin;
 -- Name: message_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Moon
 --
 
-SELECT pg_catalog.setval('message_id_seq', 3, true);
+SELECT pg_catalog.setval('message_id_seq', 55, true);
 
 
 --
@@ -346,10 +398,27 @@ SELECT pg_catalog.setval('message_id_seq', 3, true);
 --
 
 COPY suggestion (id, suggestion, votes, "createdAt", id_task, id_user, id_trip) FROM stdin;
-12	giug	0	2016-02-23 15:13:04.243248-06	1	1	\N
-13	f5r5	0	2016-02-23 15:28:21.547516-06	1	1	\N
-14	gamble at farrahs	0	2016-02-23 15:46:37.63238-06	1	1	\N
-15	red bull and vodka!!!!	0	2016-02-23 15:51:05.35881-06	2	1	\N
+1   jimmy johns 1   2016-02-23 16:36:05.248742-06   7   2   1
+2   a funny one 2   2016-02-23 16:36:05.248742-06   3   1   2
+3   moms basement   \N  2016-02-23 16:36:05.248742-06   8   3   2
+4   Paris   3   2016-02-23 16:36:05.248742-06   5   3   3
+5   Jimmy John  1   2016-02-23 16:36:05.248742-06   1   2   3
+6   pterry's    0   2016-02-23 17:03:25.310474-06   7   1   \N
+7   Eat food    0   2016-02-25 11:40:20.092692-06   1   1   \N
+8       0   2016-02-25 15:35:11.279827-06   1   1   \N
+9   dddd    0   2016-02-25 15:37:08.846682-06   1   1   \N
+10  dfdf    0   2016-02-25 15:37:14.168512-06   1   1   \N
+11  fffffffffffffffffff 0   2016-02-25 15:37:20.802121-06   1   1   \N
+12  ffffff  0   2016-02-25 15:40:08.152874-06   1   1   \N
+13  none    0   2016-02-25 16:09:15.045974-06   1   1   \N
+14  Short bus rental    0   2016-02-25 19:30:04.707054-06   32  5   \N
+15  Short bus rental    0   2016-02-25 19:30:14.358826-06   32  5   \N
+16  Stuff   0   2016-02-25 19:38:24.672534-06   1   3   \N
+17  roswell 0   2016-02-25 22:22:54.182635-06   33  5   \N
+18  post    0   2016-02-25 22:27:52.095369-06   1   1   \N
+19  ski 0   2016-02-25 22:30:29.924989-06   1   1   \N
+20  Not roswell 0   2016-02-26 10:16:23.346254-06   33  5   \N
+21  Drive to Taos   0   2016-02-26 14:36:29.325444-06   33  5   \N
 \.
 
 
@@ -357,7 +426,7 @@ COPY suggestion (id, suggestion, votes, "createdAt", id_task, id_user, id_trip) 
 -- Name: suggestion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Moon
 --
 
-SELECT pg_catalog.setval('suggestion_id_seq', 15, true);
+SELECT pg_catalog.setval('suggestion_id_seq', 21, true);
 
 
 --
@@ -365,10 +434,43 @@ SELECT pg_catalog.setval('suggestion_id_seq', 15, true);
 --
 
 COPY task (id, name, status, decision, id_trip) FROM stdin;
-1	Gamble		\N	1
-2	Stay awake forever		\N	1
-3	Where are we going to stay?		\N	1
-4	First stop?		\N	1
+1   Food    undecided   \N  3
+2   Hotel   decided Hilton  1
+3   Event   decided Comedy Show 2
+4   Food    undecided   \N  2
+5   Hotel   decided Paris   3
+6   Event   decided Rally   1
+7   Food    undecided   \N  1
+8   Hotel   decided Basement    2
+9   Event   decided Pig race    3
+10  sleep       \N  1
+11  hoi     \N  1
+12  sdfg        \N  1
+13          \N  1
+14  afsdfa      \N  1
+15  run     \N  1
+16  save files      \N  1
+17  IDJIOT      \N  1
+18          \N  1
+19  d       \N  1
+20          \N  1
+21  dffdfdf     \N  1
+22  ffff        \N  1
+23  bbbbb       \N  1
+24          \N  1
+25          \N  1
+26  Grand Canyon        \N  1
+27  Add Tasks       \N  1
+28  adsfa       \N  1
+29  doin thangs     \N  1
+30  Cliff diving        \N  7
+31  Hotel       \N  7
+32  Find A bus.     \N  6
+33  1st night       \N  10
+34  2nd night       \N  10
+35  3rd night       \N  10
+36  4th night       \N  10
+37  5th night       \N  10
 \.
 
 
@@ -376,7 +478,7 @@ COPY task (id, name, status, decision, id_trip) FROM stdin;
 -- Name: task_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Moon
 --
 
-SELECT pg_catalog.setval('task_id_seq', 4, true);
+SELECT pg_catalog.setval('task_id_seq', 37, true);
 
 
 --
@@ -384,6 +486,18 @@ SELECT pg_catalog.setval('task_id_seq', 4, true);
 --
 
 COPY trip (id, name) FROM stdin;
+1   Denver
+2   San Cristobal
+3   Bed
+4   Las Vegas
+5   Name
+6   Under all the buses
+7   Las Vegas
+8   Name
+9   Las Vegas
+10  Colorado
+11  Colorado
+12  Colorado
 \.
 
 
@@ -391,7 +505,7 @@ COPY trip (id, name) FROM stdin;
 -- Name: trip_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Moon
 --
 
-SELECT pg_catalog.setval('trip_id_seq', 1, false);
+SELECT pg_catalog.setval('trip_id_seq', 12, true);
 
 
 --
@@ -399,6 +513,32 @@ SELECT pg_catalog.setval('trip_id_seq', 1, false);
 --
 
 COPY trip_users (id, id_trip, id_user) FROM stdin;
+1   1   2
+2   3   2
+3   3   1
+4   3   3
+5   2   3
+6   2   1
+7   2   3
+8   2   3
+9   2   3
+10  2   3
+11  2   3
+12  2   3
+13  3   3
+14  3   3
+15  3   2
+16  4   1
+17  5   1
+18  6   5
+19  7   5
+20  8   11
+21  9   5
+22  6   11
+23  6   11
+24  10  5
+25  11  5
+26  12  5
 \.
 
 
@@ -406,7 +546,7 @@ COPY trip_users (id, id_trip, id_user) FROM stdin;
 -- Name: trip_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Moon
 --
 
-SELECT pg_catalog.setval('trip_users_id_seq', 1, false);
+SELECT pg_catalog.setval('trip_users_id_seq', 26, true);
 
 
 --
@@ -414,7 +554,19 @@ SELECT pg_catalog.setval('trip_users_id_seq', 1, false);
 --
 
 COPY users (id, email, username, password) FROM stdin;
-1	john@gmail.com	Johnny	john5
+1   sample@sample.com   Zack    babel
+2   notsample@gmail.com J-man   webmaster
+3   sammy@yahoo.com Sammy   password
+5   \N  andrew  moon
+6   \N  andrews moon
+7   \N  andrew1 moon
+8   \N  andrew11    moon
+9   \N  andrew111   moon
+10  \N  andrew1111  moon
+11  \N  Kimberly    panda
+22  \N  afsdfsdF    FASDFASDFA
+23  \N  andrew11111 moon
+24  \N      
 \.
 
 
@@ -422,7 +574,7 @@ COPY users (id, email, username, password) FROM stdin;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Moon
 --
 
-SELECT pg_catalog.setval('users_id_seq', 1, true);
+SELECT pg_catalog.setval('users_id_seq', 24, true);
 
 
 --
@@ -479,6 +631,14 @@ ALTER TABLE ONLY users
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_username_key; Type: CONSTRAINT; Schema: public; Owner: Moon
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_username_key UNIQUE (username);
 
 
 --
@@ -606,4 +766,5 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database cluster dump complete
 --
+
 

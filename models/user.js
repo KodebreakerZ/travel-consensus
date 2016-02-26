@@ -92,10 +92,11 @@ User.allOfTrip = function(tripId) {
   Retrieve username by name
 */
 User.verifyLogin= function(user) {
-  return db.select('id').from('users').where( {username: user.username, password: user.password} )
-    .then(function(response, error) {
-      if(error) {
-        console.log("Username does not exist")
+  return db.select('id','username').from('users').where( {username: user.username, password: user.password} )
+    .then(function(response) {
+      console.log('response of verifylogin query', response)
+      if(response[0] === undefined) {
+        throw new Error("Username does not exist")
       }
       // return db.select('password').from('users').where( {password: user.password})
       console.log('response from database query.', response)
@@ -110,7 +111,10 @@ User.verifyLogin= function(user) {
           console.log("TOKEN", token, "user:", user)
           return {token: token, id: response};
     })
-    .catch(reportError('error retrieving username by username'))
+    .catch(function(response) {
+     
+      return ('error retrieving username by username')
+    });
     // .then(first)
 }
 
@@ -118,6 +122,7 @@ User.verifyLogin= function(user) {
   Signup User
 */
 User.signup= function(user) {
+        console.log('user in signup', user)
   return db.select('id').from('users').where( {username: user.username, password: user.password} )
     .then(function(response) {
       console.log('in signup in db', response)
