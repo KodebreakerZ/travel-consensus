@@ -20,12 +20,29 @@ function updateAll(topBar, taskList, taskArea) {
   }
 
   if (window.globalStateTripId) {
+    // fetchUsers(window.globalStateTripId)
+    // .then(function(data) {
+    //   fetchTasks(window.globalStateTripId)
+    //     .then(function(task) {
+    //       taskList.setState( {tasksInList: tasks})
+    //     })
+    // })
     fetchTasks(window.globalStateTripId)
       .then(function(tasks) {
         taskList.setState( {tasksInList: tasks} );
       })
   } else {
     taskList.setState( {tasksInList: []} );
+  }
+
+  if (window.globalStateTripId) {
+    fetchUsers(window.globalStateTripId)
+      .then(function(userlist) {
+        console.log("HAVE SOME userlist", userlist);
+        taskArea.setState( {usersInTrip: userlist} );
+      })
+  } else {
+    taskArea.setState( {usersInTrip: []} );
   }
 
   if (window.globalStateTaskId) {
@@ -106,5 +123,15 @@ function fetchSuggestions(userId, tripId, taskId) {
   } else {
     return [];
   }
+}
 
+function fetchUsers(tripId) {
+  if (tripId) {
+    return fetch('trip/' + tripId + '/users', {
+      headers: requestHeaders
+    })
+    .then(function(response) {
+      return response.json();
+    })
+  } 
 }

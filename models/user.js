@@ -81,8 +81,11 @@ User.findById = function(id) {
 */
 User.allOfTrip = function(tripId) {
   // TODO: do not select password_digest
-  return db.select('*').from('trip_users').where({ 'id_trip': tripId })
-    .catch(reportError('error retrieving users for trip'))
+  return db.distinct('username').from('users').joinRaw('INNER JOIN trip_users ON id_user = users.id AND id_trip = ?', [tripId]).select();
+
+  // return db('users').whereRaw('username LIKE ?', [firstName + '%'], 'OR username LIKE ?', ['%' + lastName])
+  // return db.select('*').from('trip_users').where({ 'id_trip': tripId })
+    // .catch(reportError('error retrieving users for trip'))
 }
 
 /*
