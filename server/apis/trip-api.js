@@ -117,10 +117,11 @@ TripAPI.get('/:tripId/tasks', function(request, response) {
 /*
   DELETE trip/:tripId/
 
-  Delete the selected trip
+  Delete the user from the selected trip
 */
-TripAPI.delete('/:tripID', function(request, response) {
-  Trip.deleteTrip(request.params.tripID)
+TripAPI.delete('/:tripID/:userId', function(request, response) {
+  var data = {trip_id: request.params.tripID, user_id: request.params.userId}
+  Trip.deleteTrip(data)
     .then(function(trip) {
       return;
     })

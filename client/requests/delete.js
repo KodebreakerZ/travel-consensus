@@ -27,7 +27,7 @@ exports.deleteSuggestion = function(suggestionObject) {
 };
 
 exports.deleteTripById = function(tripID) {
-  return fetch('/trip/' + tripID, {
+  return fetch('/trip/' + tripID + '/' + window.globalStateUserId, {
     method: 'DELETE',
     headers: requestHeaders,
     body: tripID
