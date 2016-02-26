@@ -9,7 +9,7 @@ var GlobalTaskArea = require('./components/GlobalTaskArea.jsx');
 /******** THIS IS GLOBAL STATE *********/
 /**/  window.globalStateTripId = null;  /**/
 /**/  window.globalStateTripName = 'please select a trip';
-/**/  window.globalStateTaskId = 1;  /**/
+/**/  window.globalStateTaskId = null;  /**/
 /**/  window.globalStateUserId = 1;  /**/
 /**/  window.globalToken       = null;  /**/
 /***************************************/
@@ -61,7 +61,9 @@ sidebar  = ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount
 taskArea = ReactDOM.render(taskArea, document.getElementById('react-task-mount'));
 
 var requestHandler = require('./requests/get')
-// requestHandler.setViewDataUpdateInterval(topbar, sidebar, taskArea, 2000);
+
+//uncomment this line to get trips for user
+requestHandler.setViewDataUpdateInterval(topbar, sidebar, taskArea, 2000);
 
 /*
   on the index.html located within client/public/index.html, we've added

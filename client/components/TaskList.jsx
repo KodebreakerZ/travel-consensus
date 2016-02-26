@@ -28,14 +28,19 @@ var TaskList = React.createClass({
   },
 
   render: function() {
+
+    var taskList = this.props.tasks.map( function(task) {
+      return <TaskItem
+               task={task}
+               key={task.id}
+             />
+    }.bind(this));
+
     return (
       <div>
         <div className="task-list">
-          {this.props.tasks.map(function(task) {
-            return (<TaskItem task={task} />)
-          }.bind(this))}
+          {taskList}
         </div>
-
             <hr />
             <AddTask newTask={this.newTask}/>
         

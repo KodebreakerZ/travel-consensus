@@ -2,19 +2,33 @@ require('./request-helpers.js'); // Imports headers
 require('whatwg-fetch');      // imports 'fetch' function
 
 exports.setViewDataUpdateInterval = function(topBar, taskList, taskArea, interval) {
-  setInterval(function() {
+  setInterval(function() { 
+    updateAll(topBar, taskList, taskArea)
+  }, interval)
+}
 
+function updateAll(topBar, taskList, taskArea) {
+
+  if (window.globalStateUserId) {
     fetchTrips(window.globalStateUserId)
-     .then(function(trips) {
-       console.log('got trips back from server', trips);
-       topBar.setState( {tripsInUser: trips} );
-     })
+      .then(function(trips) {
+         console.log('got trips back from server', trips);
+         topBar.setState( {tripsInUser: trips} );
+       })
+  } else {
+    topBar.setState( {tripsInUser: []} );
+  }
 
+  if (window.globalStateTripId) {
     fetchTasks(window.globalStateTripId)
       .then(function(tasks) {
         taskList.setState( {tasksInList: tasks} );
       })
+  } else {
+    taskList.setState( {tasksInList: []} );
+  }
 
+  if (window.globalStateTaskId) {
     fetchMessages(window.globalStateTaskId)
       .then(function(messages) {
         taskArea.setState( {messagesInTask: messages} );
@@ -24,13 +38,23 @@ exports.setViewDataUpdateInterval = function(topBar, taskList, taskArea, interva
         elem.scrollTop = elem.scrollHeight;
         console.log('this fired!');
       })
+  } else {
+    taskArea.setState( {messagesInTask: []} );
+    var elem = document.getElementsByClassName('chat-display');
+    elem.scrollTop = elem.scrollHeight;
+    console.log('other thing fired');
+  }
 
-    fetchSuggestions(window.globalStateTaskId)
+  if (window.globalStateUserId && window.globalStateTripId && window.globalStateTaskId) {
+    console.log('should run fetchSuggestions')
+    fetchSuggestions(window.globalStateUserId, window.globalStateTripId, window.globalStateTaskId)
       .then(function(suggestions) {
         taskArea.setState( {suggestionsInTask: suggestions} );
       })
-
-  }, interval)
+  } else {
+    console.log('not all set for fetchSugggestions');
+    taskArea.setState( {suggestionsInTask: []} );
+  }
 }
 
 function fetchTrips(userId) {
@@ -68,6 +92,7 @@ function fetchMessages(taskId) {
 
 function fetchSuggestions(userId, tripId, taskId) {
   if (userId && tripId && taskId) {
+    console.log('fetching suggestions userId=', userId, 'tripId=', tripId, 'taskId=', taskId);
     return fetch('task/' + taskId + '/suggestions', {
       headers: requestHeaders
     })
