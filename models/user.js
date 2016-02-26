@@ -89,7 +89,7 @@ User.allOfTrip = function(tripId) {
   Retrieve username by name
 */
 User.verifyLogin= function(user) {
-  return db.select('id').from('users').where( {username: user.username, password: user.password} )
+  return db.select('id','username').from('users').where( {username: user.username, password: user.password} )
     .then(function(response) {
       console.log('response of verifylogin query', response)
       if(response[0] === undefined) {
