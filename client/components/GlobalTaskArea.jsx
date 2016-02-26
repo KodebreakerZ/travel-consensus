@@ -18,7 +18,7 @@ var GlobalTaskArea = React.createClass({
 
     var newMessage = {
       content: $('.newMessageContent').val(),
-      id_user: window.globalStateUserId   
+      id_user: window.globalStateUserId
     }
 
     // clear newMessageContent field
@@ -26,9 +26,13 @@ var GlobalTaskArea = React.createClass({
 
     this.props.addNewMessage(newMessage);
 
+    var objDiv = document.getElementById("messageListDiv");
+    objDiv.scrollIntoView(false);
+
     // intermediary setState; takes care of server-delay
     this.state.messagesInTask.push(newMessage)
     this.setState( {messagesInTask: this.props.messagesInTask} )
+
   },
 
   handleNewSuggestion: function(e) {
@@ -37,7 +41,7 @@ var GlobalTaskArea = React.createClass({
 
     var newSuggestion = {
       suggestion: $('.newSuggestionContent').val(),
-      id_user: window.globalStateUserId   
+      id_user: window.globalStateUserId
     }
 
     // clear newSuggestionContent field
