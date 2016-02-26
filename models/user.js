@@ -151,6 +151,9 @@ User.usernameById = function(userId) {
 */
 User.useridByName = function(name) {
   return db('users').where({username: name})
+  // var firstName = name.slice(0,2);
+  // var lastName = name.slice(-2);
+  // return db('users').whereRaw('username LIKE ?', [firstName + '%'], 'OR username LIKE ?', ['%' + lastName])
 }
 
 /*

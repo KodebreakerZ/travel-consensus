@@ -62,18 +62,19 @@ Trip.allOfUser = function(userId) {
 /*
   Delete a trip
 */
-Trip.deleteTrip = function(tripId) {
-  return db('trip').where({'id': tripId}).del()
-    .catch(reportError('error deleting trip'))
-    .then(function() {
-      deleteTripFromJoin(tripId)
-    })
-    .then(function() {
-      deleteTripFromTask(tripId)
-    })
-    .then(function() {
-      deleteTripFromSuggestion(tripId)
-    })
+Trip.deleteTrip = function(tripuser) {
+  console.log("IN TRIP, DELETE", tripuser)
+  return db('trip_users').where({'id_trip': tripuser.trip_id, id_user: tripuser.user_id}).del()
+  //   .catch(reportError('error deleting trip'))
+  //   .then(function() {
+  //     deleteTripFromJoin(tripId)
+  //   })
+  //   .then(function() {
+  //     deleteTripFromTask(tripId)
+  //   })
+  //   .then(function() {
+  //     deleteTripFromSuggestion(tripId)
+  //   })
 }
 
 /*
