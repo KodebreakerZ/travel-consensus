@@ -142,6 +142,20 @@ User.usernameById = function(userId) {
 }
 
 /*
+  Retrieve userid by username
+*/
+User.useridByName = function(name) {
+  return db('users').where({username: name})
+}
+
+/*
+  Add a user to a trip from userid and tripid
+*/
+User.addToTrip = function(usertrip) {
+  return db('trip_users').insert({id_user: usertrip.userid, id_trip: parseInt(usertrip.tripid)})
+}
+
+/*
   Delete a user from a trip id
 */
 User.deleteFromTrip = function(userId, tripId) {

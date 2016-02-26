@@ -7,7 +7,8 @@ var GlobalTaskArea = require('./components/GlobalTaskArea.jsx');
 
 
 /******** THIS IS GLOBAL STATE *********/
-/**/  window.globalStateTripId = 1;  /**/
+/**/  window.globalStateTripId = null;  /**/
+/**/  window.globalStateTripName = 'please select a trip';
 /**/  window.globalStateTaskId = 1;  /**/
 /**/  window.globalStateUserId = 1;  /**/
 /**/  window.globalToken       = null;  /**/
@@ -40,15 +41,19 @@ var sidebar  = React.createElement(GlobalSidebar, {
   addNewTask: postRequests.addNewTask,
 
 });
+
 var taskArea = React.createElement(GlobalTaskArea, {
   addNewMessage: postRequests.addNewMessage,
   addNewSuggestion: postRequests.addNewSuggestion,
   deleteSuggestion: deleteRequests.deleteSuggestion
 });
+
 var topbar   = React.createElement(GlobalTopBar, {
   signin: postRequests.signin,
   signup: postRequests.signup,
-  addNewTrip: postRequests.addNewTrip
+  addNewTrip: postRequests.addNewTrip,
+  addNewTrip: postRequests.addNewTrip,
+  getUser: postRequests.fetchUserByName
 });
 
 topbar   = ReactDOM.render(topbar, document.getElementById('react-main-mount'));

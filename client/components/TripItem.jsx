@@ -5,6 +5,8 @@ var TripItem = React.createClass({
 
 	handleClick: function() {
 		window.globalStateTripId = this.props.trip.id;
+    window.globalStateTripName = this.props.trip.name;
+    $('.tripItem').parent().fadeToggle(1000);
 		// console.log('set global trip state to', window.globalStateTripId);
 	},
 

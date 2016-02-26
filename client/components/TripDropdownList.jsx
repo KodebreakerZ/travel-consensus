@@ -33,6 +33,7 @@ var TripDropdownList = React.createClass({
     }
   },
 
+
   render: function() {
 
     var tripList = this.props.usersTrips.map(function(trip) {
@@ -47,7 +48,7 @@ var TripDropdownList = React.createClass({
         <h4>Select A Trip:</h4>
           {tripList}
         <h4 onClick={this.showNewTripForm} >Add A Trip</h4>
-        <form className="newTripForm" onSubmit={this.handleSubmit}>
+        <form className="newTripForm" onSubmit={this.handleSubmit} >
           <input type="text"
                  className="newTripInput"
                  placeholder="new trip name"
