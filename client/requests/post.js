@@ -93,6 +93,7 @@ exports.signin = function(info) {
       location.reload();
     }
     window.globalStateUserId = data.id;
+    window.globalStateUserName = data.username;
     window.globalToken = data.token;
     // console.log('USERID: ', window.globalStateUserId)
   })
@@ -128,6 +129,7 @@ exports.signup = function(info) {
     }
     window.globalStateUserId = data.id;
     window.globalToken = data.token;
+    window.globalStateUserName = data.username;
     console.log('USERID: ', window.globalStateUserId)
   })
   .catch(function(error) {

@@ -394,8 +394,23 @@ div.two{
     background-color: #198c8c;
 }*/
 
+.greeting {
+  height: 75px;
+  margin: 20px 0 0 30px;
+  padding-left: 9px;
+  letter-spacing: 0.25em;
+
+  color: #fff;
+}
+
+.usersName {
+  font-style: italic;
+  padding-top: 0;
+  margin-top: 0;
+}
+
 .location-display {
-  height: 175px;
+  height: 115px;
   margin-bottom: 0;
 
   text-align: center;
@@ -408,7 +423,7 @@ div.two{
 }
 
 .location-display .fa {
-  margin: 25px 0;
+  margin: 15px 0;
 }
 
 .task-item {
@@ -467,6 +482,11 @@ div.two{
   text-align: right;
 
   color: #fff;
+}
+
+.selected-task p {
+  background-color: blue !important;
+  color: black !important;
 }
 
 .addTaskBox {
