@@ -14,13 +14,17 @@ var GlobalTopBar = React.createClass({
 		$(".tripDropdownListDiv").fadeToggle('fast');
 	},
 
-	handleInviteClick: function() {
+	handleInviteClick: function(e) {
+		e.preventDefault();
 		var input = $('.inviteUsers').val();
 		this.props.getUser(input);
 		$('.invitepopup').fadeToggle('fast');
 		$('.inviteUsers').val('');
+		this.cancel();
 	},
-
+	cancel: function() {
+		$('.invitepopup').fadeToggle('fast');
+	},
 	getInitialState: function() {
 		return {
 			tripsInUser: []
