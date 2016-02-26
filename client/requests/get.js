@@ -12,7 +12,6 @@ function updateAll(topBar, taskList, taskArea) {
   if (window.globalStateUserId) {
     fetchTrips(window.globalStateUserId)
       .then(function(trips) {
-         console.log('got trips back from server', trips);
          topBar.setState( {tripsInUser: trips} );
        })
   } else {
