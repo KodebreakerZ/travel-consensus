@@ -11,6 +11,7 @@ var GlobalTaskArea = require('./components/GlobalTaskArea.jsx');
 /**/  window.globalStateTripName = 'please select a trip';
 /**/  window.globalStateTaskId = null;  /**/
 /**/  window.globalStateUserId = 1;  /**/
+/**/  window.globalToken       = null;  /**/
 /***************************************/
 /*
     Just these two variables allow us to dynamically update
@@ -40,12 +41,17 @@ var sidebar  = React.createElement(GlobalSidebar, {
   addNewTask: postRequests.addNewTask,
 
 });
+
 var taskArea = React.createElement(GlobalTaskArea, {
   addNewMessage: postRequests.addNewMessage,
   addNewSuggestion: postRequests.addNewSuggestion,
   deleteSuggestion: deleteRequests.deleteSuggestion
 });
+
 var topbar   = React.createElement(GlobalTopBar, {
+  signin: postRequests.signin,
+  signup: postRequests.signup,
+  addNewTrip: postRequests.addNewTrip,
   addNewTrip: postRequests.addNewTrip,
   getUser: postRequests.fetchUserByName
 });
@@ -55,6 +61,8 @@ sidebar  = ReactDOM.render(sidebar, document.getElementById('react-sidebar-mount
 taskArea = ReactDOM.render(taskArea, document.getElementById('react-task-mount'));
 
 var requestHandler = require('./requests/get')
+
+//uncomment this line to get trips for user
 requestHandler.setViewDataUpdateInterval(topbar, sidebar, taskArea, 2000);
 
 /*
