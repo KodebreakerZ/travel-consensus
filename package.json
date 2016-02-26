@@ -38,6 +38,9 @@
     "ramda": "^0.19.1",
     "supertest": "^1.1.0"
   },
+  "engines": {
+    "node: 4.2.x"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mindeavor/node-catapult"
