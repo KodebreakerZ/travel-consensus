@@ -32,7 +32,7 @@ var GlobalSidebar = React.createClass({
         <div className="twelve columns sidebar-height">
           <UserGreeting userText={this.state.userText} />
           <div className="location-display">
-            <i className="fa fa-circle fa-paper-plane-o fa-5x"></i>
+            <i className="fa fa-circle fa-paper-plane-o fa-3x"></i>
             <h5>{this.state.trip}</h5>
           </div>
           <hr />

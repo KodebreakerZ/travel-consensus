@@ -407,7 +407,7 @@ div.two{
 }
 
 .location-display {
-  height: 175px;
+  height: 115px;
   margin-bottom: 0;
 
   text-align: center;
@@ -420,7 +420,7 @@ div.two{
 }
 
 .location-display .fa {
-  margin: 25px 0;
+  margin: 15px 0;
 }
 
 .task-item {
