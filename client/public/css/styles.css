@@ -91,7 +91,7 @@ div.two{
 .top-bar-login:hover,
 /*.top-bar-signup:hover,*/
 .top-bar-signup:hover {
-  background: #f0f0f0;
+  background: #ffc85f;
 }
 /*.top-bar-signup {
   right: 16% !important;
@@ -230,7 +230,7 @@ div.two{
 
 .form__submit-btn:hover,
 .form__submit-btn-signup:hover {
-  background-color: rgba(50,112,119,.40);
+  background-color: #ffc85f;
 }
 
 .js-form__err-animation,
