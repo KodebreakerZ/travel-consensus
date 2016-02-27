@@ -145,9 +145,14 @@ TripAPI.delete('/:tripID/:userId', function(request, response) {
 */
 TripAPI.get('/:tripId/users', function(request, response) {
   var tripId = request.params.tripId;
-
   User.allOfTrip(tripId)
-    .then(sendStatusAndData(response, 200))
+    .then(function(users) {
+      // console.log("Users from DB", users);
+      return users;
+    })
+    .then(function(users) {
+      sendStatusAndData(response, 200, users)
+    })
     .catch(sendStatusAndError('Server error getting users by trip id'))
 })
 

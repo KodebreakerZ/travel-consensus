@@ -4,12 +4,15 @@ var SuggestionList = require('./SuggestionList.jsx');
 var SuggestionItem = require('./SuggestionItem.jsx');
 var MessageList = require('./MessageList.jsx');
 var MessageItem = require('./MessageItem.jsx');
+var User = require('./User.jsx');
+var UserList = require('./UserList.jsx');
 
 var GlobalTaskArea = React.createClass({
   getInitialState: function() {
     return {
       messagesInTask: [],
-      suggestionsInTask: []
+      suggestionsInTask: [],
+      usersInTrip: []
     }
   },
 
@@ -78,6 +81,11 @@ var GlobalTaskArea = React.createClass({
             <button type="submit">Post</button>
           </form>
         </div>
+
+        <div className="users-display">
+          <UserList users={this.state.usersInTrip} />
+        </div>
+
 
       </div>
     )
