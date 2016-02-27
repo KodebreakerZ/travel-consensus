@@ -10,7 +10,7 @@ body {
   margin: 0;
   padding: 0;
 
-  background-color: #198c8c;
+  background-color: #004EB2;
 }
 
 img {
@@ -91,7 +91,7 @@ div.two{
 .top-bar-login:hover,
 /*.top-bar-signup:hover,*/
 .top-bar-signup:hover {
-  background: #f0f0f0;
+  background: #ffc85f;
 }
 /*.top-bar-signup {
   right: 16% !important;
@@ -230,7 +230,7 @@ div.two{
 
 .form__submit-btn:hover,
 .form__submit-btn-signup:hover {
-  background-color: rgba(50,112,119,.40);
+  background-color: #ffc85f;
 }
 
 .js-form__err-animation,
@@ -379,7 +379,8 @@ div.two{
   min-height: 100%;
   /*margin-left: 5%;*/
 
-  background-color: #198c8c;
+  background-color: #004EB2;
+  /*OLD: #198c8c*/
 }
 
 /*.sidebar, .sidebar:before {
@@ -452,7 +453,7 @@ div.two{
 
   color: #fff;
   border: none;
-  background-color: #198c8c;
+  background-color: #004EB2;
 }
 
 
@@ -544,7 +545,8 @@ div.two{
 
   color: #fff;
   border-bottom: 1px solid #ccc;
-  background-color: #c0392b;
+  background-color: #B2790D;
+  /*old: #c0392b;*/
 }
 
 .suggestion-display p {

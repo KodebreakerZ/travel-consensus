@@ -18,9 +18,8 @@ var GlobalTopBar = React.createClass({
 		e.preventDefault();
 		var input = $('.inviteUsers').val();
 		this.props.getUser(input);
-		$('.invitepopup').fadeToggle('fast');
-		$('.inviteUsers').val('');
 		this.cancel();
+		$('.inviteUsers').val('');
 	},
 	cancel: function() {
 		$('.invitepopup').fadeToggle('fast');
